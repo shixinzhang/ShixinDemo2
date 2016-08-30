@@ -8,8 +8,8 @@
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_light_control_normal"
+        android:background="@color/user_icon_1"
         android:gravity="center"
         android:padding="8dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/chooser_service_row_background_color"/>
 </LinearLayout>
