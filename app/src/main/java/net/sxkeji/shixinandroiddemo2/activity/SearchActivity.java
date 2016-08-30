@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +22,10 @@ import android.widget.TextView;
 import com.ismaeltoe.FlowLayout;
 
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,6 +54,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     FlowLayout mFlowRecentSearch;
     @Bind(R.id.flow_hot_car)
     FlowLayout mFlowHotCar;
+    @Bind(R.id.recycler_view)
+    RecyclerView mSearchResultList;
+
+    private SearchResultAdapter mSearchResultAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +65,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
+        initViews();
         initSearchData();
         mTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +91,20 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
         mEtSearch.addTextChangedListener(this);
     }
 
+    private void initViews() {
+        mSearchResultAdapter = new SearchResultAdapter(this, new ArrayList<>(Arrays.asList("a", "b", "c", "d")));
+        mSearchResultList.setLayoutManager(new LinearLayoutManager(this));
+        mSearchResultList.setAdapter(mSearchResultAdapter);
+    }
+
     private void initSearchData() {
         for (int i = 0; i < 10; i++) {
-            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item_2, null);
+            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
             ((TextView) searchItem.findViewById(R.id.tv_item)).setText("宝马" + i + "系");
             mFlowRecentSearch.addView(searchItem);
         }
         for (int i = 0; i < 10; i++) {
-            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item_2, null);
+            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
             ((TextView) searchItem.findViewById(R.id.tv_item)).setText("宝马" + i + "系");
             mFlowHotCar.addView(searchItem);
         }
@@ -102,6 +120,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
             showSearchHistoryView();
         } else {
             mEtSearch.setHint("全新胜达（进口）");
+            mEtSearch.setText("");
             mIvClear.setVisibility(View.GONE);
             mTvSearch.setVisibility(View.VISIBLE);
             dismissSearchHistoryView();
@@ -137,6 +156,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         // TODO: 8/30/2016 请求接口搜索
         Log.e(TAG, "onTextChanged " + s);
+        if (TextUtils.isEmpty(s)) {
+            mSearchResultList.setVisibility(View.GONE);
+        } else {
+            mSearchResultList.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

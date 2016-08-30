@@ -18,5 +18,12 @@
             android:text="this is content"/>
 
         <include layout="@layout/include_search_history"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Red_700"
+            android:visibility="gone"/>
     </FrameLayout>
 </LinearLayout>
