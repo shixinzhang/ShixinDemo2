@@ -6,10 +6,17 @@
 
     <include layout="@layout/item_searchbar_ymc"/>
 
-    <TextView
-        android:id="@+id/tv_content"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="this is content"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="this is content"/>
+
+        <include layout="@layout/include_search_history"/>
+    </FrameLayout>
 </LinearLayout>
