@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/ll_search_history"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#cccccc"
               android:orientation="vertical"
               android:visibility="gone">
 
@@ -32,8 +32,10 @@
             android:id="@+id/flow_recent_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            app:horizontalPadding="16dp"
+            app:verticalPadding="8dp"/>
 
     </LinearLayout>
 
@@ -62,8 +64,10 @@
             android:id="@+id/flow_hot_car"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            app:horizontalPadding="16dp"
+            app:verticalPadding="8dp"/>
 
     </LinearLayout>
 

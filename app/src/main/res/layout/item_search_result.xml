@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/tv_item"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_margin="8dp"
-          android:paddingBottom="6dp"
-          android:paddingLeft="16dp"
-          android:paddingRight="16dp"
-          android:paddingTop="6dp"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_result_name"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/white"
+        android:paddingBottom="6dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="6dp"/>
+    <View
+        style="@style/Line_horizon_grey"/>
+</LinearLayout>

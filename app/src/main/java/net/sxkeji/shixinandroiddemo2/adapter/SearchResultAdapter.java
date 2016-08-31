@@ -7,6 +7,7 @@ import net.sxkeji.shixinandroiddemo2.R;
 import java.util.List;
 
 /**
+ * 搜索结果的 adapter
  * Created by zhangshixin on 8/30/2016.
  */
 public class SearchResultAdapter extends BaseQuickAdapter<String> {
@@ -16,6 +17,6 @@ public class SearchResultAdapter extends BaseQuickAdapter<String> {
 
     @Override
     protected void convert(BaseViewHolder holder, String item) {
-        holder.setText(R.id.tv_item, item);
+        holder.setText(R.id.tv_result_name, item);
     }
 }

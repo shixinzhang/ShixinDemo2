@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ismaeltoe.FlowLayout;
 
@@ -92,21 +93,33 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     private void initViews() {
-        mSearchResultAdapter = new SearchResultAdapter(this, new ArrayList<>(Arrays.asList("a", "b", "c", "d")));
+        mSearchResultAdapter = new SearchResultAdapter(this, new ArrayList<>(Arrays.asList("a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d")));
         mSearchResultList.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultList.setAdapter(mSearchResultAdapter);
     }
 
     private void initSearchData() {
         for (int i = 0; i < 10; i++) {
-            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
-            ((TextView) searchItem.findViewById(R.id.tv_item)).setText("宝马" + i + "系");
-            mFlowRecentSearch.addView(searchItem);
+            final TextView tvRecentSearch = (TextView) LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
+            tvRecentSearch.setText("宝马" + i + "系");
+            tvRecentSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(SearchActivity.this, tvRecentSearch.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            mFlowRecentSearch.addView(tvRecentSearch);
         }
         for (int i = 0; i < 10; i++) {
-            View searchItem = LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
-            ((TextView) searchItem.findViewById(R.id.tv_item)).setText("宝马" + i + "系");
-            mFlowHotCar.addView(searchItem);
+            final TextView tvHotCar = (TextView) LayoutInflater.from(this).inflate(R.layout.item_search_item, null);
+            tvHotCar.setText("宝马" + i + "系");
+            tvHotCar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(SearchActivity.this, tvHotCar.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            mFlowHotCar.addView(tvHotCar);
         }
     }
 
@@ -149,22 +162,20 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
     }
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        // TODO: 8/30/2016 请求接口搜索
         Log.e(TAG, "onTextChanged " + s);
         if (TextUtils.isEmpty(s)) {
             mSearchResultList.setVisibility(View.GONE);
         } else {
+            // TODO: 8/30/2016 请求搜索结果，填充数据
             mSearchResultList.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-
     }
 }
