@@ -16,8 +16,7 @@
         <net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFrameLayout
             android:id="@+id/sortframlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <RelativeLayout

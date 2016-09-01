@@ -23,6 +23,4 @@
 
         <View style="@style/Line_vertical_grey"/>
     </LinearLayout>
-    <View
-        style="@style/Line_horizon_grey"/>
 </LinearLayout>

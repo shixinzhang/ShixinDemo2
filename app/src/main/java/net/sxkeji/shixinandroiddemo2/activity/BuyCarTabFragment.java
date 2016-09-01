@@ -51,7 +51,7 @@ import butterknife.ButterKnife;
  * 买车 Tab Native
  * Created by zhangshixin on 9/1/2016.
  */
-public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeListener, TextWatcher {
+public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeListener, TextWatcher, SearchActivity.OnBackPressFragmentListener {
     private final String TAG = "BuyCarTabFragment";
     @Bind(R.id.iv_search)
     ImageView mIvSearch;
@@ -61,8 +61,6 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     ImageView mIvClear;
     @Bind(R.id.tv_search)
     TextView mTvSearch;
-    @Bind(R.id.root)
-    LinearLayout mRoot;
     @Bind(R.id.sortframlayout)
     SortFrameLayout mSortframlayout;
     @Bind(R.id.iv_logo)
@@ -93,9 +91,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     private List<String> mHotBrandData = new ArrayList<>(Arrays.asList("http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
             "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
             "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png", "http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
-            "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
-            "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png","http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
-            "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png"));
+            "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png"));
     private List<SortModel> mCarBrandList;
 
 
@@ -104,7 +100,6 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buy_car, null);
         ButterKnife.bind(this, view);
-        Log.e(TAG, "onCreateView");
         return view;
     }
 
@@ -337,16 +332,6 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
         });
     }
 
-
-//    @Override
-//    public void onBackPressed() {
-//        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerCarSeries)) {
-//            mDrawerLayout.closeDrawers();
-//            return;
-//        }
-//        mActivity.finish();
-//    }
-
     @Override
     public void afterTextChanged(Editable s) {
         //do nothing
@@ -361,5 +346,26 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    /**
+     * Activity 的返回键监听回调
+     * @return
+     */
+    @Override
+    public boolean onBackPressed() {
+        if (mSearchResultList.getVisibility() == View.VISIBLE) {
+            mSearchResultList.setVisibility(View.GONE);
+            return true;
+        }
+        if (mLlSearchHistory.getVisibility() == View.VISIBLE) {
+            mLlSearchHistory.setVisibility(View.GONE);
+            return true;
+        }
+        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerCarSeries)) {
+            mDrawerLayout.closeDrawers();
+            return true;
+        }
+        return false;
     }
 }
