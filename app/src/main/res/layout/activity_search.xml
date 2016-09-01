@@ -4,22 +4,8 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/item_searchbar_ymc"/>
-
     <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/include_drawer_car_list"/>
-
-        <include layout="@layout/include_search_history"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#cccccc"
-            android:paddingTop="16dp"
-            android:visibility="gone"/>
-    </FrameLayout>
+        android:layout_height="match_parent"/>
 </LinearLayout>
