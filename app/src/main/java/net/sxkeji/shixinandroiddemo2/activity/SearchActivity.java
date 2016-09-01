@@ -49,8 +49,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     TextView mTvSearch;
     @Bind(R.id.root)
     LinearLayout mRoot;
-    @Bind(R.id.tv_content)
-    TextView mTvContent;
     @Bind(R.id.ll_search_history)
     LinearLayout mLlSearchHistory;
     @Bind(R.id.flow_recent_search)

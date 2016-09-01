@@ -39,7 +39,8 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
-import net.sxkeji.androiddevartiestpritice.R;
+import net.sxkeji.shixinandroiddemo2.R;
+
 
 /**
  * Allows an abstraction of the ViewHolder pattern.<br>
