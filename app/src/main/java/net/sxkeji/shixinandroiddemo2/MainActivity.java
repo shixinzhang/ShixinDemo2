@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityListAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Class<?> claz = mActivityNameList.get(position).getClaz();
+                Class<?> claz = mActivityListAdapter.getData().get(position).getClaz();
                 Intent intent = new Intent(MainActivity.this, claz);
                 startActivity(intent);
             }

@@ -23,10 +23,12 @@ import android.widget.Toast;
 import com.ismaeltoe.FlowLayout;
 
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,6 +61,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     RecyclerView mSearchResultList;
 
     private SearchResultAdapter mSearchResultAdapter;
+    private
+    List<String> mSearchResultData = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d"));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,7 +97,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     private void initViews() {
-        mSearchResultAdapter = new SearchResultAdapter(this, new ArrayList<>(Arrays.asList("a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d")));
+        mSearchResultAdapter = new SearchResultAdapter(this, mSearchResultData);
+        mSearchResultAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String s = mSearchResultAdapter.getData().get(position);
+                Toast.makeText(SearchActivity.this,s,Toast.LENGTH_SHORT).show();
+            }
+        });
         mSearchResultList.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultList.setAdapter(mSearchResultAdapter);
     }
@@ -141,20 +152,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
     }
 
     private void showSearchHistoryView() {
-//        if (mSearchHistoryPopup == null) {
-//            View v = LayoutInflater.from(this).inflate(R.layout.include_search_history, null);
-//            mSearchHistoryPopup = new PopupWindow(v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
-//            mSearchHistoryPopup.setOutsideTouchable(false);
-//            mSearchHistoryPopup.setBackgroundDrawable(new BitmapDrawable());
-//        }
-//        mSearchHistoryPopup.showAsDropDown(mEtSearch);
         mLlSearchHistory.setVisibility(View.VISIBLE);
     }
 
     private void dismissSearchHistoryView() {
-//        if (mSearchHistoryPopup != null && mSearchHistoryPopup.isShowing()) {
-//            mSearchHistoryPopup.dismiss();
-//        }
         mEtSearch.clearFocus();
         mLlSearchHistory.setVisibility(View.GONE);
     }
@@ -170,7 +171,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnFocusCha
         if (TextUtils.isEmpty(s)) {
             mSearchResultList.setVisibility(View.GONE);
         } else {
+
             // TODO: 8/30/2016 请求搜索结果，填充数据
+            mSearchResultData.add(s.toString());
+            mSearchResultAdapter.setData(mSearchResultData);
             mSearchResultList.setVisibility(View.VISIBLE);
         }
     }
