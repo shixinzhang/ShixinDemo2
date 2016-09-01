@@ -26,7 +26,7 @@ import java.util.List;
  * Created by renbingwu on 2015/10/10.
  * Updated by shixinzhang on 2016/09/01
  */
-public class SortFramlayout extends FrameLayout {
+public class SortFrameLayout extends FrameLayout {
     private SideBar sidrbar;
     private TextView dialog;
     QuickAdapter<SortModel> sortAdapter;
@@ -42,17 +42,17 @@ public class SortFramlayout extends FrameLayout {
     private int size = 12;
     private SortListviewOnitemClickInterface onitemClickInterface;
 
-    public SortFramlayout(Context context) {
+    public SortFrameLayout(Context context) {
         super(context);
         initView();
     }
 
-    public SortFramlayout(Context context, AttributeSet attrs) {
+    public SortFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
 
-    public SortFramlayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SortFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }

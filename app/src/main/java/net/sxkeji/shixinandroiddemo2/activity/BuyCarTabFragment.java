@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -30,10 +31,11 @@ import com.squareup.picasso.Picasso;
 
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
+import net.sxkeji.shixinandroiddemo2.adapter.HotBrandAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
 import net.sxkeji.shixinandroiddemo2.beans.CarBrandBean;
 import net.sxkeji.shixinandroiddemo2.utils.GsonUtils;
-import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFramlayout;
+import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFrameLayout;
 import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortModel;
 
 import java.io.IOException;
@@ -50,6 +52,7 @@ import butterknife.ButterKnife;
  * Created by zhangshixin on 9/1/2016.
  */
 public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeListener, TextWatcher {
+    private final String TAG = "BuyCarTabFragment";
     @Bind(R.id.iv_search)
     ImageView mIvSearch;
     @Bind(R.id.et_search)
@@ -61,7 +64,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     @Bind(R.id.root)
     LinearLayout mRoot;
     @Bind(R.id.sortframlayout)
-    SortFramlayout mSortframlayout;
+    SortFrameLayout mSortframlayout;
     @Bind(R.id.iv_logo)
     ImageView mIvSelectBrandLogo;
     @Bind(R.id.tv_name)
@@ -71,7 +74,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     @Bind(R.id.drawer_car_series)
     RelativeLayout mDrawerCarSeries;
     @Bind(R.id.drawlayout)
-    DrawerLayout mDrawlayout;
+    DrawerLayout mDrawerLayout;
     @Bind(R.id.flow_recent_search)
     FlowLayout mFlowRecentSearch;
     @Bind(R.id.flow_hot_car)
@@ -84,21 +87,30 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     private Context mContext;
     private Activity mActivity;
     private SearchResultAdapter mSearchResultAdapter;
+    private HotBrandAdapter mHotBrandAdapter;
     private
     List<String> mSearchResultData = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d"));
+    private List<String> mHotBrandData = new ArrayList<>(Arrays.asList("http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
+            "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
+            "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png", "http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
+            "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
+            "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png","http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
+            "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png"));
     private List<SortModel> mCarBrandList;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buy_car, null);
         ButterKnife.bind(this, view);
+        Log.e(TAG, "onCreateView");
         return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         mContext = getContext();
         mActivity = getActivity();
         loadData();
@@ -142,8 +154,15 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     }
 
     private void initCarBrandList() {
+        View hotBrandView = View.inflate(mContext, R.layout.include_hot_brand, null);
+        //热门品牌
+        RecyclerView recyclerHotBrand = (RecyclerView) hotBrandView.findViewById(R.id.recycler_hot_brand);
+        mHotBrandAdapter = new HotBrandAdapter(mContext, mHotBrandData);
+        recyclerHotBrand.setAdapter(mHotBrandAdapter);
+        recyclerHotBrand.setLayoutManager(new GridLayoutManager(mContext, 5));
+
         if (mCarBrandList != null) {
-            mSortframlayout.setData(null, mCarBrandList);
+            mSortframlayout.setData(hotBrandView, mCarBrandList);
             mSortframlayout.setRefresh(false);
         } else {
             Log.e("汽车品牌列表", "汽车列表为空");
@@ -267,7 +286,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     }
 
     private void setListener() {
-        mSortframlayout.setOnItemClickListener(new SortFramlayout.SortListviewOnitemClickInterface() {
+        mSortframlayout.setOnItemClickListener(new SortFrameLayout.SortListviewOnitemClickInterface() {
             @Override
             public void onItemClick(List<SortModel> sortModels, int position) {
                 SortModel sortModel = sortModels.get(position);
@@ -281,7 +300,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
                                 .into(mIvSelectBrandLogo);
                     }
                 }
-                setDrawlayout();
+                setDrawerLayout();
             }
         });
     }
@@ -289,13 +308,13 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     /**
      * 抽屉的展开与关闭
      **/
-    private void setDrawlayout() {
-        if (mDrawlayout.isDrawerOpen(mDrawerCarSeries)) {
-            mDrawlayout.closeDrawer(GravityCompat.END);
+    private void setDrawerLayout() {
+        if (mDrawerLayout.isDrawerOpen(mDrawerCarSeries)) {
+            mDrawerLayout.closeDrawer(GravityCompat.END);
         } else {
-            mDrawlayout.openDrawer(GravityCompat.END);
+            mDrawerLayout.openDrawer(GravityCompat.END);
         }
-        mDrawlayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+        mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
 
@@ -303,12 +322,12 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                mDrawlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED); //打开
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED); //打开
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
-                mDrawlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //关闭滑动
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //关闭滑动
             }
 
             @Override
@@ -321,8 +340,8 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
 
 //    @Override
 //    public void onBackPressed() {
-//        if (mDrawlayout != null && mDrawlayout.isDrawerOpen(mDrawerCarSeries)) {
-//            mDrawlayout.closeDrawers();
+//        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerCarSeries)) {
+//            mDrawerLayout.closeDrawers();
 //            return;
 //        }
 //        mActivity.finish();
