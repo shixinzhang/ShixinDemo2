@@ -350,7 +350,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
 
     /**
      * Activity 的返回键监听回调
-     * @return
+     * @return true if resolved the call back, else call superclass to resolve
      */
     @Override
     public boolean onBackPressed() {
