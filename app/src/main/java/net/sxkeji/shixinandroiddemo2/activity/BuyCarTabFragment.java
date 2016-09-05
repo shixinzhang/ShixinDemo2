@@ -100,6 +100,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buy_car, null);
         ButterKnife.bind(this, view);
+        //test merge
         return view;
     }
 
@@ -116,6 +117,7 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     private void loadData() {
         initSearchData();
         initLocalCarListData();
+        //test merge2
     }
 
     private void initSearchData() {
