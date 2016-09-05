@@ -3,7 +3,6 @@ package net.sxkeji.shixinandroiddemo2.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -18,8 +17,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -51,16 +48,8 @@ import butterknife.ButterKnife;
  * 买车 Tab Native
  * Created by zhangshixin on 9/1/2016.
  */
-public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeListener, TextWatcher, SearchActivity.OnBackPressFragmentListener {
+public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchActivity.OnBackPressFragmentListener {
     private final String TAG = "BuyCarTabFragment";
-    @Bind(R.id.iv_search)
-    ImageView mIvSearch;
-    @Bind(R.id.et_search)
-    EditText mEtSearch;
-    @Bind(R.id.iv_clear)
-    ImageView mIvClear;
-    @Bind(R.id.tv_search)
-    TextView mTvSearch;
     @Bind(R.id.sortframlayout)
     SortFrameLayout mSortframlayout;
     @Bind(R.id.iv_logo)
@@ -165,28 +154,28 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     }
 
     private void initSearch() {
-        mTvSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mEtSearch.requestFocus();
-            }
-        });
-        mIvClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mEtSearch.clearFocus();
-                View currentFocus = mActivity.getCurrentFocus();
-                if (currentFocus != null) {
-                    IBinder windowToken = currentFocus.getWindowToken();
-                    if (windowToken != null) {
-                        InputMethodManager inputMethodManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
-                    }
-                }
-            }
-        });
-        mEtSearch.setOnFocusChangeListener(this);
-        mEtSearch.addTextChangedListener(this);
+//        mTvSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mEtSearch.requestFocus();
+//            }
+//        });
+//        mIvClear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mEtSearch.clearFocus();
+//                View currentFocus = mActivity.getCurrentFocus();
+//                if (currentFocus != null) {
+//                    IBinder windowToken = currentFocus.getWindowToken();
+//                    if (windowToken != null) {
+//                        InputMethodManager inputMethodManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
+//                    }
+//                }
+//            }
+//        });
+//        mEtSearch.setOnFocusChangeListener(this);
+//        mEtSearch.addTextChangedListener(this);
 
         mSearchResultAdapter = new SearchResultAdapter(mContext, mSearchResultData);
         mSearchResultAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
@@ -201,40 +190,40 @@ public class BuyCarTabFragment extends Fragment implements View.OnFocusChangeLis
     }
 
 
-    /**
-     * 输入框是否选中的状态改变
-     *
-     * @param v
-     * @param hasFocus
-     */
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (mEtSearch == null || mTvSearch == null || mIvClear == null) {
-            return;
-        }
-        //聚焦，弹出历史、热门搜素记录
-        if (hasFocus) {
-            mEtSearch.setHint("");
-            mTvSearch.setVisibility(View.GONE);
-            mIvClear.setVisibility(View.VISIBLE);
-            showSearchHistoryView();
-        } else {
-            mEtSearch.setHint("全新胜达（进口）");
-            mEtSearch.setText("");
-            mIvClear.setVisibility(View.GONE);
-            mTvSearch.setVisibility(View.VISIBLE);
-            dismissSearchHistoryView();
-        }
-    }
-
-    private void showSearchHistoryView() {
-        mLlSearchHistory.setVisibility(View.VISIBLE);
-    }
-
-    private void dismissSearchHistoryView() {
-        mEtSearch.clearFocus();
-        mLlSearchHistory.setVisibility(View.GONE);
-    }
+//    /**
+//     * 输入框是否选中的状态改变
+//     *
+//     * @param v
+//     * @param hasFocus
+//     */
+//    @Override
+//    public void onFocusChange(View v, boolean hasFocus) {
+//        if (mEtSearch == null || mTvSearch == null || mIvClear == null) {
+//            return;
+//        }
+//        //聚焦，弹出历史、热门搜素记录
+//        if (hasFocus) {
+//            mEtSearch.setHint("");
+//            mTvSearch.setVisibility(View.GONE);
+//            mIvClear.setVisibility(View.VISIBLE);
+//            showSearchHistoryView();
+//        } else {
+//            mEtSearch.setHint("全新胜达（进口）");
+//            mEtSearch.setText("");
+//            mIvClear.setVisibility(View.GONE);
+//            mTvSearch.setVisibility(View.VISIBLE);
+//            dismissSearchHistoryView();
+//        }
+//    }
+//
+//    private void showSearchHistoryView() {
+//        mLlSearchHistory.setVisibility(View.VISIBLE);
+//    }
+//
+//    private void dismissSearchHistoryView() {
+//        mEtSearch.clearFocus();
+//        mLlSearchHistory.setVisibility(View.GONE);
+//    }
 
     /**
      * 监听输入框输入的内容，实时搜索
