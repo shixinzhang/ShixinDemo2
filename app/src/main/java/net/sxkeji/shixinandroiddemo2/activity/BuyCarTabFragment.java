@@ -4,15 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +19,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.HotBrandAdapter;
-import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
 import net.sxkeji.shixinandroiddemo2.beans.CarBrandBean;
 import net.sxkeji.shixinandroiddemo2.utils.GsonUtils;
 import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFrameLayout;
@@ -46,7 +42,7 @@ import butterknife.ButterKnife;
  * 买车 Tab Native
  * Created by zhangshixin on 9/1/2016.
  */
-public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchActivity.OnBackPressFragmentListener {
+public class BuyCarTabFragment extends Fragment implements SearchActivity.OnBackPressFragmentListener {
     private final String TAG = "BuyCarTabFragment";
     @Bind(R.id.sortframlayout)
     SortFrameLayout mSortframlayout;
@@ -60,13 +56,12 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     RelativeLayout mDrawerCarSeries;
     @Bind(R.id.drawlayout)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.tv_tab)
+    TextView mTvTab;
 
     private Context mContext;
     private Activity mActivity;
-    private SearchResultAdapter mSearchResultAdapter;
     private HotBrandAdapter mHotBrandAdapter;
-    private
-    List<String> mSearchResultData = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d", "b", "c", "d"));
     private List<String> mHotBrandData = new ArrayList<>(Arrays.asList("http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
             "http://img.yaomaiche.com/upload/image/original/201508/171341491701.png", "http://img.yaomaiche.com/upload/image/original/201508/201505145311.png",
             "http://img.yaomaiche.com/upload/image/original/201508/201503529815.png", "http://img.yaomaiche.com/upload/image/original/201508/171340516914.png", "http://img.yaomaiche.com/upload/image/original/201510/222109576440.png",
@@ -79,7 +74,6 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_buy_car, null);
         ButterKnife.bind(this, view);
-        //test merge
         return view;
     }
 
@@ -95,11 +89,9 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
 
     private void loadData() {
         initLocalCarListData();
-        //test merge2
     }
 
     private void initViews() {
-        initSearch();
         initCarBrandList();
     }
 
@@ -110,7 +102,7 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
         hotBrandHeaderView.findViewById(R.id.ll_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,SearchBrandActivity.class);
+                Intent intent = new Intent(mContext, SearchBrandActivity.class);
                 startActivity(intent);
             }
         });
@@ -129,98 +121,6 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
         }
     }
 
-    private void initSearch() {
-//        mTvSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mEtSearch.requestFocus();
-//            }
-//        });
-//        mIvClear.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mEtSearch.clearFocus();
-//                View currentFocus = mActivity.getCurrentFocus();
-//                if (currentFocus != null) {
-//                    IBinder windowToken = currentFocus.getWindowToken();
-//                    if (windowToken != null) {
-//                        InputMethodManager inputMethodManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                        inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
-//                    }
-//                }
-//            }
-//        });
-//        mEtSearch.setOnFocusChangeListener(this);
-//        mEtSearch.addTextChangedListener(this);
-
-        mSearchResultAdapter = new SearchResultAdapter(mContext, mSearchResultData);
-        mSearchResultAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                String s = mSearchResultAdapter.getData().get(position);
-                Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
-            }
-        });
-//        mSearchResultList.setLayoutManager(new LinearLayoutManager(mContext));
-//        mSearchResultList.setAdapter(mSearchResultAdapter);
-    }
-
-
-//    /**
-//     * 输入框是否选中的状态改变
-//     *
-//     * @param v
-//     * @param hasFocus
-//     */
-//    @Override
-//    public void onFocusChange(View v, boolean hasFocus) {
-//        if (mEtSearch == null || mTvSearch == null || mIvClear == null) {
-//            return;
-//        }
-//        //聚焦，弹出历史、热门搜素记录
-//        if (hasFocus) {
-//            mEtSearch.setHint("");
-//            mTvSearch.setVisibility(View.GONE);
-//            mIvClear.setVisibility(View.VISIBLE);
-//            showSearchHistoryView();
-//        } else {
-//            mEtSearch.setHint("全新胜达（进口）");
-//            mEtSearch.setText("");
-//            mIvClear.setVisibility(View.GONE);
-//            mTvSearch.setVisibility(View.VISIBLE);
-//            dismissSearchHistoryView();
-//        }
-//    }
-//
-//    private void showSearchHistoryView() {
-//        mLlSearchHistory.setVisibility(View.VISIBLE);
-//    }
-//
-//    private void dismissSearchHistoryView() {
-//        mEtSearch.clearFocus();
-//        mLlSearchHistory.setVisibility(View.GONE);
-//    }
-
-    /**
-     * 监听输入框输入的内容，实时搜索
-     *
-     * @param s
-     * @param start
-     * @param before
-     * @param count
-     */
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if (TextUtils.isEmpty(s)) {
-//            mSearchResultList.setVisibility(View.GONE);
-        } else {
-
-            // TODO: 8/30/2016 请求搜索结果，填充数据
-            mSearchResultData.add(s.toString());
-            mSearchResultAdapter.setData(mSearchResultData);
-//            mSearchResultList.setVisibility(View.VISIBLE);
-        }
-    }
 
     /**
      * 加载本地品牌数据
@@ -245,8 +145,20 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
         }
     }
 
+    long lastTimeClick;
     private void setListener() {
-        mSortframlayout.setOnItemClickListener(new SortFrameLayout.SortListviewOnitemClickInterface() {
+        mTvTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long currentTime = SystemClock.currentThreadTimeMillis();
+                if (currentTime - lastTimeClick < 200) {
+                    mSortframlayout.scrollToTop();
+                }
+                lastTimeClick = SystemClock.currentThreadTimeMillis();
+            }
+        });
+
+        mSortframlayout.setOnItemClickListener(new SortFrameLayout.SortListOnItemClickListener() {
             @Override
             public void onItemClick(List<SortModel> sortModels, int position) {
                 SortModel sortModel = sortModels.get(position);
@@ -298,16 +210,6 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
-        //do nothing
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        //do nothing
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
@@ -315,6 +217,7 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
 
     /**
      * Activity 的返回键监听回调
+     *
      * @return true if resolved the call back, else call superclass to resolve
      */
     @Override

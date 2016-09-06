@@ -30,7 +30,7 @@ public class SortFrameLayout extends FrameLayout {
     private SideBar sidrbar;
     private TextView dialog;
     QuickAdapter<SortModel> sortAdapter;
-    private ListView listview_brand;
+    private ListView lvBrand;
     private List<SortModel> sortModels;
     private CharacterParser characterParser;
     PinyinComparator pinyinComparator;
@@ -40,7 +40,7 @@ public class SortFrameLayout extends FrameLayout {
 
     private View topView;
     private int size = 12;
-    private SortListviewOnitemClickInterface onitemClickInterface;
+    private SortListOnItemClickListener itenClickListener;
 
     public SortFrameLayout(Context context) {
         super(context);
@@ -59,7 +59,7 @@ public class SortFrameLayout extends FrameLayout {
 
     private void initView() {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.sortlistview, this);
-        listview_brand = (ListView) view.findViewById(R.id.listview_brand);
+        lvBrand = (ListView) view.findViewById(R.id.listview_brand);
         sidrbar = (SideBar) view.findViewById(R.id.sidrbar);
         dialog = (TextView) view.findViewById(R.id.tv_dialog);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.id_swipe_ly);
@@ -94,7 +94,7 @@ public class SortFrameLayout extends FrameLayout {
             letters.add(0, "#");
         }
         if (topView != null) {
-            listview_brand.addHeaderView(topView);
+            lvBrand.addHeaderView(topView);
         }
         sidrbar.setTextB(letters.toArray(new String[letters.size()]));
         sortAdapter = new QuickAdapter<SortModel>(getContext(), R.layout.sortlist_item) {
@@ -135,41 +135,41 @@ public class SortFrameLayout extends FrameLayout {
                 //该字母首次出现的位置
                 int position = getPositionForSection(s.charAt(0), sortModels);
                 if (topView == null) {
-                    listview_brand.setSelection(position);
+                    lvBrand.setSelection(position);
                 } else {
                     if (position != -1) {
-                        listview_brand.setSelection(position + 1);
+                        lvBrand.setSelection(position + 1);
                     } else {
-                        listview_brand.setSelection(0);
+                        lvBrand.setSelection(0);
                     }
                 }
             }
         });
-        listview_brand.setAdapter(sortAdapter);
+        lvBrand.setAdapter(sortAdapter);
         sortAdapter.addAll(sortModels);
-        listview_brand.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvBrand.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (onitemClickInterface != null) {
+                if (itenClickListener != null) {
                     if (topView != null) {
                         position = position - 1;
                     }
-                    onitemClickInterface.onItemClick(sortModels, position);
+                    itenClickListener.onItemClick(sortModels, position);
                 }
             }
         });
 
     }
 
-    public void setOnItemClickListener(SortListviewOnitemClickInterface onitemClickInterface) {
-        this.onitemClickInterface = onitemClickInterface;
+    public void setOnItemClickListener(SortListOnItemClickListener itenClickListener) {
+        this.itenClickListener = itenClickListener;
     }
 
     public void setData(View topView, List<SortModel> sortModels) {
         this.topView = topView;
         this.sortModels = sortModels;
         if (sortModels == null || sortModels.size() <= 0) {
-            Toast.makeText(getContext(), "请填充数据",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "请填充数据", Toast.LENGTH_SHORT).show();
             return;
         }
         initData();
@@ -190,6 +190,12 @@ public class SortFrameLayout extends FrameLayout {
         return letters;
     }
 
+    /**
+     * 滑到顶部
+     */
+    public void scrollToTop(){
+        lvBrand.setSelection(0);
+    }
 
     /**
      * 根据分类的首字母的Char ascii值获取其第一次出现该首字母的位置
@@ -206,7 +212,7 @@ public class SortFrameLayout extends FrameLayout {
         return -1;
     }
 
-    public interface SortListviewOnitemClickInterface {
-        public void onItemClick(List<SortModel> sortModels, int position);
+    public interface SortListOnItemClickListener {
+        void onItemClick(List<SortModel> sortModels, int position);
     }
 }
