@@ -2,13 +2,13 @@ package net.sxkeji.shixinandroiddemo2.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -18,12 +18,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ismaeltoe.FlowLayout;
 import com.squareup.picasso.Picasso;
 
 import net.sxkeji.shixinandroiddemo2.R;
@@ -62,14 +60,6 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     RelativeLayout mDrawerCarSeries;
     @Bind(R.id.drawlayout)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.flow_recent_search)
-    FlowLayout mFlowRecentSearch;
-    @Bind(R.id.flow_hot_car)
-    FlowLayout mFlowHotCar;
-    @Bind(R.id.ll_search_history)
-    LinearLayout mLlSearchHistory;
-    @Bind(R.id.recycler_view)
-    RecyclerView mSearchResultList;
 
     private Context mContext;
     private Activity mActivity;
@@ -104,34 +94,8 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     }
 
     private void loadData() {
-        initSearchData();
         initLocalCarListData();
         //test merge2
-    }
-
-    private void initSearchData() {
-        for (int i = 0; i < 10; i++) {
-            final TextView tvRecentSearch = (TextView) LayoutInflater.from(mContext).inflate(R.layout.item_search_item, null);
-            tvRecentSearch.setText("宝马" + i + "系");
-            tvRecentSearch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, tvRecentSearch.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-            mFlowRecentSearch.addView(tvRecentSearch);
-        }
-        for (int i = 0; i < 10; i++) {
-            final TextView tvHotCar = (TextView) LayoutInflater.from(mContext).inflate(R.layout.item_search_item, null);
-            tvHotCar.setText("宝马" + i + "系");
-            tvHotCar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, tvHotCar.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-            mFlowHotCar.addView(tvHotCar);
-        }
     }
 
     private void initViews() {
@@ -140,15 +104,25 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     }
 
     private void initCarBrandList() {
-        View hotBrandView = View.inflate(mContext, R.layout.include_hot_brand, null);
+        //顶部的搜索和热门品牌
+        View hotBrandHeaderView = View.inflate(mContext, R.layout.include_hot_brand, null);
+        //点击进入搜索
+        hotBrandHeaderView.findViewById(R.id.ll_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,SearchBrandActivity.class);
+                startActivity(intent);
+            }
+        });
         //热门品牌
-        RecyclerView recyclerHotBrand = (RecyclerView) hotBrandView.findViewById(R.id.recycler_hot_brand);
+        RecyclerView recyclerHotBrand = (RecyclerView) hotBrandHeaderView.findViewById(R.id.recycler_hot_brand);
+
         mHotBrandAdapter = new HotBrandAdapter(mContext, mHotBrandData);
         recyclerHotBrand.setAdapter(mHotBrandAdapter);
         recyclerHotBrand.setLayoutManager(new GridLayoutManager(mContext, 5));
 
         if (mCarBrandList != null) {
-            mSortframlayout.setData(hotBrandView, mCarBrandList);
+            mSortframlayout.setData(hotBrandHeaderView, mCarBrandList);
             mSortframlayout.setRefresh(false);
         } else {
             Log.e("汽车品牌列表", "汽车列表为空");
@@ -187,8 +161,8 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
                 Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
             }
         });
-        mSearchResultList.setLayoutManager(new LinearLayoutManager(mContext));
-        mSearchResultList.setAdapter(mSearchResultAdapter);
+//        mSearchResultList.setLayoutManager(new LinearLayoutManager(mContext));
+//        mSearchResultList.setAdapter(mSearchResultAdapter);
     }
 
 
@@ -238,13 +212,13 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (TextUtils.isEmpty(s)) {
-            mSearchResultList.setVisibility(View.GONE);
+//            mSearchResultList.setVisibility(View.GONE);
         } else {
 
             // TODO: 8/30/2016 请求搜索结果，填充数据
             mSearchResultData.add(s.toString());
             mSearchResultAdapter.setData(mSearchResultData);
-            mSearchResultList.setVisibility(View.VISIBLE);
+//            mSearchResultList.setVisibility(View.VISIBLE);
         }
     }
 
@@ -345,14 +319,14 @@ public class BuyCarTabFragment extends Fragment implements TextWatcher, SearchAc
      */
     @Override
     public boolean onBackPressed() {
-        if (mSearchResultList.getVisibility() == View.VISIBLE) {
-            mSearchResultList.setVisibility(View.GONE);
-            return true;
-        }
-        if (mLlSearchHistory.getVisibility() == View.VISIBLE) {
-            mLlSearchHistory.setVisibility(View.GONE);
-            return true;
-        }
+//        if (mSearchResultList.getVisibility() == View.VISIBLE) {
+//            mSearchResultList.setVisibility(View.GONE);
+//            return true;
+//        }
+//        if (mLlSearchHistory.getVisibility() == View.VISIBLE) {
+//            mLlSearchHistory.setVisibility(View.GONE);
+//            return true;
+//        }
         if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerCarSeries)) {
             mDrawerLayout.closeDrawers();
             return true;

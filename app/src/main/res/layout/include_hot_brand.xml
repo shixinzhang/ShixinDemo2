@@ -6,6 +6,7 @@
               android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll_search"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_margin="8dp"
@@ -65,5 +66,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_hot_brand"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="20dp"/>
 </LinearLayout>
