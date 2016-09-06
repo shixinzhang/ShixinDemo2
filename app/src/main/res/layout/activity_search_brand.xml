@@ -31,12 +31,17 @@
             <EditText
                 android:id="@+id/et_search"
                 android:background="@null"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:hint="请输入品牌或车型"
                 android:textColorHint="#aaaaaa"
-                android:textColor="#aaaaaa"
-                android:textSize="15sp"/>
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:imeOptions="actionSearch"
+                android:imeActionLabel="搜索2"
+                android:singleLine="true"/>
 
         </LinearLayout>
 
@@ -62,8 +67,8 @@
             android:id="@+id/rv_search_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#cccccc"
-            android:paddingTop="16dp"
+            android:overScrollMode="never"
+            android:background="@color/white"
             android:visibility="gone"/>
     </FrameLayout>
 </LinearLayout>
