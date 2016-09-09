@@ -39,8 +39,6 @@
                 android:textColorHint="#aaaaaa"
                 android:textColor="#333333"
                 android:textSize="15sp"
-                android:imeOptions="actionSearch"
-                android:imeActionLabel="搜索2"
                 android:singleLine="true"/>
 
         </LinearLayout>

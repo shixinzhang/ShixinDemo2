@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -62,24 +64,31 @@ public class SearchBrandActivity extends Activity implements TextWatcher{
 
         initSearchData();
         initViews();
+        addListener();
+    }
+
+    private void addListener() {
+        mEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                    dismissInputSoft();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initViews() {
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View currentFocus = getCurrentFocus();
-                if (currentFocus != null) {
-                    IBinder windowToken = currentFocus.getWindowToken();
-                    if (windowToken != null) {
-                        InputMethodManager inputMethodManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
-                    }
-                }
-
+                dismissInputSoft();
                 finish();
             }
         });
+        mEtSearch.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         mEtSearch.addTextChangedListener(this);
 
         mSearchResultAdapter = new SearchResultAdapter(this, mSearchResultData);
@@ -92,6 +101,17 @@ public class SearchBrandActivity extends Activity implements TextWatcher{
         });
         mRvSearchResult.setLayoutManager(new LinearLayoutManager(this));
         mRvSearchResult.setAdapter(mSearchResultAdapter);
+    }
+
+    private void dismissInputSoft() {
+        View currentFocus = getCurrentFocus();
+        if (currentFocus != null) {
+            IBinder windowToken = currentFocus.getWindowToken();
+            if (windowToken != null) {
+                InputMethodManager inputMethodManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
+            }
+        }
     }
 
     private void initSearchData() {
