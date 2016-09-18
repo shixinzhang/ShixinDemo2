@@ -24,6 +24,7 @@
         <activity
             android:name=".activity.SearchBrandActivity"
             android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".activity.ChangeThemeActivity"/>
     </application>
 
 </manifest>

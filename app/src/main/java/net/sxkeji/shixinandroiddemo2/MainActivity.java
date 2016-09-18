@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         initData();
         initList();
+    }
 
+    private void initData() {
+        mActivityNameList = new ArrayList<>();
+        mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
+        mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
     }
 
     private void initList() {
@@ -52,9 +58,4 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mActivityListAdapter);
     }
 
-    private void initData() {
-        mActivityNameList = new ArrayList<>();
-        mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
-
-    }
 }

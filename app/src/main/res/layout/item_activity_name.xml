@@ -11,5 +11,6 @@
         android:background="@color/user_icon_1"
         android:gravity="center"
         android:padding="8dp"
+        android:layout_marginBottom="8dp"
         android:textColor="@color/chooser_service_row_background_color"/>
 </LinearLayout>
