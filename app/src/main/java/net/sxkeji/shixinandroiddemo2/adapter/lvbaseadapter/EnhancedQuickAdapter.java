@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.adapter.quickadapter;
+package net.sxkeji.shixinandroiddemo2.adapter.lvbaseadapter;
 
 import android.content.Context;
 

@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.adapter.quickadapter.BaseAdapterHelper;
-import net.sxkeji.shixinandroiddemo2.adapter.quickadapter.QuickAdapter;
+import net.sxkeji.shixinandroiddemo2.adapter.lvbaseadapter.BaseAdapterHelper;
+import net.sxkeji.shixinandroiddemo2.adapter.lvbaseadapter.QuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

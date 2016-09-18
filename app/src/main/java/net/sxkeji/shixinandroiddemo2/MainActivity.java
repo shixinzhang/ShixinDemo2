@@ -10,7 +10,7 @@ import android.view.View;
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
-import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
+import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
 
 import java.util.ArrayList;

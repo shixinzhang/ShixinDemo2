@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.ismaeltoe.FlowLayout;
 
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.adapter.BaseQuickAdapter;
+import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
 
 import java.util.ArrayList;

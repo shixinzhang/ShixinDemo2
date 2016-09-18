@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.adapter;
+package net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
