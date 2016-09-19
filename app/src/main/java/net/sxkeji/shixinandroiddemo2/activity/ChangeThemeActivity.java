@@ -3,13 +3,12 @@ package net.sxkeji.shixinandroiddemo2.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
+import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.ChangeThemeSampleAdapter;
 
@@ -26,7 +25,7 @@ import butterknife.ButterKnife;
  * <br/>
  * data: 9/18/2016
  */
-public class ChangeThemeActivity extends AppCompatActivity {
+public class ChangeThemeActivity extends BaseActivity {
     @Bind(R.id.tv_change_theme)
     TextView mTvChangeTheme;
     @Bind(R.id.recycler_view)
@@ -51,12 +50,13 @@ public class ChangeThemeActivity extends AppCompatActivity {
 
     }
 
-    private void initViews() {
+    @Override
+    public void initViews() {
         mTvChangeTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mSharedPreferences.edit().putBoolean(THEME_NAME, !mIsDayTheme).apply();
-                setDayNightMode(mIsDayTheme);
+                switchDayNightTheme(mIsDayTheme);
             }
         });
         mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -65,13 +65,14 @@ public class ChangeThemeActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void setDayNightMode(boolean day) {
-        if (day) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
-        recreate();
+    @Override
+    public void loadData() {
+
     }
+
+    @Override
+    public void addListeners() {
+
+    }
+
 }

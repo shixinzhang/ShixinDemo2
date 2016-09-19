@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
+import net.sxkeji.shixinandroiddemo2.activity.HybridDemo1Activity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList = new ArrayList<>();
         mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
         mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
+        mActivityNameList.add(new ActivityBean("Hybrid 练习1", HybridDemo1Activity.class));
     }
 
     private void initList() {
