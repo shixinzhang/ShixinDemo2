@@ -20,6 +20,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 吸取之前那个 demo 的问题，不乱引入第三方，记住！
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.recycler_view)

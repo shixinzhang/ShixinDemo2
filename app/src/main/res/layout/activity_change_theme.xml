@@ -10,7 +10,8 @@
         android:id="@+id/tv_change_theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click to change theme"/>
+        android:text="click to change theme"
+        android:paddingBottom="16dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

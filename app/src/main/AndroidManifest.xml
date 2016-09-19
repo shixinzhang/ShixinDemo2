@@ -25,11 +25,16 @@
             android:name=".activity.SearchBrandActivity"
             android:theme="@style/AppThemeNoActionBar"/>
 
-        <activity android:name=".activity.ChangeThemeActivity"/>
+        <activity
+            android:name=".activity.ChangeThemeActivity"
+            android:label="@string/change_theme"/>
 
         <activity
             android:name=".activity.HybridDemo1Activity"
             android:label="@string/hybrid_demo1"/>
+        <activity
+            android:name=".activity.HybridDemo2Activity"
+            android:label="@string/hybrid_demo2"/>
     </application>
 
 </manifest>

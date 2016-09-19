@@ -1,6 +1,5 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -31,9 +30,6 @@ public class ChangeThemeActivity extends BaseActivity {
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private final String THEME_NAME = "theme";
-    private SharedPreferences mSharedPreferences;
-    private boolean mIsDayTheme;
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private ChangeThemeSampleAdapter mAdapter;
     private List mList = Arrays.asList("shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute", "shixinzhang is so cute");
@@ -45,9 +41,6 @@ public class ChangeThemeActivity extends BaseActivity {
         ButterKnife.bind(this);
         initViews();
 
-        mSharedPreferences = getSharedPreferences("shixinsp", MODE_PRIVATE);
-        mIsDayTheme = mSharedPreferences.getBoolean(THEME_NAME, false);
-
     }
 
     @Override
@@ -55,8 +48,8 @@ public class ChangeThemeActivity extends BaseActivity {
         mTvChangeTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSharedPreferences.edit().putBoolean(THEME_NAME, !mIsDayTheme).apply();
-                switchDayNightTheme(mIsDayTheme);
+                getMySharedPreferences().edit().putBoolean(THEME_NAME, !isCurrentTheme()).apply();
+                setDayNightTheme(!isCurrentTheme());
             }
         });
         mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

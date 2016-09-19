@@ -42,7 +42,12 @@ public class HybridDemo1Activity extends BaseActivity {
     @Override
     public void initViews() {
         WebSettings settings = mWebView.getSettings();
+        //允许 WebView 执行 Js
         settings.setJavaScriptEnabled(true);
+        // Js 可以调用 JsBridge 类中的方法，
+        // Js 中跳转的 href 为 “javascript:zsx.makeCall(123)”
+        // 其中 "zsx" 为我们给在 addJavascriptInterface 方法中起的名字
+        // "makeCall(123)" 为我们的 JsBridge 中的方法
         mWebView.addJavascriptInterface(new JsBridge(), "zsx");
         mWebView.loadUrl("file:///android_asset/demo.html");
     }
@@ -52,6 +57,8 @@ public class HybridDemo1Activity extends BaseActivity {
         mBtnCallJs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //通过 WebView.loadUrl 方法调用 Js 函数
+                //参数为 "javascript: $ Js 的 function 名加参数$"
                 mWebView.loadUrl("javascript:show('shixinzhang is so cute')");
             }
         });
@@ -62,14 +69,12 @@ public class HybridDemo1Activity extends BaseActivity {
 
     }
 
+    /**
+     * 自定义要被 Js 调用的类
+     */
     public class JsBridge {
-
-        public JsBridge() {
-
-        }
-
         /**
-         * 在非 UI 线程回调
+         * 在非 UI 线程回调,
          *
          * @param number
          */
