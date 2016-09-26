@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
+import net.sxkeji.shixinandroiddemo2.activity.FocusInTouchModeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.HybridDemo1Activity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
         mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
         mActivityNameList.add(new ActivityBean("Hybrid 练习1", HybridDemo1Activity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.focusable_in_touch), FocusInTouchModeActivity.class));
     }
 
     private void initList() {
