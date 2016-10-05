@@ -1,12 +1,16 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
 import net.sxkeji.shixinandroiddemo2.beans.BookBean;
+import net.sxkeji.shixinandroiddemo2.beans.EmployeeBean;
+import net.sxkeji.shixinandroiddemo2.beans.MyDateBean;
+import net.sxkeji.shixinandroiddemo2.beans.NewBookBean;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -174,18 +178,20 @@ public class CollectionTestTest {
     }
 
     /**
-     * TreeSet
+     * TreeSet （存储时依然无序）
      *      1.有类型要求，只能添加一种类型
      *      2.子元素不可以为空
      *      3.可以按照元素的指定顺序遍历， 比如 [aaa, sss, zsx]
      *              what is 指定顺序 ?
-     *                  a.实现 Comparable 接口 （不实现就会报 java.lang.ClassCastException: BookBean cannot be cast to java.lang.Comparable）
+     *                  a.必须实现 Comparable 接口 !（不实现就会报 java.lang.ClassCastException: BookBean cannot be cast to java.lang.Comparable）
      *                  b.重写 compareTo 方法，在里面写你比较的标准，比如书价...   （String 实现了 Comparable, compareTo(): 以短的那个 String 为基础，挨个对比，不一样的时候就比较 ASCII 值）
-     *      4.添加元素时，首先会按照 compareTo 进行比较：
+     *      4.添加元素时，首先会按照 compareTo 进行比较：（如果没实现 Comparable 就会报错）
      *                      如果返回 0 时，TreeSet 会认为这 2 个对象一样，不允许添加。不调用 hashCode,equals 方法，即使这两个对象的一部分属性一样；
      *                      如果不为 0 ，才对比 hashCode。
      *
-     *   compareTo 是自然排序
+     * TreeSet 的两种排序方式：(同时存在时采用定制排序)
+     *      1. Comparable 自然排序。（实体类实现）
+     *      2. Comparator 是定制排序。（无法修改实体类时，直接在调用方创建）
      *
      *   **所以需要我们重写 compareTo 时，要判断某个相同时对比下一个属性，把所有属性都比较一次。**
      *
@@ -205,5 +211,74 @@ public class CollectionTestTest {
         set.add(new BookBean("ZSX",34));
         set.add(new BookBean("CCC",34));        //当 compareTo 返回 0 时，说明一样，就不能添加了
         System.out.println(set);
+
+    }
+
+    /**
+     * TreeSet 的定制排序 Comparator
+     *
+     *         1.创建一个实现 Comparator 接口的对象
+     *         2.将此对象作为形参传递给 TreeSet 的构造器中
+     *         3.向 TreeSet 中添加 步骤 1 中 compare 方法中设计的类的对象
+     *
+     *    compare() 要求与 hashCode(), equals() 方法结果一致
+     */
+    @Test
+    public void testTestComparator() throws Exception {
+
+//        1.创建一个实现 Comparator 接口的对象
+        Comparator comparator = new Comparator() {
+            @Override
+            public int compare(Object object1, Object object2) {
+                if (object1 instanceof NewBookBean && object2 instanceof NewBookBean){
+                    NewBookBean newBookBean = (NewBookBean) object1;
+                    NewBookBean newBookBean1 = (NewBookBean) object2;
+                    //具体比较方法参照 自然排序的 compareTo 方法，这里只举个栗子
+                    return newBookBean.getCount() - newBookBean1.getCount();
+                }
+                return 0;
+            }
+        };
+
+//        2.将此对象作为形参传递给 TreeSet 的构造器中
+        TreeSet treeSet = new TreeSet(comparator);
+
+//        3.向 TreeSet 中添加 步骤 1 中 compare 方法中设计的类的对象
+        treeSet.add(new NewBookBean("A",34));
+        treeSet.add(new NewBookBean("S",1));
+        treeSet.add( new NewBookBean("V",46));
+        treeSet.add( new NewBookBean("Q",26));
+        System.out.println(treeSet);
+    }
+
+    @Test
+    public void testTestEmployee() throws Exception {
+        Comparator comparator = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1 instanceof EmployeeBean && o2 instanceof EmployeeBean){
+                    EmployeeBean employeeBean = (EmployeeBean) o1;
+                    EmployeeBean employeeBean1 = (EmployeeBean) o2;
+
+                    MyDateBean birthday = employeeBean.getBirthday();
+                    MyDateBean birthday1 = employeeBean1.getBirthday();
+                    return birthday.compareTo(birthday1);
+                }
+                return 0;
+            }
+        };
+
+
+        TreeSet treeSet = new TreeSet(comparator);
+        EmployeeBean employeeBean = new EmployeeBean("VVV",18,new MyDateBean("2000","3","3"));
+        EmployeeBean employeeBean1 = new EmployeeBean("AAA",38,new MyDateBean("1987","6","23"));
+        EmployeeBean employeeBean2 = new EmployeeBean("EEE",28,new MyDateBean("1993","11","9"));
+        EmployeeBean employeeBean3 = new EmployeeBean("GGG",24,new MyDateBean("1993","11","9"));
+        treeSet.add(employeeBean);
+        treeSet.add(employeeBean1);
+        treeSet.add(employeeBean2);
+        treeSet.add(employeeBean3);
+        
+        System.out.println(treeSet);
     }
 }

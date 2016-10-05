@@ -18,4 +18,8 @@ public class CollectionTest {
     public void testLinkedHashSet(){}
 
     public void testTreeSet(){}
+
+    public void testComparator(){}
+
+    public void testEmployee(){}
 }

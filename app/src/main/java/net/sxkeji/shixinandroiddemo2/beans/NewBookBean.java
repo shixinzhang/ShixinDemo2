@@ -3,18 +3,18 @@ package net.sxkeji.shixinandroiddemo2.beans;
 import java.io.Serializable;
 
 /**
- * description: 测试用的实体类 书, 实现了 Comparable 接口，自然排序
+ * description: 测试用的实体类 书, 没有实现 自然排序 Comparable 接口
  * <br/>
  * author: shixinzhang
  * <br/>
  * data: 10/5/2016
  */
-public class BookBean implements Serializable, Comparable {
+public class NewBookBean implements Serializable{
     private String name;
     private int count;
 
 
-    public BookBean(String name, int count) {
+    public NewBookBean(String name, int count) {
         this.name = name;
         this.count = count;
     }
@@ -43,9 +43,9 @@ public class BookBean implements Serializable, Comparable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BookBean)) return false;
+        if (!(o instanceof NewBookBean)) return false;
 
-        BookBean bean = (BookBean) o;
+        NewBookBean bean = (NewBookBean) o;
 
         if (getCount() != bean.getCount()) return false;
         return getName().equals(bean.getName());
@@ -75,29 +75,4 @@ public class BookBean implements Serializable, Comparable {
                 '}';
     }
 
-    /**
-     * 当向 TreeSet 中添加 BookBean 时，会调用这个方法进行排序
-     * @param another
-     * @return
-     */
-    @Override
-    public int compareTo(Object another) {
-        if (another instanceof BookBean){
-            BookBean anotherBook = (BookBean) another;
-            int result;
-
-            //比如这里按照书价排序
-            result = getCount() - anotherBook.getCount();     //大小怎么决定顺序呢？？
-
-            //或者按照 String 的比较顺序
-//            result = getName().compareTo(anotherBook.getName());
-
-            if (result == 0){   //当书价一致时，再对比书名。 保证所有属性比较一遍
-                result = getName().compareTo(anotherBook.getName());
-            }
-            return result;
-        }
-        // 一样就返回 0
-        return 0;
-    }
 }
