@@ -14,7 +14,13 @@ public class CollectionTest {
 
     public void testCollection(){
         Collection collection = new ArrayList();
+    }
 
+    public void testList(){
+
+    }
+
+    public void testSet(){
 
     }
 }
