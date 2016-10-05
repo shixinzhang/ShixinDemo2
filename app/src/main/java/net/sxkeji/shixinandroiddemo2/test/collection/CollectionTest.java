@@ -1,10 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 /**
- * description:
+ * description: 用于生成 Junit 测试类， src/test/java/net/sxkeji/shixinandroiddemo2/test/collection 下
  * <br/>
  * author: shixinzhang
  * <br/>
@@ -12,15 +9,13 @@ import java.util.Collection;
  */
 public class CollectionTest {
 
-    public void testCollection(){
-        Collection collection = new ArrayList();
-    }
+    public void testCollection(){}
 
-    public void testList(){
+    public void testList(){}
 
-    }
+    public void testSet(){}
 
-    public void testSet(){
+    public void testLinkedHashSet(){}
 
-    }
+    public void testTreeSet(){}
 }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * <br/>
  * data: 10/5/2016
  */
-public class BookBean implements Serializable {
+public class BookBean implements Serializable, Comparable {
     private String name;
     private int count;
 
@@ -73,5 +73,31 @@ public class BookBean implements Serializable {
                 "name='" + name + '\'' +
                 ", count=" + count +
                 '}';
+    }
+
+    /**
+     * 当向 TreeSet 中添加 BookBean 时，会调用这个方法进行排序
+     * @param another
+     * @return
+     */
+    @Override
+    public int compareTo(Object another) {
+        if (another instanceof BookBean){
+            BookBean anotherBook = (BookBean) another;
+            int result;
+
+            //比如这里按照书价排序
+            result = getCount() - anotherBook.getCount();     //大小怎么决定顺序呢？？
+
+            //或者按照 String 的比较顺序
+//            result = getName().compareTo(anotherBook.getName());
+
+            if (result == 0){   //当书价一致时，再对比书名。 保证所有属性比较一遍
+                result = getName().compareTo(anotherBook.getName());
+            }
+            return result;
+        }
+        // 一样就返回 0
+        return 0;
     }
 }

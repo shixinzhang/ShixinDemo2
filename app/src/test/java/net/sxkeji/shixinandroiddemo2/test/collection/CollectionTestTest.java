@@ -9,9 +9,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.Vector;
 
 /**
@@ -116,7 +118,7 @@ public class CollectionTestTest {
      * 基本没有新增的方法，都是 Collection 下定义的
      *
      * Set
-     *      1.无序的（不等于随机的），指的是元素在底层存储的位置不确定，why？
+     *      1.无序的（不等于随机的），指的是**添加时**元素在底层存储的位置不确定，why？下面有说
      *      2.元素可以为空；
      *      3.不可重复 why? 要调用传入对象的 equals 和 hashCode (why?)方法, 比如 String, Integer 就重写了。
      *                      如果没重写，那用 Object.equals 比较的是地址
@@ -147,5 +149,61 @@ public class CollectionTestTest {
         set.add(book2);
         System.out.println(set);
         System.out.println(set.size());
+    }
+
+    /**
+     * LinkedHashSet
+     *      特殊的 Set, 使用**链表**维护了顺序，保证遍历时的顺序和添加时一致
+     *      存储时依然无序，只不过是用 head, next 保证了顺序
+     *
+     * 与 Set 对比：
+     *      遍历时快些，因为有链表；
+     *      添加时慢些，因为还需要维护链表。
+     * @throws Exception
+     */
+    @Test
+    public void testTestLinkedHashSet() throws Exception {
+        Set set = new LinkedHashSet();
+        set.add(123);
+        set.add(null);
+        set.add("zsx");
+        BookBean book = new BookBean("设计模式精解",59);
+        set.add(book);
+
+        System.out.println(set);
+    }
+
+    /**
+     * TreeSet
+     *      1.有类型要求，只能添加一种类型
+     *      2.子元素不可以为空
+     *      3.可以按照元素的指定顺序遍历， 比如 [aaa, sss, zsx]
+     *              what is 指定顺序 ?
+     *                  a.实现 Comparable 接口 （不实现就会报 java.lang.ClassCastException: BookBean cannot be cast to java.lang.Comparable）
+     *                  b.重写 compareTo 方法，在里面写你比较的标准，比如书价...   （String 实现了 Comparable, compareTo(): 以短的那个 String 为基础，挨个对比，不一样的时候就比较 ASCII 值）
+     *      4.添加元素时，首先会按照 compareTo 进行比较：
+     *                      如果返回 0 时，TreeSet 会认为这 2 个对象一样，不允许添加。不调用 hashCode,equals 方法，即使这两个对象的一部分属性一样；
+     *                      如果不为 0 ，才对比 hashCode。
+     *
+     *   compareTo 是自然排序
+     *
+     *   **所以需要我们重写 compareTo 时，要判断某个相同时对比下一个属性，把所有属性都比较一次。**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testTestTreeSet() throws Exception {
+        Set set = new TreeSet();
+//        set.add("sss");
+////        set.add(null);
+//        set.add("zsx");
+//        set.add("aaa");
+
+        BookBean book = new BookBean("AAA",59);
+        set.add(book);
+        set.add(new BookBean("SSS",19));
+        set.add(new BookBean("ZSX",34));
+        set.add(new BookBean("CCC",34));        //当 compareTo 返回 0 时，说明一样，就不能添加了
+        System.out.println(set);
     }
 }
