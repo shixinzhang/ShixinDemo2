@@ -85,7 +85,7 @@ public class CollectionTestTest {
      * 在 Collection 基础上新增了 8 个跟索引相关的方法,，谁实现的呢？
      *      增 add
      *      删 remove
-     *      改 set
+     *      改 set, set 返回之前的元素，巧妙应用 -> Collections.swap 方法
      *      查 get
      *
      * void add(int index, Object element)
