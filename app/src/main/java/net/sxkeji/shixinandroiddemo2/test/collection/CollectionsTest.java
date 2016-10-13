@@ -15,4 +15,6 @@ public class CollectionsTest {
     public void testCollections3(){};
 
     public void testCollections4(){};
+
+    public void testIteratorFailFast(){};
 }

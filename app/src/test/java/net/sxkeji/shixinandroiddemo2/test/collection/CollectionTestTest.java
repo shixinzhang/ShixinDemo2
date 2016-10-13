@@ -112,7 +112,6 @@ public class CollectionTestTest {
         //链表怎么实现的？
         List<String> linkList = new LinkedList<>();
 
-
         //古老的实现类，1.0 就有了
         //线程安全的，Why？
         Vector vector = new Vector();
@@ -281,4 +280,45 @@ public class CollectionTestTest {
         
         System.out.println(treeSet);
     }
+
+    @Test
+    public void testTestListIterator() throws Exception {
+
+
+        //10000
+        int s = 16 >> 1;
+//        System.out.println("16>>1 " + s);
+
+        List list = new ArrayList();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+
+        List subList = list.subList(0, 2);
+        subList.clear();
+        System.out.println(list);
+
+//        ListIterator listIterator = list.listIterator(1);
+//        listIterator.remove();
+
+//        listIterator.next();
+//        listIterator.add("zsx");
+//        System.out.println(listIterator.previous());
+
+//        while (listIterator.hasNext()) {
+//            listIterator.next();
+//        }
+//        System.out.println(listIterator.previousIndex());
+//        System.out.println(listIterator.nextIndex());
+//        listIterator.previous();
+//        System.out.println(listIterator.hasPrevious());
+//        listIterator.set("new");
+//        System.out.println(list);
+
+        Vector v = new Vector();
+        v.listIterator();
+    }
+
+
 }

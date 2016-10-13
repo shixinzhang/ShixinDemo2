@@ -1,5 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
+import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+
 /**
  * description: 用于生成 Junit 测试类， src/test/java/net/sxkeji/shixinandroiddemo2/test/collection 下
  * <br/>
@@ -9,7 +11,12 @@ package net.sxkeji.shixinandroiddemo2.test.collection;
  */
 public class CollectionTest {
 
-    public void testCollection(){}
+    public void testCollection(){
+//        Collection
+        ActivityBean[] activityBeen = new ActivityBean[1];
+        activityBeen[0] = null;
+
+    }
 
     public void testList(){}
 
@@ -22,4 +29,8 @@ public class CollectionTest {
     public void testComparator(){}
 
     public void testEmployee(){}
+
+    public void testListIterator(){};
+
+    public void newTest(){};
 }

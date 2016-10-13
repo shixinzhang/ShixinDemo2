@@ -164,4 +164,62 @@ public class CollectionsTestTest {
             System.out.println(enumeration.nextElement());
         }
     }
+
+    @Test
+    public void testTestIteratorFailFast() throws Exception {
+        final List list = new ArrayList();
+        list.add(1);
+        list.add(3);
+        list.add(5);
+        list.add(5);
+        list.add(7);
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Iterator iterator = list.iterator();
+//                while (iterator.hasNext()){
+//                    Integer next = (Integer) iterator.next();
+//                    System.out.println("thread 1 " + next);
+////                    try {
+////                        Thread.sleep(500);
+////                    } catch (InterruptedException e) {
+////                        e.printStackTrace();
+////                        System.out.println("error " + e.getMessage().toString());
+////                    }
+//                }
+//            }
+//        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = list.size() - 1; i >= 0; i--) {
+                    Integer integer = (Integer) list.get(i);
+                    if (integer == 5){
+                        list.remove(integer);
+                    }else {
+                        System.out.println("thread2 " + integer);
+                    }
+                    list.add(integer);
+                }
+//                for (int i = 0; i < list.size(); i++) {
+//                    Integer integer = (Integer) list.get(i);
+//                    if (integer == 5){
+//                        list.remove(integer);
+//                    }else {
+//                        System.out.println("thread2 " + integer);
+//                    }
+//                }
+//                for (Object object : list) {
+//                    if (object instanceof Integer){
+//                        Integer integer = (Integer) object;
+//                        if (integer == 5){
+//                            list.remove(integer);
+//                        }
+//                    }
+//                }
+            }
+        }).start();
+    }
 }
