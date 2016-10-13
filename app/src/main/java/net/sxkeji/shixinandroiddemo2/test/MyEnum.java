@@ -33,4 +33,14 @@ public enum MyEnum {
     };
 
     public abstract String getName();   //抽象方法
+
+    private int age;
+
+    //构造器，不能 public, why
+    private MyEnum(){}
+
+    //构造器，不能 public, why
+    MyEnum(int age){
+        this.age = age;
+    }
 }
