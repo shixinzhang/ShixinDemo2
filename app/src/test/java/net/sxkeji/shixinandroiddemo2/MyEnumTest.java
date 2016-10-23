@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +36,8 @@ public class MyEnumTest {
     @Test
     public void testMyEnum() {
         MyEnum myEnum = MyEnum.BLUE;
+        List list = new LinkedList();
+        System.out.println(list);
         System.out.println(myEnum.getName());
         System.out.println(myEnum.name());
         System.out.println(myEnum.ordinal());
@@ -52,4 +57,61 @@ public class MyEnumTest {
 
     }
 
+    public class ChildClass {
+        MyInnerEnum innerEnum = MyInnerEnum.BLUE;
+    }
+
+    public  enum MyInnerEnum {
+        /**
+         * 每个枚举项 相当于是 一个 MyEnum 的子类，需要实现方法
+         */
+        RED {
+            @Override
+            public String getName() {
+                return "I'm red dream.";
+            }
+
+        },
+
+        GREEN{
+            @Override
+            public String getName() {
+                return "I'm green hat.";
+            }
+        },
+
+        BLUE{
+            @Override
+            public String getName() {
+                return "I'm blue sky.";
+            }
+        };
+
+        public abstract String getName();   //抽象方法
+
+        private int age;
+
+        //构造器，不能 public, why
+//        private MyEnum(){}
+//
+//        //构造器，不能 public, why
+//        MyEnum(int age){
+//            this.age = age;
+//        }
+    }
+
+    public boolean remove(Object object) {
+        Iterator<?> it = iterator();
+        while (it.hasNext()) {
+            if (object != null ? object.equals(it.next()) : it.next() == null) {
+                it.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Iterator iterator(){
+        return null;
+    }
 }

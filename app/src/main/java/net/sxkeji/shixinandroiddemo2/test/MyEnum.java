@@ -16,6 +16,7 @@ public enum MyEnum {
         public String getName() {
             return "I'm red dream.";
         }
+
     },
 
     GREEN{
