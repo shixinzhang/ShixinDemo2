@@ -3,5 +3,6 @@
     <string name="change_theme">切换日夜间模式</string>
     <string name="hybrid_demo1">Hybrid 练习1,基本交互</string>
     <string name="hybrid_demo2">Hybrid 练习2</string>
+    <string name="diy_demo1">自定义 View 练习1</string>
     <string name="focusable_in_touch">熟悉focusableInTouchMode</string>
 </resources>
