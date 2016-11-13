@@ -5,4 +5,5 @@
     <string name="hybrid_demo2">Hybrid 练习2</string>
     <string name="diy_demo1">自定义 View 练习1</string>
     <string name="focusable_in_touch">熟悉focusableInTouchMode</string>
+    <string name="alpha_header_recyclerview">学习 RecyclerView 顶部悬浮条</string>
 </resources>

@@ -29,8 +29,9 @@
             android:name=".activity.ChangeThemeActivity"
             android:label="@string/change_theme"/>
 
-        <activity android:name=".activity.DIYView1Activity"
-                  android:label="@string/diy_demo1"/>
+        <activity
+            android:name=".activity.DIYView1Activity"
+            android:label="@string/diy_demo1"/>
 
         <activity
             android:name=".activity.HybridDemo1Activity"
@@ -38,8 +39,12 @@
         <activity
             android:name=".activity.HybridDemo2Activity"
             android:label="@string/hybrid_demo2"/>
-        <activity android:name=".activity.FocusInTouchModeActivity"
-                  android:label="@string/focusable_in_touch"/>
+        <activity
+            android:name=".activity.FocusInTouchModeActivity"
+            android:label="@string/focusable_in_touch"/>
+        <activity
+            android:name=".activity.SuspensionHeaderActivity"
+            android:label="@string/alpha_header_recyclerview"/>
     </application>
 
 </manifest>

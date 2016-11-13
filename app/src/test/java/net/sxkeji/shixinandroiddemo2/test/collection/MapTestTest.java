@@ -57,11 +57,12 @@ public class MapTestTest {
         map.put(new Person("zsx",18),22);
         map.put(new Person("zsx",18),25);   //put, 存在就覆盖
 
-        System.out.println("remove " + map.remove("zsx"));      //remove, 删除并返回指定 key 对应的 value
+//        System.out.println("remove " + map.remove("zsx"));      //remove, 删除并返回指定 key 对应的 value
 
         map.containsValue(222);     //要想知道有没有，一样不一样，就得重写 hashCode, equals
 
-        System.out.println("map size " + map.size());
+        map.put("zsx",666);
+        System.out.println("map size " + map);
 
     }
 
@@ -81,18 +82,18 @@ public class MapTestTest {
 
         //1.遍历 key 集合
         Set set = map.keySet();
-//        for (Object o : set) {
-//            System.out.println("key " + o);
-//        }
+        for (Object key : set) {
+            System.out.println(map.get(key));
+        }
 
 //        set.iterator();
 
         //2.遍历 value 集合
         Collection values = map.values();
         Iterator iterator = values.iterator();
-//        while (iterator.hasNext()){
-//            System.out.println("value " + iterator.next());
-//        }
+        while (iterator.hasNext()){
+            System.out.println("value " + iterator.next());
+        }
 
         //3.遍历 map 的每个 Entry
             //3.1
@@ -105,7 +106,7 @@ public class MapTestTest {
         for (Object o : entrySet) {
             Map.Entry entry = (Map.Entry) o;
             System.out.println(entry);      //key=value
-//            System.out.println(entry.getKey() + " / " + entry.getValue());
+            System.out.println(entry.getKey() + " / " + entry.getValue());
         }
     }
 
@@ -184,5 +185,17 @@ public class MapTestTest {
         properties.load(new FileInputStream(new File("jdbc.properties")));
         String user = properties.getProperty("user");
         System.out.println("user " + user);
+    }
+
+
+    @Test
+    public void testHash(){
+        int[] numbers = new int[]{2,5,9,13};
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == 13){
+                System.out.println("find it!");
+                return;
+            }
+        }
     }
 }

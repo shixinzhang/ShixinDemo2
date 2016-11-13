@@ -1,6 +1,8 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -15,6 +17,14 @@ public class SearchActivity extends AppCompatActivity {
 
     private BuyCarTabFragment mBuyCarTabFragment;
     private OnBackPressFragmentListener mOnBackPressFragmentListener;
+    private ShixinHandler mHandler;
+
+    private class ShixinHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +33,7 @@ public class SearchActivity extends AppCompatActivity {
         mBuyCarTabFragment = new BuyCarTabFragment();
         mOnBackPressFragmentListener = mBuyCarTabFragment;
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, mBuyCarTabFragment).commit();
+
     }
 
     @Override

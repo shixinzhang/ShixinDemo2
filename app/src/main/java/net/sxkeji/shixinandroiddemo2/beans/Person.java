@@ -7,7 +7,7 @@ package net.sxkeji.shixinandroiddemo2.beans;
  * <br/>
  * data: 10/5/2016
  */
-public class Person implements Comparable{
+public class Person implements Comparable {
     private String name;
     private int age;
 
@@ -61,7 +61,7 @@ public class Person implements Comparable{
 
     @Override
     public int compareTo(Object another) {
-        if (another instanceof Person){
+        if (another instanceof Person) {
             Person another1 = (Person) another;
             //按照年龄排序
             return getAge() - another1.getAge();
