@@ -45,6 +45,9 @@
         <activity
             android:name=".activity.SuspensionHeaderActivity"
             android:label="@string/alpha_header_recyclerview"/>
+        <activity
+            android:name=".activity.RefreshLoadMoreActivity"
+            android:label="@string/refresh_load_more"/>
     </application>
 
 </manifest>

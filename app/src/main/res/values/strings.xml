@@ -6,4 +6,5 @@
     <string name="diy_demo1">自定义 View 练习1</string>
     <string name="focusable_in_touch">熟悉focusableInTouchMode</string>
     <string name="alpha_header_recyclerview">学习 RecyclerView 顶部悬浮条</string>
+    <string name="refresh_load_more">下拉刷新、加载更多 RecyclerView</string>
 </resources>
