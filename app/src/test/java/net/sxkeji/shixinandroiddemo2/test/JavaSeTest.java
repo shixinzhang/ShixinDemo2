@@ -11,7 +11,7 @@ import java.util.Random;
  * <br/>
  * data: 10/21/2016
  */
-public class JavaSETest {
+class JavaSETest {
 
     @Test
     public void testTestEqual() throws Exception {
