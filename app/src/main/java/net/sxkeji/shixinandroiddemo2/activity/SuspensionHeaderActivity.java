@@ -53,6 +53,17 @@ public class SuspensionHeaderActivity extends BaseActivity {
         setContentView(R.layout.activity_alpha_header);
         ButterKnife.bind(this);
         initViews();
+        Log.d(TAG,"onCreate");
+
+        {
+            {
+                {
+                    Log.d(TAG,"这是哪里1");
+                }
+                Log.d(TAG,"这是哪里2");
+            }
+            Log.d(TAG,"这是哪里3");
+        }
     }
 
     @Override

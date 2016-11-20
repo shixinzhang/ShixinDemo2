@@ -19,6 +19,9 @@ public class BinaryTreeNode {
     private BinaryTreeNode mLeftChild;
     private BinaryTreeNode mRightChild;
 
+    public BinaryTreeNode() {
+    }
+
     public BinaryTreeNode(int data, BinaryTreeNode leftChild, BinaryTreeNode rightChild) {
         mData = data;
         mLeftChild = leftChild;

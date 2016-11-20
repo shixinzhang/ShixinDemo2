@@ -5,7 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * <br/> Description:
+ * <br/> Description: 测试二叉树的常用操作
+ * http://blog.csdn.net/u011240877/article/details/53193918
  * <p>
  * <br/> Created by shixinzhang on 16/11/17.
  * <p>
