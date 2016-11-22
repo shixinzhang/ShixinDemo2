@@ -1,7 +1,9 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,6 +66,19 @@ public class SuspensionHeaderActivity extends BaseActivity {
             }
             Log.d(TAG,"这是哪里3");
         }
+
+        new AlertDialog.Builder(this)
+                .setTitle("hello")
+                .setMessage("I'm shixinzhang")
+                .setIcon(R.drawable.bg_search_corner)
+                .setCancelable(true)
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        //...
+                    }
+                })
+                .show();
     }
 
     @Override
