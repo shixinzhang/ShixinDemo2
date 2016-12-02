@@ -17,6 +17,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.Vector;
 
@@ -248,6 +249,7 @@ public class CollectionTestTest {
         treeSet.add( new NewBookBean("V",46));
         treeSet.add( new NewBookBean("Q",26));
         System.out.println(treeSet);
+
     }
 
     @Test
@@ -318,6 +320,19 @@ public class CollectionTestTest {
 
         Vector v = new Vector();
         v.listIterator();
+    }
+
+    @Test
+    public void testComparable(){
+        BookBean bookBean = new BookBean("shixin",2);
+        BookBean bookBean2 = new BookBean("shixin",2);
+
+        SortedSet<BookBean> sortedSet = new TreeSet<>();
+        sortedSet.add(bookBean);
+        
+        sortedSet.add(bookBean2);
+        System.out.println(sortedSet);
+        
     }
 
 
