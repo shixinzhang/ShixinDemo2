@@ -48,6 +48,8 @@
         <activity
             android:name=".activity.RefreshLoadMoreActivity"
             android:label="@string/refresh_load_more"/>
+        <activity android:name=".activity.OaLoginActivity"
+                  android:label="@string/login"/>
     </application>
 
 </manifest>

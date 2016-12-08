@@ -3,18 +3,28 @@ package net.sxkeji.shixinandroiddemo2.test.generic;
 import net.sxkeji.shixinandroiddemo2.beans.BookBean;
 import net.sxkeji.shixinandroiddemo2.beans.ChildBookBean;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.fail;
 
 /**
  * <br/> Description: 泛型的练习
@@ -208,7 +218,13 @@ public class GenericTest {
         BookBean bookBean = new BookBean("rourou",1);
         BookBean bookBean1 = test2(childBookBean, bookBean);    //有限制通配符，使得三个参数可以不同，但必须是同一类
 
-        Map<String,List<String>> map = new HashMap<>();
+        List<String> list = Arrays.asList("b","a","c");
+        String max = max(list);
+        System.out.println(max);
+
+        ArrayList<Object> arrayList = new ArrayList(list);
+        add(arrayList,list);
+        System.out.println(arrayList);
     }
 
     private <E> E test(E arg1, E arg2){
@@ -236,5 +252,127 @@ public class GenericTest {
 
     interface Function<T> {
         T apply(T arg1, T arg2);
+    }
+
+    /**
+     * 针对可以与自身进行比较的每个类型 E，返回最大值
+     * @param e1
+     * @param <E>
+     * @return
+     */
+    private  <E extends Comparable<? super E>> E max(List<? extends E> e1){
+        if (e1 == null){
+            return null;
+        }
+        //迭代器返回的元素属于 E 的某个子类型
+        Iterator<? extends E> iterator = e1.iterator();
+        E result = iterator.next();
+        while (iterator.hasNext()){
+            E next = iterator.next();
+            if (next.compareTo(result) > 0){
+                result = next;
+            }
+        }
+        return result;
+    }
+
+    private <E> void addAll(Collection<E> c1, Collection<E> c2){
+        for (E e : c2) {
+            c1.add(e);
+        }
+    };
+
+    /**
+     * 不加 super 的话编译器不通过
+     *          > 为了获得最大限度的灵活性，要在表示 生产者或者消费者的输入参数上使用通配符
+     *          PECS: producer-extends, costumer-super
+     *          使用通配符的基本原则：
+     *              如果参数化类型表示一个 T 的生产者，使用 <? extends T>;
+     *              如果它表示一个 T 的消费者，就使用 <? super T>；
+     *              如果既是生产又是消费，那使用通配符就没什么意义了，因为你需要的是精确的参数类型。
+     *
+     * @param dst
+     * @param src
+     * @param <E>
+     */
+    private <E> void add(List<? super E> dst, List<E> src){
+        for (E e : src) {
+            dst.add(e);
+        }
+    };
+
+    /**
+     *
+     * 交换，List.set() 方法会返回指定位置之前的元素
+     *      1 2
+     *       1 1
+     *
+     * @param list
+     * @param i
+     * @param j
+     * @param <E>
+     */
+    private <E> void swap1(List<E> list, int i, int j) {
+        //...
+        list.set(i, list.set(j, list.get(i)));
+    }
+
+    private void swap(List<?> list, int i, int j){
+//        list.set(i, list.set(j, list.get(i)));
+    }
+    public interface OnTestListener{
+        String mName = "";
+        void test();
+    }
+
+    /**
+     * 在整个类所有 Test 之前运行
+     */
+    @BeforeClass
+    public static void beforeClass(){
+        System.out.println("beforeClass");    
+    }
+    
+    /**
+     * before 每一个 Test 前运行，初始化资源
+     */
+    @Before
+    public void beforeTest(){
+        System.out.println("before");
+    }
+
+
+    /**
+     * 全局每个方法最长时间为 1000
+     */
+    @Rule
+    public Timeout globalTimeOut = new Timeout(1000);
+
+    /**
+     * 最长时间为 1000 毫秒
+     */
+    @Test(timeout = 1000)
+    public void swapTest(){
+        List<Integer> arrayList = Arrays.asList(1,2);
+        System.out.println(arrayList.set(1,arrayList.get(0)));
+        String a = "shi";
+//        fail("fail test");
+        assertEquals("测试是否相等", "shixin", "shi" + "xin");    // 类似字符串的 equals
+        assertSame("测试是否同一个对象引用", "shixin", a + "xin");    //类似 Object 的 ==
+        assertNotNull("测试不为空", 222);
+    }
+
+    /**
+     * after 每一个 Test 运行，释放资源
+     */
+    @After
+    public void afterTest(){
+        System.out.println("after");
+    }
+
+    @Ignore
+    @AfterClass
+    public static void afterClass(){
+        System.out.println("afterClass");
     }
 }

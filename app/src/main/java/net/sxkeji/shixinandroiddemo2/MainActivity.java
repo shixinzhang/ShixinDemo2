@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.sxkeji.shixinandroiddemo2.activity.OaLoginActivity;
 import net.sxkeji.shixinandroiddemo2.activity.RefreshLoadMoreActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SuspensionHeaderActivity;
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.focusable_in_touch), FocusInTouchModeActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.alpha_header_recyclerview), SuspensionHeaderActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.refresh_load_more), RefreshLoadMoreActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.login), OaLoginActivity.class));
     }
 
     private void initList() {
