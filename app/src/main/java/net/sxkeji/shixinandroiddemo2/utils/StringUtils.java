@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 public class StringUtils {
 
     public static boolean isRgbValue(String color){
+//        Pattern pattern = Pattern.compile("^#(([0123456789abcdefABCDEF]{6})|([0123456789abcdefABCDEF]{8}))$");
         Pattern pattern = Pattern.compile("^#(([0123456789abcdefABCDEF]{6})|([0123456789abcdefABCDEF]{8}))$");
         Matcher matcher = pattern.matcher(color);
         return matcher.matches();

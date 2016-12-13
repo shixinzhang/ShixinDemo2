@@ -1,10 +1,15 @@
 package net.sxkeji.shixinandroiddemo2;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+
+import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
+
+import java.lang.annotation.Annotation;
 
 /**
  * description: 基类
@@ -23,7 +28,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mSharedPreferences = getSharedPreferences("shixinsp", MODE_PRIVATE);
         mCurrentTheme = mSharedPreferences.getBoolean(THEME_NAME, false);
-        setDayNightTheme(mCurrentTheme);
+//        setDayNightTheme(mCurrentTheme);
+
+        annotationProcess();
     }
 
     /**
@@ -71,6 +78,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isDay != isCurrentTheme()) {
             getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
             recreate();
+        }
+    }
+
+    /**
+     * 处理注解
+     */
+    private void annotationProcess() {
+        //遍历所有子类
+        for (Class c = this.getClass(); c != Context.class; c = c.getSuperclass()) {
+            //找到使用 ContentView 注解的类
+            ContentView annotation = (ContentView) c.getAnnotation(ContentView.class);
+            if (annotation != null) {
+                try {   //有可能出错的地方都要 try-catch
+                    //获取 注解中的属性值，为 Activity 设置布局
+                    this.setContentView(annotation.value());
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
         }
     }
 }

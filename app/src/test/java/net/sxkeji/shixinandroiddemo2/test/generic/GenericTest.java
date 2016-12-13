@@ -1,7 +1,10 @@
 package net.sxkeji.shixinandroiddemo2.test.generic;
 
+import android.graphics.Color;
+
 import net.sxkeji.shixinandroiddemo2.beans.BookBean;
 import net.sxkeji.shixinandroiddemo2.beans.ChildBookBean;
+import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -42,6 +45,8 @@ public class GenericTest {
         generic.add(0, "shixin");
         generic.add(1, 23);
 
+        String item1 = (String) generic.getData(0);
+        String item2 = (String) generic.getData(1);
     }
 
     /**
@@ -182,7 +187,7 @@ public class GenericTest {
     }
 
     /**
-     * 传统的方法，会有 没有检查类型 的警告
+     * 传统的方法，会有 unchecked ... raw type 的警告
      * @param s1
      * @param s2
      * @return
@@ -242,6 +247,7 @@ public class GenericTest {
      */
     private <K extends ChildBookBean, E extends BookBean> E test2(K arg1, E arg2){
         E result = arg2;
+        arg2.compareTo(arg1);
         //.....
         return result;
     }
@@ -280,7 +286,7 @@ public class GenericTest {
         for (E e : c2) {
             c1.add(e);
         }
-    };
+    }
 
     /**
      * 不加 super 的话编译器不通过
@@ -299,7 +305,7 @@ public class GenericTest {
         for (E e : src) {
             dst.add(e);
         }
-    };
+    }
 
     /**
      *
@@ -318,8 +324,9 @@ public class GenericTest {
     }
 
     private void swap(List<?> list, int i, int j){
-//        list.set(i, list.set(j, list.get(i)));
+        swap1(list, i, j);
     }
+
     public interface OnTestListener{
         String mName = "";
         void test();
@@ -374,5 +381,34 @@ public class GenericTest {
     @AfterClass
     public static void afterClass(){
         System.out.println("afterClass");
+    }
+
+
+    private void set(String o){
+        ///
+    }
+
+    /**
+     * 泛型的擦除，运行时都是 Object
+     */
+    @Test
+    public void testErasure(){
+        List<String> strings = new ArrayList<>();
+        List<Integer> integers = new ArrayList<>();
+//        System.out.println(strings.getClass() == integers.getClass());//true
+
+        Shixin shixin = new Shixin();
+        GenericErasure.People<Shixin> m = new GenericErasure.People<>(shixin);
+        m.habit();
+//        System.out.println(m.mPeople.getClass() == GenericErasure.Program.class);
+    }
+
+
+    @Test
+    public void testString(){
+        boolean s = StringUtils.isRgbValue("#7B0D16");
+        System.out.println(s);
+
+        System.out.println(Color.parseColor("#7B0D16"));
     }
 }

@@ -14,8 +14,7 @@ import net.sxkeji.shixinandroiddemo2.beans.OaCheckInResultBean;
 import net.sxkeji.shixinandroiddemo2.beans.OaLoginResultBean;
 import net.sxkeji.shixinandroiddemo2.beans.OaStatusBean;
 import net.sxkeji.shixinandroiddemo2.beans.OaUserInfoBean;
-import net.sxkeji.shixinandroiddemo2.helper.RequestHelper;
-import net.sxkeji.shixinandroiddemo2.utils.EncodeUtils;
+import net.sxkeji.shixinandroiddemo2.network.RequestHelper;
 
 import java.util.List;
 
@@ -48,7 +47,8 @@ public class OaLoginActivity extends BaseActivity {
     private String mSessionKey;
     private String mMsg;
     private String mLatlng = "31.221517,121.382759";    //经纬度
-    private String mAddr = "%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%99%AE%E9%99%80%E5%8C%BA%E5%85%89%E5%A4%8D%E8%A5%BF%E8%B7%AF%E9%9D%A0%E8%BF%91%E6%B1%87%E9%93%B6%E9%93%AD%E5%B0%8A6%E5%8F%B7%E6%A5%BC";
+//    private String mAddr = "%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%99%AE%E9%99%80%E5%8C%BA%E5%85%89%E5%A4%8D%E8%A5%BF%E8%B7%AF%E9%9D%A0%E8%BF%91%E6%B1%87%E9%93%B6%E9%93%AD%E5%B0%8A6%E5%8F%B7%E6%A5%BC";
+    private String mAddr = "上海市普陀区光复西路靠近汇银铭尊6号楼";
     private String mBaseUrl = "http://oa.yaomaiche.com:89";
 
     @Override
@@ -86,12 +86,12 @@ public class OaLoginActivity extends BaseActivity {
 
     private void checkInOrOut(boolean isCheckIn) {
         String type = isCheckIn ? "checkin" : "checkout";
-        if (!isCheckIn) {
-            mAddr = EncodeUtils.urlDecode(mAddr);
-        }
-        if (TextUtils.isEmpty(mAddr)) {
-            mAddr = "上海市普陀区光复西路靠近汇银铭尊6号楼";
-        }
+//        if (!isCheckIn) {
+//            mAddr = EncodeUtils.urlDecode(mAddr);
+//        }
+//        if (TextUtils.isEmpty(mAddr)) {
+//            mAddr = "上海市普陀区光复西路靠近汇银铭尊6号楼";
+//        }
 
         new RequestHelper().create(OaApi.class)
                 .checkIn("checkin", type, mLatlng, mAddr, mSessionKey)

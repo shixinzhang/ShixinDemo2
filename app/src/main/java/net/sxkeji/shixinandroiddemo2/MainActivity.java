@@ -1,12 +1,14 @@
 package net.sxkeji.shixinandroiddemo2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.sxkeji.shixinandroiddemo2.activity.AnnotationTestActivity;
 import net.sxkeji.shixinandroiddemo2.activity.OaLoginActivity;
 import net.sxkeji.shixinandroiddemo2.activity.RefreshLoadMoreActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SuspensionHeaderActivity;
@@ -18,6 +20,7 @@ import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +51,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        boolean s = StringUtils.isRgbValue("#7B0D16\t");
+        System.out.println("颜色" + s);
+
+        System.out.println(Color.parseColor("#7B0D16"));
+
         mActivityNameList = new ArrayList<>();
+        mActivityNameList.add(new ActivityBean(getString(R.string.login), OaLoginActivity.class));
         mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
         mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
         mActivityNameList.add(new ActivityBean("Hybrid 练习1", HybridDemo1Activity.class));
@@ -56,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.focusable_in_touch), FocusInTouchModeActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.alpha_header_recyclerview), SuspensionHeaderActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.refresh_load_more), RefreshLoadMoreActivity.class));
-        mActivityNameList.add(new ActivityBean(getString(R.string.login), OaLoginActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.annotation), AnnotationTestActivity.class));
     }
 
     private void initList() {

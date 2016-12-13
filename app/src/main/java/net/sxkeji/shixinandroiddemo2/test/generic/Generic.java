@@ -12,7 +12,7 @@ import java.util.Arrays;
  * <a  href="https://about.me/shixinzhang">About me</a>
  */
 
-public class Generic {
+public class Generic implements GenericInterface<String>{
     private Object[] mData;
     private final int DEFAULT_CAPACITY = 16;
     private int mSize = 0;
@@ -53,5 +53,10 @@ public class Generic {
         if (mData.length == mSize + 1 ){
             mData = Arrays.copyOf(mData, 2  * mSize);
         }
+    }
+
+    @Override
+    public void doSomething(String s) {
+
     }
 }

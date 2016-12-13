@@ -1,5 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.test;
 
+import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
+
 import org.junit.Test;
 
 import java.util.Random;
@@ -129,4 +131,10 @@ class JavaSETest {
     }
 
     private static int MAXIMUM_CAPACITY = 1 << 30;
+
+    @Test
+    public void testString(){
+        boolean s = StringUtils.isRgbValue("000000");
+        System.out.println(s);
+    }
 }

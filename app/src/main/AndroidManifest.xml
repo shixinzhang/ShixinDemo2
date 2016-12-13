@@ -50,6 +50,8 @@
             android:label="@string/refresh_load_more"/>
         <activity android:name=".activity.OaLoginActivity"
                   android:label="@string/login"/>
+        <activity android:name=".activity.AnnotationTestActivity"
+            android:label="@string/annotation"/>
     </application>
 
 </manifest>
