@@ -8,9 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.sxkeji.shixinandroiddemo2.activity.AmapLocationActivity;
 import net.sxkeji.shixinandroiddemo2.activity.AnnotationTestActivity;
 import net.sxkeji.shixinandroiddemo2.activity.OaLoginActivity;
 import net.sxkeji.shixinandroiddemo2.activity.RefreshLoadMoreActivity;
+import net.sxkeji.shixinandroiddemo2.activity.SomeTestActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SuspensionHeaderActivity;
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.DIYView1Activity;
@@ -57,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(Color.parseColor("#7B0D16"));
 
         mActivityNameList = new ArrayList<>();
-        mActivityNameList.add(new ActivityBean(getString(R.string.login), OaLoginActivity.class));
         mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
         mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
         mActivityNameList.add(new ActivityBean("Hybrid 练习1", HybridDemo1Activity.class));
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.alpha_header_recyclerview), SuspensionHeaderActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.refresh_load_more), RefreshLoadMoreActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.annotation), AnnotationTestActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.some_test), SomeTestActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.some_test), OaLoginActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.location), AmapLocationActivity.class));
     }
 
     private void initList() {

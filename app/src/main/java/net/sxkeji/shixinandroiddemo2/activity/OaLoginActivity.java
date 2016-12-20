@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
@@ -43,11 +45,13 @@ public class OaLoginActivity extends BaseActivity {
     Button mBtnLogin;
     @Bind(R.id.tv_user_info)
     TextView mTvUserInfo;
+    @Bind(R.id.iv_ez)
+    ImageView mIvEz;
 
     private String mSessionKey;
     private String mMsg;
     private String mLatlng = "31.221517,121.382759";    //经纬度
-//    private String mAddr = "%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%99%AE%E9%99%80%E5%8C%BA%E5%85%89%E5%A4%8D%E8%A5%BF%E8%B7%AF%E9%9D%A0%E8%BF%91%E6%B1%87%E9%93%B6%E9%93%AD%E5%B0%8A6%E5%8F%B7%E6%A5%BC";
+    //    private String mAddr = "%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%99%AE%E9%99%80%E5%8C%BA%E5%85%89%E5%A4%8D%E8%A5%BF%E8%B7%AF%E9%9D%A0%E8%BF%91%E6%B1%87%E9%93%B6%E9%93%AD%E5%B0%8A6%E5%8F%B7%E6%A5%BC";
     private String mAddr = "上海市普陀区光复西路靠近汇银铭尊6号楼";
     private String mBaseUrl = "http://oa.yaomaiche.com:89";
 
@@ -58,6 +62,7 @@ public class OaLoginActivity extends BaseActivity {
         ButterKnife.bind(this);
         initViews();
         loadData();
+        addListeners();
     }
 
     @Override
@@ -73,6 +78,13 @@ public class OaLoginActivity extends BaseActivity {
 
     @Override
     public void addListeners() {
+        mIvEz.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mIvEz.setVisibility(View.GONE);
+                return true;
+            }
+        });
     }
 
     void showLog(String msg) {
@@ -208,7 +220,7 @@ public class OaLoginActivity extends BaseActivity {
                             showErrorGetUserInfo();
                             return;
                         }
-                        if (userInfoBean.getName() == null){
+                        if (userInfoBean.getName() == null) {
                             showErrorGetUserInfo();
                             return;
                         }
@@ -223,7 +235,7 @@ public class OaLoginActivity extends BaseActivity {
                 });
     }
 
-    private void showErrorGetUserInfo(){
+    private void showErrorGetUserInfo() {
         mTvUserInfo.setText("查询个人信息失败，请检查是否登录");
     }
 

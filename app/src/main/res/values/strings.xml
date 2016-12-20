@@ -9,4 +9,6 @@
     <string name="refresh_load_more">下拉刷新、加载更多 RecyclerView</string>
     <string name="login">测试</string>
     <string name="annotation">注解测试</string>
+    <string name="some_test">一些小测试</string>
+    <string name="location">高德定位</string>
 </resources>

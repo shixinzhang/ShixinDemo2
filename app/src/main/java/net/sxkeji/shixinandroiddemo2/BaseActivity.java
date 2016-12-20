@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 
 import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
 
@@ -99,5 +100,13 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    protected void showErrorLog(String msg) {
+        showErrorLog(this.getClass().getSimpleName(), msg);
+    }
+
+    protected void showErrorLog(String tag, String msg) {
+        Log.e(tag, msg);
     }
 }

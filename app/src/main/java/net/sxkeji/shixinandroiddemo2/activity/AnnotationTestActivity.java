@@ -1,7 +1,11 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
+import android.support.annotation.NonNull;
+import android.widget.Toast;
+
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.annotation.Author;
 import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
 
 /**
@@ -14,6 +18,7 @@ import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
  * <a  href="https://about.me/shixinzhang">About me</a>
  */
 
+@Author(name = "shixinzhang", date = "2016.12.13", habit = {"lol", "code"})
 @ContentView(R.layout.activity_annotation)
 public class AnnotationTestActivity extends BaseActivity {
     @Override
@@ -21,6 +26,7 @@ public class AnnotationTestActivity extends BaseActivity {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void loadData() {
 
@@ -29,5 +35,10 @@ public class AnnotationTestActivity extends BaseActivity {
     @Override
     public void addListeners() {
 
+    }
+
+    @Deprecated
+    public void showToast(@NonNull String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
