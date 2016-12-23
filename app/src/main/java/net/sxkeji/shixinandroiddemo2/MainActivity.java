@@ -22,6 +22,7 @@ import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.hybrid.SxWebViewActivity;
 import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.some_test), SomeTestActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.some_test), OaLoginActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.location), AmapLocationActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.hybrid), SxWebViewActivity.class));
     }
 
     private void initList() {

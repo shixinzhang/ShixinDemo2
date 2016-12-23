@@ -70,7 +70,7 @@ public class SuspensionHeaderActivity extends BaseActivity {
         new AlertDialog.Builder(this)
                 .setTitle("hello")
                 .setMessage("I'm shixinzhang")
-                .setIcon(R.drawable.bg_search_corner)
+                .setIcon(R.mipmap.icon_ez)
                 .setCancelable(true)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override

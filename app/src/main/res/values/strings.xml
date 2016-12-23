@@ -11,4 +11,5 @@
     <string name="annotation">注解测试</string>
     <string name="some_test">一些小测试</string>
     <string name="location">高德定位</string>
+    <string name="hybrid">Hybrid</string>
 </resources>
