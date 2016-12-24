@@ -38,6 +38,9 @@ public class SxWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int newProgress) {
         super.onProgressChanged(view, newProgress);
         showDebugLog("onProgressChanged ：" + newProgress * 1000);
+        if (mWebViewUIChangedListener != null){
+            mWebViewUIChangedListener.onProgressChanged(newProgress * 1000);
+        }
     }
 
     @Override

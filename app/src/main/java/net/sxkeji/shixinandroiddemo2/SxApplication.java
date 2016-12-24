@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import net.sxkeji.shixinandroiddemo2.hybrid.handler.UIHandler;
+import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
+
 /**
  * <br/> Description:
  * <p>
@@ -18,6 +21,17 @@ public class SxApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        addLifecycleListener();
+        registerHybridHandler();
+    }
+
+    private void registerHybridHandler() {
+        HybridFactory.getInstance().registerHandlers(UIHandler.class);
+
+    }
+
+    private void addLifecycleListener() {
 
         //生命周期监听
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {

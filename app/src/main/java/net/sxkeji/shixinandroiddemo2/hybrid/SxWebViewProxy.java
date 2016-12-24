@@ -32,7 +32,7 @@ public class SxWebViewProxy extends WebView {
      */
     public interface OnWebViewUIChangedListener{
         void onTitleChanged(String title);
-        void onProgressChanged(float progress);
+        void onProgressChanged(int progress);
     }
 
     private OnUrlReplaceListener mUrlReplaceListener;
@@ -60,6 +60,9 @@ public class SxWebViewProxy extends WebView {
 
     @Override
     public void loadUrl(String url) {
+        if (mUrlReplaceListener != null) {
+            url = mUrlReplaceListener.onUrlReplace(url);
+        }
         super.loadUrl(url);
     }
 

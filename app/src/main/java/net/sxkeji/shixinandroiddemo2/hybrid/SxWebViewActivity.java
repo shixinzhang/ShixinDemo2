@@ -3,6 +3,7 @@ package net.sxkeji.shixinandroiddemo2.hybrid;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
@@ -27,7 +28,8 @@ public class SxWebViewActivity extends BaseActivity implements SxWebViewProxy.On
     ProgressBar mLoadProgress;
 
     private SxWebViewFragment mWebViewFragment;
-    private final String testUrl = "http://m.blog.csdn.net/blog/index?username=u011240877";
+//    private final String testUrl = "http://m.blog.csdn.net/blog/index?username=u011240877";
+    private final String testUrl = "shixinzhang://ui/toast?params={\"data\":{\"message\":\"hello_hybrid\"}}";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,8 +68,14 @@ public class SxWebViewActivity extends BaseActivity implements SxWebViewProxy.On
     }
 
     @Override
-    public void onProgressChanged(float progress) {
-
+    public void onProgressChanged(int progress) {
+        mLoadProgress.setProgress(progress);
+        if (progress > 0 && progress < mLoadProgress.getMax() && mLoadProgress.getVisibility() != View.VISIBLE) {
+            mLoadProgress.setVisibility(View.VISIBLE);
+        } else {
+            mLoadProgress.setProgress(0);
+            mLoadProgress.setVisibility(View.INVISIBLE);
+        }
     }
 
 

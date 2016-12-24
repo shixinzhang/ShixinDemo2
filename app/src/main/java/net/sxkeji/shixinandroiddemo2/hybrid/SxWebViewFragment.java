@@ -18,7 +18,7 @@ import net.sxkeji.shixinandroiddemo2.R;
  * <br/> Description:
  * WebView 的容器 Fragment，负责管理 WebView 的：
  * 1.加载（加载动画、加载进度、加载内容）、
- * 2.拦截（某些页面需要跳转到 Native）、
+ * 2.拦截（某些页面需要跳转到 Native） ----  由 H5 主动触发逻辑，不管是跳转还是显示原生组件，弹个对话框啥的，都是一套机制
  * 3.错误监听（ 404，网络错误...）、
  * 4.替换为离线 H5 （加强体验）、
  * <p>
@@ -83,7 +83,8 @@ public class SxWebViewFragment extends Fragment implements SxWebViewProxy.OnUrlR
             SxWebChromeClient webChromeClient = new SxWebChromeClient();
             webChromeClient.setWebViewUIChangedListener(mWebViewUIChangedListener);
             mWebViewProxy.setWebChromeClient(webChromeClient);
-            mWebViewProxy.setWebViewClient(new SxWebViewClient());
+
+            mWebViewProxy.setWebViewClient(new SxWebViewClient(mWebViewProxy));
             try {
                 view.addView(mWebViewProxy);
             } catch (Exception e) {
