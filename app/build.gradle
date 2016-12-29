@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.dodola.rocoofix'
 
 android {
     signingConfigs {
@@ -32,6 +33,22 @@ android {
         }
     }
 }
+
+repositories {
+    jcenter()
+}
+
+rocoo_fix {
+    includePackage = ['com/dodola/rocoosample']//指定将来可能需要制作补丁的package(就是指定插庄的范围)
+    excludeClass = ['BaseApplication.class']//将不需要加到patch里的类写在这里(不需要插庄的类)
+
+    preVersionPath = '1'//注意：此项属性只在需要制作补丁的时候才需开启！！如果不需要制作补丁则需要去掉此项
+
+    enable = true//注意：关掉此项会无法生成Hash.txt文件
+
+    scanref=true//默认为 false，开启这个选项会将与补丁 class 相引用的 class 都打入包中来解决 ART 虚拟机崩溃问题，功能 Beta 中
+}
+
 final COMPAT_VERSION = "23.4.0"
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -46,4 +63,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
+    compile 'com.dodola:rocoo:1.1'
 }

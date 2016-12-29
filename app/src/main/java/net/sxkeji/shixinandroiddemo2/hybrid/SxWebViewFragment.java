@@ -67,6 +67,15 @@ public class SxWebViewFragment extends Fragment implements SxWebViewProxy.OnUrlR
         }
     }
 
+    /**
+     * 外部调用，直接加载 url
+     * @param url
+     */
+    public void loadUrl(String url){
+        mWebViewProxy.loadUrl(url);
+    }
+
+
     @SuppressWarnings("setJavaScriptEnabled")
     private void initWebViewSetting() {
         if (mWebViewProxy == null) {
