@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
@@ -19,6 +20,7 @@ import net.sxkeji.shixinandroiddemo2.beans.OaUserInfoBean;
 import net.sxkeji.shixinandroiddemo2.network.RequestHelper;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * <br/> Description:
+ * <br/> Description: 嘿嘿嘿
  * <p>
  * <br/> Created by shixinzhang on 16/12/8.
  * <p>
@@ -52,7 +54,10 @@ public class OaLoginActivity extends BaseActivity {
     private String mMsg;
     private String mLatlng = "31.221517,121.382759";    //经纬度
     //    private String mAddr = "%E4%B8%8A%E6%B5%B7%E5%B8%82%E6%99%AE%E9%99%80%E5%8C%BA%E5%85%89%E5%A4%8D%E8%A5%BF%E8%B7%AF%E9%9D%A0%E8%BF%91%E6%B1%87%E9%93%B6%E9%93%AD%E5%B0%8A6%E5%8F%B7%E6%A5%BC";
-    private String mAddr = "上海市普陀区光复西路靠近汇银铭尊6号楼";
+    private String[] mAddressArray = {"上海市普陀区光复西路靠近汇银铭尊6号楼", "上海市长宁区泸定路桥靠近泸定路桥",
+            "上海市长宁区威宁路靠近上海浦东发展银行(天山路支行)","上海市长宁区威宁路靠近海益商务大厦"};
+    private String mAddr;
+
     private String mBaseUrl = "http://oa.yaomaiche.com:89";
 
     @Override
@@ -72,6 +77,13 @@ public class OaLoginActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        Random random = new Random();
+        int nextInt = random.nextInt(3);
+        if (nextInt < 0 || nextInt >= mAddressArray.length){
+            nextInt = 1;
+        }
+        mAddr = mAddressArray[nextInt];
+        Toast.makeText(this, mAddr, Toast.LENGTH_SHORT).show();
         getUserInfo();
         getStatus();
     }

@@ -90,6 +90,10 @@ public class SxWebViewActivity extends BaseActivity implements SxWebViewProxy.On
         smoothProgressChanged(progress);
     }
 
+    /**
+     * 进度条更顺滑
+     * @param aimProcess
+     */
     public void smoothProgressChanged(final int aimProcess){
         final int currentProgress = mLoadProgress.getProgress();
 
