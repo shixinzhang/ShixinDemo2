@@ -3,9 +3,11 @@ package net.sxkeji.shixinandroiddemo2;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import net.sxkeji.shixinandroiddemo2.activity.AmapLocationActivity;
@@ -34,13 +36,15 @@ import butterknife.ButterKnife;
 /**
  * 吸取之前那个 demo 的问题，不乱引入第三方，记住！
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
     @Bind(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
     private ActivityListAdapter mActivityListAdapter;
     private List<ActivityBean> mActivityNameList;
+    private final String INSTANCE_STATE_TEST = "instance_test";
 
 
     @Override
@@ -49,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initData();
-        initList();
+        initViews();
+        loadData();
     }
 
-    private void initData() {
+    @Override
+    public void initViews() {
+
         boolean s = StringUtils.isRgbValue("#7B0D16\t");
         System.out.println("颜色" + s);
 
@@ -74,13 +80,22 @@ public class MainActivity extends AppCompatActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.hybrid), SxWebViewActivity.class));
     }
 
-    private void initList() {
+    @Override
+    public void loadData() {
+
         mActivityListAdapter = new ActivityListAdapter(this, mActivityNameList);
         mActivityListAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Class<?> claz = mActivityListAdapter.getData().get(position).getClaz();
                 Intent intent = new Intent(MainActivity.this, claz);
+                if (mActivityNameList != null){
+                    ActivityBean activityBean = mActivityNameList.get(position);
+                    if (getString(R.string.hybrid).equals(activityBean.getName())){
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -88,4 +103,22 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mActivityListAdapter);
     }
 
+    @Override
+    public void addListeners() {
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        showDebugLog("onSaveInstanceState");
+        outState.putString(INSTANCE_STATE_TEST, "shixinzhang");
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String saveState = savedInstanceState.getString(INSTANCE_STATE_TEST);
+        showDebugLog("onRestoreInstanceState" + saveState);
+    }
 }

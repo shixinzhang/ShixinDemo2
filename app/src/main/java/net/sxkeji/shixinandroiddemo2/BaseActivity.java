@@ -20,6 +20,8 @@ import java.lang.annotation.Annotation;
  * data: 9/19/2016
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private final String TAG = this.getClass().getSimpleName();
+
     public final String THEME_NAME = "theme";
     private SharedPreferences mSharedPreferences;
     private boolean mCurrentTheme;
@@ -103,10 +105,50 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void showErrorLog(String msg) {
-        showErrorLog(this.getClass().getSimpleName(), msg);
+        showErrorLog(TAG, msg);
     }
 
     protected void showErrorLog(String tag, String msg) {
         Log.e(tag, msg);
+    }
+
+
+    protected void showDebugLog(String msg) {
+        showDebugLog(TAG, msg);
+    }
+
+    protected void showDebugLog(String tag, String msg) {
+        Log.d(tag, msg);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showDebugLog("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showDebugLog("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        showDebugLog("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        showDebugLog("onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        showDebugLog("onDestroy");
     }
 }

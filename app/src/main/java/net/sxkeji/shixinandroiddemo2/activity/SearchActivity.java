@@ -1,10 +1,12 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 
 import net.sxkeji.shixinandroiddemo2.R;
@@ -34,6 +36,16 @@ public class SearchActivity extends AppCompatActivity {
         mOnBackPressFragmentListener = mBuyCarTabFragment;
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, mBuyCarTabFragment).commit();
 
+
+        @SuppressLint("Typo")
+        String logn;    //means login
+
+
+        logn = "login";
+
+        if (TextUtils.isEmpty(logn)){
+
+        }
     }
 
     @Override

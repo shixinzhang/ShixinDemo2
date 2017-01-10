@@ -12,7 +12,6 @@
         android:text="this page talks about annotation"/>
 
     <TextView
-        android:id="@+id/tv_author_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="author is ? "/>

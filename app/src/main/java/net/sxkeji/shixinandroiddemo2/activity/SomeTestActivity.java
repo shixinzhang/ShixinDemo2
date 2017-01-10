@@ -36,7 +36,6 @@ public class SomeTestActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_market)
     public void jump2Market() {
         Uri uri = Uri.parse("market://details?id=" + getPackageName());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);

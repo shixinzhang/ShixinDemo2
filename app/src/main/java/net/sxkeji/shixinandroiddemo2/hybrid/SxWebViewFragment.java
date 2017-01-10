@@ -1,6 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.hybrid;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,9 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 
+import net.sxkeji.shixinandroiddemo2.BuildConfig;
 import net.sxkeji.shixinandroiddemo2.R;
 
 /**
@@ -81,8 +86,47 @@ public class SxWebViewFragment extends Fragment implements SxWebViewProxy.OnUrlR
         if (mWebViewProxy == null) {
             return;
         }
-        WebSettings settings = mWebViewProxy.getSettings();
-        settings.setJavaScriptEnabled(true);    //允许使用 JS
+        WebSettings webSettings = mWebViewProxy.getSettings();
+        webSettings.setJavaScriptEnabled(true);    //允许使用 JS
+
+        boolean isDebug = BuildConfig.DEBUG;
+
+        if (isDebug && Build.VERSION.SDK_INT >= 19) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
+
+//        webSettings.setAllowFileAccess(false);
+        if (Build.VERSION.SDK_INT >= 16) {
+            webSettings.setAllowFileAccessFromFileURLs(true);
+            webSettings.setAllowUniversalAccessFromFileURLs(true);
+        }
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setAppCachePath("path");//设置当前Application缓存文件路径，Application Cache API能够开启需要指定Application具备写入权限的路径
+        webSettings.setUseWideViewPort(true);
+        webSettings.setBuiltInZoomControls(false);
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true); //设置是否开启DOM存储API权限，默认false，未开启，设置为true，WebView能够使用DOM storage API
+        webSettings.setDatabaseEnabled(true);
+        webSettings.setSupportMultipleWindows(false);
+        webSettings.setSupportZoom(false);
+
+        webSettings.setUserAgentString("your user agent");
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            //设置当一个安全站点企图加载来自一个不安全站点资源时WebView的行为，
+            // android.os.Build.VERSION_CODES.KITKAT 默认为 MIXED_CONTENT_ALWAYS_ALLOW，
+            // android.os.Build.VERSION_CODES#LOLLIPOP 默认为 MIXED_CONTENT_NEVER_ALLOW
+            // 取值其中之一：
+            //  MIXED_CONTENT_NEVER_ALLOW、
+            //  MIXED_CONTENT_ALWAYS_ALLOW、
+            //  MIXED_CONTENT_COMPATIBILITY_MODE.
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+        CookieSyncManager.createInstance(getContext());
+        CookieManager.setAcceptFileSchemeCookies(true);
+        CookieManager.getInstance().setAcceptCookie(true);
     }
 
     private void addWebView(FrameLayout view) {
