@@ -113,6 +113,7 @@ public class MainActivity extends BaseActivity {
         showDebugLog("onSaveInstanceState");
         outState.putString(INSTANCE_STATE_TEST, "shixinzhang");
         super.onSaveInstanceState(outState);
+
     }
 
     @Override
