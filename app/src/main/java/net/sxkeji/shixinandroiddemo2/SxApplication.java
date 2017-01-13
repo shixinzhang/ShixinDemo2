@@ -3,9 +3,13 @@ package net.sxkeji.shixinandroiddemo2;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.util.Log;
 
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.UIHandler;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * <br/> Description:
@@ -18,12 +22,22 @@ import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
  */
 
 public class SxApplication extends Application {
+    private final String TAG = this.getClass().getSimpleName();
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         addLifecycleListener();
         registerHybridHandler();
+        Realm.init(this);
+        Realm.setDefaultConfiguration(
+                new RealmConfiguration.Builder()
+                        .name("shixinzhang.realm")
+                        .deleteRealmIfMigrationNeeded()
+//                        .inMemory() //数据保存在内存
+                        .build()
+        );
     }
 
     private void registerHybridHandler() {
@@ -52,7 +66,7 @@ public class SxApplication extends Application {
 
             @Override
             public void onActivityPaused(Activity activity) {
-
+//                Log.d(TAG, activity.getLocalClassName() + " onActivityPaused");
             }
 
             @Override

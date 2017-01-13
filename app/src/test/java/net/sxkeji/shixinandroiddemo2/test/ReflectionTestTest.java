@@ -2,6 +2,8 @@ package net.sxkeji.shixinandroiddemo2.test;
 
 import org.junit.Test;
 
+import java.lang.reflect.Modifier;
+
 import static org.junit.Assert.*;
 
 /**
@@ -16,7 +18,7 @@ import static org.junit.Assert.*;
 public class ReflectionTestTest {
     @Test
     public void reflectFirst() throws Exception {
-        Class<?> aClass = Class.forName("[Ljava.lang.String;");
+        Class<?> aClass = Class.forName("[Ljava.lang.String;"); //String 数组
         String[] o = (String[]) aClass.newInstance();
         o[0] = "string array";
         System.out.println(o[0]);
@@ -33,7 +35,13 @@ public class ReflectionTestTest {
         Class<?>[] classes = superclass.getClasses();
         Class<?>[] declaredClasses = superclass.getDeclaredClasses();
 
+    }
 
+    @Test
+    public void reflectModifiers(){
+        Class<String> stringClass = String.class;
+        int modifiers = stringClass.getModifiers();     //返回值是 修饰符的 Int 值
+        boolean isFinal = Modifier.isFinal(modifiers);
     }
 
 }

@@ -76,7 +76,7 @@
             android:name=".activity.AnnotationTestActivity"
             android:label="@string/annotation"/>
         <activity
-            android:name=".activity.SomeTestActivity"
+            android:name=".activity.RealmTestActivity"
             android:label="@string/some_test"/>
         <activity
             android:name=".activity.AmapLocationActivity"
