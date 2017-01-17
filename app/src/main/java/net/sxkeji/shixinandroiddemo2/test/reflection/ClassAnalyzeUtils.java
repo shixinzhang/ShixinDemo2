@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.test;
+package net.sxkeji.shixinandroiddemo2.test.reflection;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;

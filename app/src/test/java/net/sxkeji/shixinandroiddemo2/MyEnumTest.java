@@ -2,7 +2,7 @@ package net.sxkeji.shixinandroiddemo2;
 
 import android.support.annotation.IntDef;
 
-import net.sxkeji.shixinandroiddemo2.test.ClassAnalyzeUtils;
+import net.sxkeji.shixinandroiddemo2.test.reflection.ClassAnalyzeUtils;
 import net.sxkeji.shixinandroiddemo2.test.MyEnum;
 
 import org.junit.Test;

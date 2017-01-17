@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.dodola.rocoofix'
 apply plugin: 'realm-android'
 
+def commandValue = "default value ~"
+
 android {
     signingConfigs {
         debugSigning {
@@ -19,6 +21,12 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        commandValue = project.getProperties().get("Value")    //通过 gradle 命令行传入参数： gradle assemble{BuildType} -PValue=value 传递
+        if (commandValue == null || "".equals(commandValue)){
+            commandValue = "cannot read value from command line"
+        }
+//        buildConfigField("String", "value", commandValue)
+        print("value=" + commandValue)
     }
     buildTypes {
         release {
@@ -65,4 +73,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
     compile 'com.dodola:rocoo:1.1'
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
