@@ -7,12 +7,10 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
-import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.beans.Dog;
+import net.sxkeji.shixinandroiddemo2.bean.Dog;
 
 import java.util.List;
 
-import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmAsyncTask;
 import io.realm.RealmResults;

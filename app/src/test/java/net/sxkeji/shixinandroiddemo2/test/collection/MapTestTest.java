@@ -1,6 +1,6 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
-import net.sxkeji.shixinandroiddemo2.beans.Person;
+import net.sxkeji.shixinandroiddemo2.bean.Person;
 
 import org.junit.Test;
 

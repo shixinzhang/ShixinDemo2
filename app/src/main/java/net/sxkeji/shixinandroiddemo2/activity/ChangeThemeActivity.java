@@ -10,7 +10,10 @@ import android.widget.TextView;
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.ChangeThemeSampleAdapter;
+import net.sxkeji.shixinandroiddemo2.util.GsonUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,6 +44,27 @@ public class ChangeThemeActivity extends BaseActivity {
         ButterKnife.bind(this);
         initViews();
 
+        writeCountryDataToServer();
+    }
+
+    private void writeCountryDataToServer() {
+        String json ="";
+        try {
+            mTvChangeTheme.setText("读取中...");
+            InputStream inputStream = getResources().getAssets().open("countryCode.json");
+            int length = inputStream.available();   //获取文件的字节数
+            byte[] buffer = new byte[length];   //创建byte数组
+            inputStream.read(buffer);    //读取到 byte 数组中
+            json = new String(buffer);
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mTvChangeTheme.setText("读取失败：" + e.getMessage());
+        }
+
+        mTvChangeTheme.setText("读取成功: " + json);
+
+//        GsonUtils.jsonToBean();
     }
 
     @Override

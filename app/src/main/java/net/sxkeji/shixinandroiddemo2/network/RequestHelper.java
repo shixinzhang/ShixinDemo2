@@ -64,15 +64,15 @@ public class RequestHelper implements Interceptor {
             requestBody = oldRequest.body();
         }
 
-        Request.Builder requesetBuilder = oldRequest.newBuilder()
+        Request.Builder requestBuilder = oldRequest.newBuilder()
                 .method(oldRequest.method(), requestBody)
                 .cacheControl(oldRequest.cacheControl())
                 .headers(oldRequest.headers())
                 .url(urlBuilder.build());
 
-        addRequestHeader(requesetBuilder);
+        addRequestHeader(requestBuilder);
 
-        Request request = requesetBuilder.build();
+        Request request = requestBuilder.build();
         Log.d(TAG,"request Header+++++++++: " + request.headers().toString());
         Log.d(TAG,"request url+++++++++: " + request.url().toString());
 
@@ -87,8 +87,8 @@ public class RequestHelper implements Interceptor {
         return response;
     }
 
-    private void addRequestHeader(Request.Builder requesetBuilder) {
-        requesetBuilder
+    private void addRequestHeader(Request.Builder requestBuilder) {
+        requestBuilder
                 .addHeader("Host", mBaseUrl)
                 .addHeader("Connection", "Keep-Alive")
                 .addHeader("Accept-Language", "zh-CN,zh;q=0.5")

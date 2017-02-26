@@ -20,9 +20,9 @@ import net.sxkeji.shixinandroiddemo2.activity.HybridDemo1Activity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
-import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 import net.sxkeji.shixinandroiddemo2.hybrid.SxWebViewActivity;
-import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
+import net.sxkeji.shixinandroiddemo2.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

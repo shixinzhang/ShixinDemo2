@@ -6,7 +6,7 @@ import android.net.Uri;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridEvent;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridHandlerResult;
-import net.sxkeji.shixinandroiddemo2.utils.GsonUtils;
+import net.sxkeji.shixinandroiddemo2.util.GsonUtils;
 
 /**
  * <br/> Description: 总的 WebView 处理类，错误回调，拦截，什么的，都在这里

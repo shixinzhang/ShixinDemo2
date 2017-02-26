@@ -1,13 +1,12 @@
 package net.sxkeji.shixinandroiddemo2.api;
 
-import net.sxkeji.shixinandroiddemo2.beans.OaCheckInResultBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaLoginResultBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaStatusBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaUserInfoBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaCheckInResultBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaLoginResultBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaStatusBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaUserInfoBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**

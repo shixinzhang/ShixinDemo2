@@ -64,7 +64,7 @@ public class AmapLocationActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-
+//        getSupportFragmentManager().beginTransaction().replace()
     }
 
     @Override

@@ -24,10 +24,10 @@ import com.squareup.picasso.Picasso;
 
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.HotBrandAdapter;
-import net.sxkeji.shixinandroiddemo2.beans.CarBrandBean;
-import net.sxkeji.shixinandroiddemo2.utils.GsonUtils;
-import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFrameLayout;
-import net.sxkeji.shixinandroiddemo2.views.sortlistview.SortModel;
+import net.sxkeji.shixinandroiddemo2.bean.CarBrandBean;
+import net.sxkeji.shixinandroiddemo2.util.GsonUtils;
+import net.sxkeji.shixinandroiddemo2.view.sortlistview.SortFrameLayout;
+import net.sxkeji.shixinandroiddemo2.view.sortlistview.SortModel;
 
 import java.io.IOException;
 import java.io.InputStream;

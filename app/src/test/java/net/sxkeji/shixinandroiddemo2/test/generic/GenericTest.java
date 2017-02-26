@@ -2,13 +2,12 @@ package net.sxkeji.shixinandroiddemo2.test.generic;
 
 import android.graphics.Color;
 
-import net.sxkeji.shixinandroiddemo2.beans.BookBean;
-import net.sxkeji.shixinandroiddemo2.beans.ChildBookBean;
-import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
+import net.sxkeji.shixinandroiddemo2.bean.BookBean;
+import net.sxkeji.shixinandroiddemo2.bean.ChildBookBean;
+import net.sxkeji.shixinandroiddemo2.util.StringUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;

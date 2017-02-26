@@ -1,6 +1,6 @@
 package net.sxkeji.shixinandroiddemo2.test;
 
-import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 
 /**
  * description:

@@ -35,7 +35,7 @@
             android:textSize="21dp"
             android:visibility="invisible" />
 
-        <net.sxkeji.shixinandroiddemo2.views.sortlistview.SideBar
+        <net.sxkeji.shixinandroiddemo2.view.sortlistview.SideBar
             android:id="@+id/sidrbar"
             android:layout_width="15dp"
             android:layout_height="fill_parent"

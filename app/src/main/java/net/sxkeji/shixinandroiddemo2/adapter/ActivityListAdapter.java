@@ -4,7 +4,7 @@ import android.content.Context;
 
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseViewHolder;
-import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 import net.sxkeji.shixinandroiddemo2.R;
 
 import java.util.List;

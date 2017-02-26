@@ -1,6 +1,6 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
-import net.sxkeji.shixinandroiddemo2.beans.ActivityBean;
+import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 
 /**
  * description: 用于生成 Junit 测试类， src/test/java/net/sxkeji/shixinandroiddemo2/test/collection 下

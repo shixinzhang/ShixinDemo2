@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.views.refreshloadmoreview.RefreshLoadMoreAdapter;
-import net.sxkeji.shixinandroiddemo2.views.refreshloadmoreview.RefreshLoadMoreRecyclerView;
+import net.sxkeji.shixinandroiddemo2.view.refreshloadmoreview.RefreshLoadMoreAdapter;
+import net.sxkeji.shixinandroiddemo2.view.refreshloadmoreview.RefreshLoadMoreRecyclerView;
 
 import java.util.ArrayList;
 

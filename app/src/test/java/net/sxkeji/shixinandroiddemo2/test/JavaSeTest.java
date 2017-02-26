@@ -1,6 +1,6 @@
 package net.sxkeji.shixinandroiddemo2.test;
 
-import net.sxkeji.shixinandroiddemo2.utils.StringUtils;
+import net.sxkeji.shixinandroiddemo2.util.StringUtils;
 
 import org.junit.Test;
 

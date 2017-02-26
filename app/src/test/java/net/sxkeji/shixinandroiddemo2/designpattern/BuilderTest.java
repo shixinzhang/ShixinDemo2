@@ -1,21 +1,13 @@
 package net.sxkeji.shixinandroiddemo2.designpattern;
 
-import android.app.AlertDialog;
-
-import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.beans.Person;
+import net.sxkeji.shixinandroiddemo2.bean.Person;
 
 import org.junit.Test;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
-
-import static org.junit.Assert.*;
 
 /**
  * <br/> Description:

@@ -22,7 +22,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
-        <net.sxkeji.shixinandroiddemo2.views.sortlistview.SortFrameLayout
+        <net.sxkeji.shixinandroiddemo2.view.sortlistview.SortFrameLayout
             android:id="@+id/sortframlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

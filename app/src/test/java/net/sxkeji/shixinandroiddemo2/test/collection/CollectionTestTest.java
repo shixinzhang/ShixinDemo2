@@ -1,9 +1,9 @@
 package net.sxkeji.shixinandroiddemo2.test.collection;
 
-import net.sxkeji.shixinandroiddemo2.beans.BookBean;
-import net.sxkeji.shixinandroiddemo2.beans.EmployeeBean;
-import net.sxkeji.shixinandroiddemo2.beans.MyDateBean;
-import net.sxkeji.shixinandroiddemo2.beans.NewBookBean;
+import net.sxkeji.shixinandroiddemo2.bean.BookBean;
+import net.sxkeji.shixinandroiddemo2.bean.EmployeeBean;
+import net.sxkeji.shixinandroiddemo2.bean.MyDateBean;
+import net.sxkeji.shixinandroiddemo2.bean.NewBookBean;
 
 import org.junit.Test;
 

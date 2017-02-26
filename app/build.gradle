@@ -70,8 +70,8 @@ dependencies {
     compile 'com.github.ismaeltoe:flowlayout:1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
-    compile 'com.dodola:rocoo:1.1'
+//    compile 'com.dodola:rocoo:1.1'
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }

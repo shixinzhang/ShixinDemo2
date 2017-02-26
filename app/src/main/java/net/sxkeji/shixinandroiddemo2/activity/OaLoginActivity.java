@@ -14,10 +14,10 @@ import android.widget.Toast;
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.api.OaApi;
-import net.sxkeji.shixinandroiddemo2.beans.OaCheckInResultBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaLoginResultBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaStatusBean;
-import net.sxkeji.shixinandroiddemo2.beans.OaUserInfoBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaCheckInResultBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaLoginResultBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaStatusBean;
+import net.sxkeji.shixinandroiddemo2.bean.OaUserInfoBean;
 import net.sxkeji.shixinandroiddemo2.network.RequestHelper;
 
 import java.util.List;
@@ -60,6 +60,11 @@ public class OaLoginActivity extends BaseActivity {
     private String[] mAddressArray = {"上海市普陀区光复西路靠近汇银铭尊6号楼", "上海市长宁区泸定路桥靠近泸定路桥",
             "上海市长宁区威宁路靠近上海浦东发展银行(天山路支行)", "上海市长宁区威宁路靠近海益商务大厦"};
     private String mAddr;
+    private final String MY_ACCOUNT = "zhangshixin";
+    private final String MY_PWD = "Yuntu@123";
+//    private final String MY_ACCOUNT = "larryzhang";
+//    private final String MY_PWD = "zszh0822";
+
 
     private String mBaseUrl = "http://oa.yaomaiche.com:89";
 
@@ -201,7 +206,7 @@ public class OaLoginActivity extends BaseActivity {
     @OnClick(R.id.btn_login)
     public void login() {
         new RequestHelper().create(OaApi.class)
-                .login("login", "zhangshixin", "Yuntu@123")
+                .login("login", MY_ACCOUNT, MY_PWD)
                 .enqueue(new Callback<OaLoginResultBean>() {
                     @Override
                     public void onResponse(Call<OaLoginResultBean> call, Response<OaLoginResultBean> response) {

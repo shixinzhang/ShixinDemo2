@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.views.CircleColorView;
-import net.sxkeji.shixinandroiddemo2.views.ListCircleColorView;
+import net.sxkeji.shixinandroiddemo2.view.CircleColorView;
+import net.sxkeji.shixinandroiddemo2.view.ListCircleColorView;
 
 import java.util.ArrayList;
 

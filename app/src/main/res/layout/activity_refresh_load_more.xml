@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <net.sxkeji.shixinandroiddemo2.views.refreshloadmoreview.RefreshLoadMoreRecyclerView
+    <net.sxkeji.shixinandroiddemo2.view.refreshloadmoreview.RefreshLoadMoreRecyclerView
         android:id="@+id/refresh_load_more_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
