@@ -263,7 +263,7 @@ public class RxJavaTestActivity extends BaseActivity {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String bookName) {
-                        showDebugLog(bookName);
+                        showInfoLog(bookName);
                     }
                 });
 
@@ -283,7 +283,7 @@ public class RxJavaTestActivity extends BaseActivity {
                     public void onNext(BookBean bookBean) {     //这里要是直接拿到的就是 Chapter 就好了
                         List<BookBean.Chapter> chapters = bookBean.getChaptes();
                         for (BookBean.Chapter chapter : chapters) {
-                            showDebugLog(chapter.getName());
+                            showInfoLog(chapter.getName());
                         }
                     }
                 });
@@ -299,7 +299,7 @@ public class RxJavaTestActivity extends BaseActivity {
                 .subscribe(new Action1<BookBean.Chapter>() {
                     @Override
                     public void call(BookBean.Chapter chapter) {    //直接拿到了 Chapter 哈哈
-                        showDebugLog(chapter.getName());
+                        showInfoLog(chapter.getName());
                     }
                 });
 
@@ -384,7 +384,7 @@ public class RxJavaTestActivity extends BaseActivity {
              */
             @Override
             public void call() {
-                showDebugLog("onCompletedAction");
+                showInfoLog("onCompletedAction");
             }
         };
 
@@ -398,7 +398,7 @@ public class RxJavaTestActivity extends BaseActivity {
         Action1<String> onNextAction = new Action1<String>() {
             @Override
             public void call(String s) {
-                showDebugLog("onNextAction: " + s);
+                showInfoLog("onNextAction: " + s);
             }
         };
 

@@ -2,17 +2,21 @@ package net.sxkeji.shixinandroiddemo2.weex;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-
-import com.taobao.weex.IWXRenderListener;
-import com.taobao.weex.WXSDKInstance;
-import com.taobao.weex.common.WXRenderStrategy;
-import com.taobao.weex.utils.WXFileUtils;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
+import net.sxkeji.shixinandroiddemo2.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * <br/> Description:
+ * 生成 js 文件：weex compile dir_path\*.we out_dir_path -w
  * <p>
  * <br/> Created by shixinzhang on 17/3/23.
  * <p>
@@ -21,47 +25,67 @@ import net.sxkeji.shixinandroiddemo2.BaseActivity;
  * <a  href="https://about.me/shixinzhang">About me</a>
  */
 
-public class WeexActivity extends BaseActivity implements IWXRenderListener {
-    private WXSDKInstance mWXSDKInstance;
+public class WeexActivity extends BaseActivity {
+    @BindView(R.id.toolBar)
+    Toolbar mToolBar;
+    @BindView(android.R.id.tabs)
+    TabLayout mTabs;
+    @BindView(R.id.viewPager)
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weex1);
+        ButterKnife.bind(this);
 
-        mWXSDKInstance = new WXSDKInstance(this);
-        mWXSDKInstance.registerRenderListener(this);
-        mWXSDKInstance.render(
-                "WXSample",
-                WXFileUtils.loadFileContent("hello.js", this),
-                null,
-                null,
-                -1, -1, //-1 为默认全屏
-                WXRenderStrategy.APPEND_ASYNC);
-    }
-
-    @Override
-    public void onViewCreated(WXSDKInstance instance, View view) {
-        setContentView(view);
-    }
-
-    @Override
-    public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
-
-    }
-
-    @Override
-    public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
-
-    }
-
-    @Override
-    public void onException(WXSDKInstance instance, String errCode, String msg) {
-
+        initViews();
     }
 
     @Override
     public void initViews() {
 
+        setSupportActionBar(mToolBar);
+
+        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public int getCount() {
+                return 6;
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                switch (position) {
+                    case 0:
+                        return new WeexBoxFragment();
+                    case 1:
+                        return new WeexImageFragment();
+                    case 2:
+                        return new WeexSliderFragment();
+                    case 3:
+                        return new WeexSliderFragment();
+                    default:
+                        return new WeexSliderFragment();
+                }
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position) {
+                    case 0:
+                        return getString(R.string.title_simple);
+                    case 1:
+                        return getString(R.string.title_image);
+                    case 2:
+                        return getString(R.string.title_slider);
+                    case 3:
+                        return getString(R.string.title_slider);
+                    default:
+                        return getString(R.string.title_slider);
+                }
+            }
+        });
+        mTabs.setupWithViewPager(mViewPager);
     }
 
     @Override
@@ -72,37 +96,5 @@ public class WeexActivity extends BaseActivity implements IWXRenderListener {
     @Override
     public void addListeners() {
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mWXSDKInstance != null){
-            mWXSDKInstance.onActivityResume();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mWXSDKInstance != null){
-            mWXSDKInstance.onActivityPause();
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mWXSDKInstance != null){
-            mWXSDKInstance.onActivityStop();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mWXSDKInstance != null){
-            mWXSDKInstance.onActivityDestroy();
-        }
     }
 }
