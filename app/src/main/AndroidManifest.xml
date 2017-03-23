@@ -88,6 +88,10 @@
             android:name=".activity.AsyncTaskActivity"
             android:label="@string/async_task"/>
 
+        <activity android:name=".weex.WeexActivity"
+            android:label="@string/weex1"
+            android:theme="@style/AppThemeNoActionBar"/>
+
         <service android:name="com.amap.api.location.APSService"></service>
 
         <meta-data

@@ -113,42 +113,60 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void showDebugLog(String msg) {
-        showDebugLog(TAG, msg);
+    protected void showInfoLog(String msg) {
+        showInfoLog(TAG, msg);
     }
 
-    protected void showDebugLog(String tag, String msg) {
-        Log.d(tag, msg);
+    protected void showInfoLog(String tag, String msg) {
+        Log.i(tag, msg);
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        showDebugLog("onStart");
+        showInfoLog("onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        showDebugLog("onResume");
+        showInfoLog("onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        showInfoLog("onRestart");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        showDebugLog("onPause");
+        showInfoLog("onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        showDebugLog("onStop");
+        showInfoLog("onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        showDebugLog("onDestroy");
+        showInfoLog("onDestroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        showInfoLog("onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        showInfoLog("onRestoreInstanceState");
     }
 }

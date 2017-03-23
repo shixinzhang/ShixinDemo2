@@ -13,4 +13,11 @@
     <string name="location">高德定位</string>
     <string name="hybrid">Hybrid</string>
     <string name="async_task">AsyncTask原理分析</string>
+    <string name="weex1">Weex 使用</string>
+    <string name="title_slider">轮播图</string>
+    <string name="title_image">图片</string>
+    <string name="title_simple">简单布局</string>
+    <string name="title_switch">开关</string>
+    <string name="title_textarea">输入框</string>
+    <string name="title_video">视频播放</string>
 </resources>

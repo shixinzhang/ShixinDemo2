@@ -1,7 +1,6 @@
 package net.sxkeji.shixinandroiddemo2;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,12 +22,11 @@ import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 import net.sxkeji.shixinandroiddemo2.hybrid.SxWebViewActivity;
-import net.sxkeji.shixinandroiddemo2.util.StringUtils;
+import net.sxkeji.shixinandroiddemo2.weex.WeexActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -70,6 +68,7 @@ public class MainActivity extends BaseActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.location), AmapLocationActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.hybrid), SxWebViewActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.async_task), AsyncTaskActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.weex1), WeexActivity.class));
     }
 
     @Override
@@ -103,7 +102,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        showDebugLog("onSaveInstanceState");
+        showInfoLog("onSaveInstanceState");
         outState.putString(INSTANCE_STATE_TEST, "shixinzhang");
         super.onSaveInstanceState(outState);
 
@@ -113,6 +112,6 @@ public class MainActivity extends BaseActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         String saveState = savedInstanceState.getString(INSTANCE_STATE_TEST);
-        showDebugLog("onRestoreInstanceState" + saveState);
+        showInfoLog("onRestoreInstanceState" + saveState);
     }
 }

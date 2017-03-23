@@ -1,21 +1,18 @@
 package net.sxkeji.shixinandroiddemo2;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
-import android.util.Log;
 
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.UIHandler;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
-import net.sxkeji.shixinandroiddemo2.image.ImageAdapter;
+import net.sxkeji.shixinandroiddemo2.weex.ImageAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import rx.Observable;
 
 /**
  * <br/> Description:
@@ -44,7 +41,7 @@ public class SxApplication extends MultiDexApplication {
     }
 
     private void initWeex() {
-        InitConfig config = new InitConfig.Builder().setImgAdapter(ImageAdapter.getInstance()).build();
+        InitConfig config = new InitConfig.Builder().setImgAdapter(new ImageAdapter(this)).build();
         WXSDKEngine.initialize(this, config);
     }
 
