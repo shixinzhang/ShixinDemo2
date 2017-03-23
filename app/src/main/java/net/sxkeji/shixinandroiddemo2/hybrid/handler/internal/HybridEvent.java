@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.HashMap;
 
 /**
- * <br/> Description:
+ * <br/> Description: 消息事件模型
  * <p>
  * <br/> Created by shixinzhang on 16/12/24.
  * <p>

@@ -1,6 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * description: 测试用的实体类 书, 实现了 Comparable 接口，自然排序
@@ -12,7 +13,7 @@ import java.io.Serializable;
 public class BookBean implements Serializable, Comparable {
     private String name;
     private int count;
-
+    private List<Chapter> chaptes;
 
     public BookBean(String name, int count) {
         this.name = name;
@@ -33,6 +34,14 @@ public class BookBean implements Serializable, Comparable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public List<Chapter> getChaptes() {
+        return chaptes;
+    }
+
+    public void setChaptes(List<Chapter> chaptes) {
+        this.chaptes = chaptes;
     }
 
     /**
@@ -99,5 +108,20 @@ public class BookBean implements Serializable, Comparable {
         }
         // 一样就返回 0
         return 0;
+    }
+
+    /**
+     * 书的章节
+     */
+    public static class Chapter {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }

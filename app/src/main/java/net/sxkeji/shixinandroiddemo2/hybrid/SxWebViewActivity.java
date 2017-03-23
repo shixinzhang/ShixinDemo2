@@ -4,19 +4,15 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -30,7 +26,7 @@ import butterknife.ButterKnife;
  */
 
 public class SxWebViewActivity extends BaseActivity implements SxWebViewProxy.OnWebViewUIChangedListener {
-    @Bind(R.id.load_progress)
+    @BindView(R.id.load_progress)
     ProgressBar mLoadProgress;
 
     private SxWebViewFragment mWebViewFragment;

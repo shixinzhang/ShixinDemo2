@@ -11,7 +11,7 @@ import net.sxkeji.shixinandroiddemo2.view.refreshloadmoreview.RefreshLoadMoreRec
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
  * </p>
  */
 public class RefreshLoadMoreActivity extends BaseActivity {
-    @Bind(R.id.refresh_load_more_view)
+    @BindView(R.id.refresh_load_more_view)
     RefreshLoadMoreRecyclerView mRefreshLoadMoreView;
 
     private ArrayList<String> mData;

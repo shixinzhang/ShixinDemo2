@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import net.sxkeji.shixinandroiddemo2.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -19,9 +19,9 @@ import butterknife.ButterKnife;
  */
 public class FocusInTouchModeActivity extends AppCompatActivity {
 
-    @Bind(R.id.et_normal)
+    @BindView(R.id.et_normal)
     EditText mEtNormal;
-    @Bind(R.id.et_not_focus_in_touch_mode)
+    @BindView(R.id.et_not_focus_in_touch_mode)
     EditText mEtNotFocusInTouchMode;
 
     @Override

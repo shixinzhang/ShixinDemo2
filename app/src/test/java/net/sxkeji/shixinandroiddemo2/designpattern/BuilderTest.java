@@ -1,6 +1,8 @@
 package net.sxkeji.shixinandroiddemo2.designpattern;
 
 import net.sxkeji.shixinandroiddemo2.bean.Person;
+import net.sxkeji.shixinandroiddemo2.test.designpattern.PersonThree;
+import net.sxkeji.shixinandroiddemo2.test.designpattern.PersonTwo;
 
 import org.junit.Test;
 

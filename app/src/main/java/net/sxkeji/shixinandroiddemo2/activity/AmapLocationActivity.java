@@ -1,9 +1,7 @@
 package net.sxkeji.shixinandroiddemo2.activity;
 
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +13,7 @@ import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.helper.LocationHelper;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -30,9 +28,9 @@ import butterknife.ButterKnife;
 
 public class AmapLocationActivity extends BaseActivity {
 
-    @Bind(R.id.btn_location_switch)
+    @BindView(R.id.btn_location_switch)
     Button mBtnLocationSwitch;
-    @Bind(R.id.tv_location_result)
+    @BindView(R.id.tv_location_result)
     TextView mTvLocationResult;
 
     private boolean isStartLocation;

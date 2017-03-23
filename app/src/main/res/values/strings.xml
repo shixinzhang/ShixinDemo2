@@ -12,4 +12,5 @@
     <string name="some_test">一些小测试</string>
     <string name="location">高德定位</string>
     <string name="hybrid">Hybrid</string>
+    <string name="async_task">AsyncTask原理分析</string>
 </resources>

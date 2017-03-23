@@ -10,7 +10,7 @@ import android.util.Log;
 
 import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
 
-import java.lang.annotation.Annotation;
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * description: 基类

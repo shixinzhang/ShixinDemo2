@@ -23,7 +23,7 @@ import net.sxkeji.shixinandroiddemo2.network.RequestHelper;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -42,15 +42,15 @@ import retrofit2.Response;
 
 public class OaLoginActivity extends BaseActivity {
     private final String TAG = this.getClass().getSimpleName();
-    @Bind(R.id.tv_detail)
+    @BindView(R.id.tv_detail)
     TextView mTvDetail;
-    @Bind(R.id.btn_login)
+    @BindView(R.id.btn_login)
     Button mBtnLogin;
-    @Bind(R.id.tv_user_info)
+    @BindView(R.id.tv_user_info)
     TextView mTvUserInfo;
-    @Bind(R.id.iv_ez)
+    @BindView(R.id.iv_ez)
     ImageView mIvEz;
-    @Bind(R.id.ll_cover)
+    @BindView(R.id.ll_cover)
     LinearLayout mLlCover;
 
     private String mSessionKey;

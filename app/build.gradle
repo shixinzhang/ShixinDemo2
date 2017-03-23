@@ -21,8 +21,18 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        commandValue = project.getProperties().get("Value")    //通过 gradle 命令行传入参数： gradle assemble{BuildType} -PValue=value 传递
-        if (commandValue == null || "".equals(commandValue)){
+
+        //enable multi dex
+        multiDexEnabled true
+//        必须加，否则64位手机无法加载so文件
+        ndk {
+            abiFilters "x86"
+            abiFilters "armeabi"
+        }
+
+        commandValue = project.getProperties().get("Value")
+        //通过 gradle 命令行传入参数： gradle assemble{BuildType} -PValue=value 传递
+        if (commandValue == null || "".equals(commandValue)) {
             commandValue = "cannot read value from command line"
         }
 //        buildConfigField("String", "value", commandValue)
@@ -34,13 +44,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         shixin {
 
         }
     }
+
+    productFlavors {
+        dev {
+            minSdkVersion 21
+        }
+    }
+
+    packagingOptions {
+        exclude 'com.android.support:support-annotations:25.1.0'
+    }
+}
+
+//去除重复的依赖
+configurations {
+    all*.exclude group: 'com.android.support', module: 'support-v4-25.0.0'
+//    all*.exclude group: 'com.android.support', module: 'support-annotations'
 }
 
 repositories {
@@ -60,18 +87,27 @@ repositories {
 
 final COMPAT_VERSION = "23.4.0"
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$COMPAT_VERSION"
     compile "com.android.support:recyclerview-v7:$COMPAT_VERSION"
     compile "com.android.support:cardview-v7:$COMPAT_VERSION"
     compile "com.android.support:support-annotations:$COMPAT_VERSION"
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.ismaeltoe:flowlayout:1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
-//    compile 'com.dodola:rocoo:1.1'
-    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    //    compile 'com.dodola:rocoo:1.1'
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.alibaba:fastjson:1.1.46.android'
+    compile 'com.taobao.android:weex_sdk:0.5.1@aar'
+    //    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.amap.api:location:3.3.0'
 }

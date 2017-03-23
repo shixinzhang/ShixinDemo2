@@ -9,15 +9,16 @@ import android.view.View;
 
 import net.sxkeji.shixinandroiddemo2.activity.AmapLocationActivity;
 import net.sxkeji.shixinandroiddemo2.activity.AnnotationTestActivity;
-import net.sxkeji.shixinandroiddemo2.activity.OaLoginActivity;
-import net.sxkeji.shixinandroiddemo2.activity.RefreshLoadMoreActivity;
-import net.sxkeji.shixinandroiddemo2.activity.RealmTestActivity;
-import net.sxkeji.shixinandroiddemo2.activity.SuspensionHeaderActivity;
+import net.sxkeji.shixinandroiddemo2.activity.AsyncTaskActivity;
 import net.sxkeji.shixinandroiddemo2.activity.ChangeThemeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.DIYView1Activity;
 import net.sxkeji.shixinandroiddemo2.activity.FocusInTouchModeActivity;
 import net.sxkeji.shixinandroiddemo2.activity.HybridDemo1Activity;
+import net.sxkeji.shixinandroiddemo2.activity.OaLoginActivity;
+import net.sxkeji.shixinandroiddemo2.activity.RealmTestActivity;
+import net.sxkeji.shixinandroiddemo2.activity.RefreshLoadMoreActivity;
 import net.sxkeji.shixinandroiddemo2.activity.SearchActivity;
+import net.sxkeji.shixinandroiddemo2.activity.SuspensionHeaderActivity;
 import net.sxkeji.shixinandroiddemo2.adapter.ActivityListAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
@@ -27,7 +28,7 @@ import net.sxkeji.shixinandroiddemo2.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -35,8 +36,7 @@ import butterknife.ButterKnife;
  */
 public class MainActivity extends BaseActivity {
     private final String TAG = this.getClass().getSimpleName();
-
-    @Bind(R.id.recycler_view)
+//    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
     private ActivityListAdapter mActivityListAdapter;
@@ -50,18 +50,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initViews();
         loadData();
+        initViews();
     }
 
     @Override
-    public void initViews() {
-
-        boolean s = StringUtils.isRgbValue("#7B0D16\t");
-        System.out.println("颜色" + s);
-
-        System.out.println(Color.parseColor("#7B0D16"));
-
+    public void loadData() {
         mActivityNameList = new ArrayList<>();
         mActivityNameList.add(new ActivityBean("搜索", SearchActivity.class));
         mActivityNameList.add(new ActivityBean("夜间模式", ChangeThemeActivity.class));
@@ -75,20 +69,20 @@ public class MainActivity extends BaseActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.some_test), OaLoginActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.location), AmapLocationActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.hybrid), SxWebViewActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.async_task), AsyncTaskActivity.class));
     }
 
     @Override
-    public void loadData() {
-
+    public void initViews() {
         mActivityListAdapter = new ActivityListAdapter(this, mActivityNameList);
         mActivityListAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Class<?> claz = mActivityListAdapter.getData().get(position).getClaz();
                 Intent intent = new Intent(MainActivity.this, claz);
-                if (mActivityNameList != null){
+                if (mActivityNameList != null) {
                     ActivityBean activityBean = mActivityNameList.get(position);
-                    if (getString(R.string.hybrid).equals(activityBean.getName())){
+                    if (getString(R.string.hybrid).equals(activityBean.getName())) {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                         intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     }
@@ -96,9 +90,11 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mActivityListAdapter);
     }
+
 
     @Override
     public void addListeners() {

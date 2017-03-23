@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import net.sxkeji.shixinandroiddemo2.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -36,11 +36,11 @@ import butterknife.ButterKnife;
 public class RefreshLoadMoreRecyclerView extends FrameLayout {
     private final String TAG = "RefreshLoadMore";
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     TextView mRefreshView;
-    @Bind(R.id.load_more_view)
+    @BindView(R.id.load_more_view)
     TextView mLoadMoreView;
 
     private RecyclerView.Adapter mRecyclerAdapter;

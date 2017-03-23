@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.designpattern;
+package net.sxkeji.shixinandroiddemo2.test.designpattern;
 
 /**
  * <br/> Description:

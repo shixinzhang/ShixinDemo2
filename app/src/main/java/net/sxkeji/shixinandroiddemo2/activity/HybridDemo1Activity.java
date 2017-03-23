@@ -13,7 +13,7 @@ import android.widget.Button;
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,9 +25,9 @@ import butterknife.ButterKnife;
  */
 public class HybridDemo1Activity extends BaseActivity {
 
-    @Bind(R.id.web_view)
+    @BindView(R.id.web_view)
     WebView mWebView;
-    @Bind(R.id.btn_call_js)
+    @BindView(R.id.btn_call_js)
     Button mBtnCallJs;
 
     @Override

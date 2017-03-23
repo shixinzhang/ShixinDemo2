@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.datastruct;
+package net.sxkeji.shixinandroiddemo2.test.datastruct;
 
 import java.util.ArrayList;
 

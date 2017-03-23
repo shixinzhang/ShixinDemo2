@@ -22,14 +22,14 @@ import android.widget.Toast;
 import com.ismaeltoe.FlowLayout;
 
 import net.sxkeji.shixinandroiddemo2.R;
-import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.adapter.SearchResultAdapter;
+import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -37,19 +37,19 @@ import butterknife.ButterKnife;
  * Created by zhangshixin on 9/6/2016.
  */
 public class SearchBrandActivity extends Activity implements TextWatcher{
-    @Bind(R.id.et_search)
+    @BindView(R.id.et_search)
     EditText mEtSearch;
-    @Bind(R.id.ll_search)
+    @BindView(R.id.ll_search)
     LinearLayout mLlSearch;
-    @Bind(R.id.tv_cancel)
+    @BindView(R.id.tv_cancel)
     TextView mTvCancel;
-    @Bind(R.id.flow_recent_search)
+    @BindView(R.id.flow_recent_search)
     FlowLayout mFlowRecentSearch;
-    @Bind(R.id.flow_hot_car)
+    @BindView(R.id.flow_hot_car)
     FlowLayout mFlowHotCar;
-    @Bind(R.id.ll_search_history)
+    @BindView(R.id.ll_search_history)
     LinearLayout mLlSearchHistory;
-    @Bind(R.id.rv_search_result)
+    @BindView(R.id.rv_search_result)
     RecyclerView mRvSearchResult;
 
     private SearchResultAdapter mSearchResultAdapter;

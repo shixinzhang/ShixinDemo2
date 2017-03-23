@@ -10,14 +10,13 @@ import android.widget.TextView;
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.ChangeThemeSampleAdapter;
-import net.sxkeji.shixinandroiddemo2.util.GsonUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,9 +27,9 @@ import butterknife.ButterKnife;
  * data: 9/18/2016
  */
 public class ChangeThemeActivity extends BaseActivity {
-    @Bind(R.id.tv_change_theme)
+    @BindView(R.id.tv_change_theme)
     TextView mTvChangeTheme;
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;

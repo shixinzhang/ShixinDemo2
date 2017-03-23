@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -44,19 +44,19 @@ import butterknife.ButterKnife;
  */
 public class BuyCarTabFragment extends Fragment implements SearchActivity.OnBackPressFragmentListener {
     private final String TAG = "BuyCarTabFragment";
-    @Bind(R.id.sortframlayout)
+    @BindView(R.id.sortframlayout)
     SortFrameLayout mSortframlayout;
-    @Bind(R.id.iv_logo)
+    @BindView(R.id.iv_logo)
     ImageView mIvSelectBrandLogo;
-    @Bind(R.id.tv_name)
+    @BindView(R.id.tv_name)
     TextView mTvSelectBrandName;
-    @Bind(R.id.recycler_car_series)
+    @BindView(R.id.recycler_car_series)
     RecyclerView mRecyclerCarSeries;
-    @Bind(R.id.drawer_car_series)
+    @BindView(R.id.drawer_car_series)
     RelativeLayout mDrawerCarSeries;
-    @Bind(R.id.drawlayout)
+    @BindView(R.id.drawlayout)
     DrawerLayout mDrawerLayout;
-    @Bind(R.id.tv_tab)
+    @BindView(R.id.tv_tab)
     TextView mTvTab;
 
     private Context mContext;
@@ -212,7 +212,6 @@ public class BuyCarTabFragment extends Fragment implements SearchActivity.OnBack
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     /**

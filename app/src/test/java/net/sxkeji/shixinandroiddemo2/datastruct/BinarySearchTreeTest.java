@@ -1,8 +1,8 @@
 package net.sxkeji.shixinandroiddemo2.datastruct;
 
-import org.junit.Test;
+import net.sxkeji.shixinandroiddemo2.test.datastruct.BinarySearchTree;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * <br/> Description:测试 二叉排序树 的删除操作

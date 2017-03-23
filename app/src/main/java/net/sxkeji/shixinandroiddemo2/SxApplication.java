@@ -3,13 +3,19 @@ package net.sxkeji.shixinandroiddemo2;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+
+import com.taobao.weex.InitConfig;
+import com.taobao.weex.WXSDKEngine;
 
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.UIHandler;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
+import net.sxkeji.shixinandroiddemo2.image.ImageAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import rx.Observable;
 
 /**
  * <br/> Description:
@@ -21,7 +27,7 @@ import io.realm.RealmConfiguration;
  * <a  href="https://about.me/shixinzhang">About me</a>
  */
 
-public class SxApplication extends Application {
+public class SxApplication extends MultiDexApplication {
     private final String TAG = this.getClass().getSimpleName();
 
     @Override
@@ -29,7 +35,20 @@ public class SxApplication extends Application {
         super.onCreate();
 
         addLifecycleListener();
+
         registerHybridHandler();
+
+        initRealm();
+
+        initWeex();
+    }
+
+    private void initWeex() {
+        InitConfig config = new InitConfig.Builder().setImgAdapter(ImageAdapter.getInstance()).build();
+        WXSDKEngine.initialize(this, config);
+    }
+
+    private void initRealm() {
         Realm.init(this);
         Realm.setDefaultConfiguration(
                 new RealmConfiguration.Builder()

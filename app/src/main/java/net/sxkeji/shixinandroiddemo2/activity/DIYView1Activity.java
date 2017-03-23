@@ -14,7 +14,7 @@ import net.sxkeji.shixinandroiddemo2.view.ListCircleColorView;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,11 +26,11 @@ import butterknife.ButterKnife;
  */
 public class DIYView1Activity extends BaseActivity {
 
-    @Bind(R.id.circle_color)
+    @BindView(R.id.circle_color)
     CircleColorView mCircleColor;
-    @Bind(R.id.ll_color_list)
+    @BindView(R.id.ll_color_list)
     LinearLayout mLlColorList;
-    @Bind(R.id.list_circle_color)
+    @BindView(R.id.list_circle_color)
     ListCircleColorView mListCircleColor;
 
     @Override

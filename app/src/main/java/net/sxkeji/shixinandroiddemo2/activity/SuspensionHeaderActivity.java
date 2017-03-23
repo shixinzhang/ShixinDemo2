@@ -14,7 +14,7 @@ import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
 import net.sxkeji.shixinandroiddemo2.adapter.FeedAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -40,9 +40,9 @@ import butterknife.ButterKnife;
 public class SuspensionHeaderActivity extends BaseActivity {
     private final String TAG = "AlphaHeader";
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.tv_header)
+    @BindView(R.id.tv_header)
     TextView mTvHeader;
     private int mHeaderHeight;
     private int mCurrentPosition = 0;   //当前位置？
