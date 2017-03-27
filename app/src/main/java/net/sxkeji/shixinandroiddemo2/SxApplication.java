@@ -9,7 +9,9 @@ import com.taobao.weex.WXSDKEngine;
 
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.UIHandler;
 import net.sxkeji.shixinandroiddemo2.hybrid.handler.internal.HybridFactory;
-import net.sxkeji.shixinandroiddemo2.weex.ImageAdapter;
+import net.sxkeji.shixinandroiddemo2.weex.adapter.DefaultWebSocketAdapterFactory;
+import net.sxkeji.shixinandroiddemo2.weex.adapter.ImageAdapter;
+import net.sxkeji.shixinandroiddemo2.weex.adapter.PlayDebugAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -41,7 +43,11 @@ public class SxApplication extends MultiDexApplication {
     }
 
     private void initWeex() {
-        InitConfig config = new InitConfig.Builder().setImgAdapter(new ImageAdapter(this)).build();
+        InitConfig config = new InitConfig.Builder()
+                .setImgAdapter(new ImageAdapter(this))
+                .setDebugAdapter(new PlayDebugAdapter())
+                .setWebSocketAdapterFactory(new DefaultWebSocketAdapterFactory())
+                .build();
         WXSDKEngine.initialize(this, config);
     }
 
