@@ -10,6 +10,15 @@ import android.support.v7.widget.Toolbar;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexBoxFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexImageFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexListFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexRefreshLoadMoreFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexSliderFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexSwitchFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexTextareaFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexVideoFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexWebViewFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +59,7 @@ public class WeexActivity extends BaseActivity {
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
-                return 6;
+                return 10;
             }
 
             @Override
@@ -69,6 +78,12 @@ public class WeexActivity extends BaseActivity {
                         return new WeexTextareaFragment();
                     case 5:
                         return new WeexVideoFragment();
+                    case 6:
+                        return new WeexWebViewFragment();
+                    case 7:
+                        return new WeexListFragment();
+                    case 8:
+                        return new WeexRefreshLoadMoreFragment();
                 }
             }
 
@@ -88,6 +103,12 @@ public class WeexActivity extends BaseActivity {
                         return getString(R.string.title_textarea);
                     case 5:
                         return getString(R.string.title_video);
+                    case 6:
+                        return getString(R.string.title_webview);
+                    case 7:
+                        return getString(R.string.title_list);
+                    case 8:
+                        return getString(R.string.title_load_more);
                 }
             }
         });

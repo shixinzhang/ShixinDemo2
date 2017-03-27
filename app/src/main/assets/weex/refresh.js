@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/image.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/refresh.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-6d6d17b6"
+	__vue_options__._scopeId = "data-v-0757f925"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -92,47 +92,32 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-	  "wrapper": {
-	    "alignItems": "center",
-	    "marginTop": 120,
-	    "width": 750
-	  },
 	  "panel": {
 	    "width": 600,
-	    "borderWidth": 3,
-	    "borderStyle": "solid",
-	    "borderColor": "#ff0000",
-	    "padding": 15,
-	    "marginBottom": 30,
-	    "alignItems": "center"
-	  },
-	  "text": {
-	    "fontSize": 36,
-	    "lines": 3,
-	    "color": "#666600",
-	    "marginTop": 15
-	  },
-	  "logo": {
-	    "width": 360,
-	    "height": 82,
-	    "backgroundColor": "#FF0000",
-	    "width:active": 180,
-	    "height:active": 82,
-	    "backgroundColor:active": "#008000"
-	  },
-	  "image": {
-	    "width": 750,
-	    "height": 500,
+	    "height": 250,
+	    "marginLeft": 75,
+	    "marginBottom": 35,
+	    "marginTop": 35,
+	    "flexDirection": "column",
+	    "justifyContent": "center",
 	    "borderWidth": 2,
 	    "borderStyle": "solid",
-	    "borderColor": "#ff0000"
+	    "borderColor": "rgb(162,217,193)",
+	    "backgroundColor": "rgba(162,217,192,0.2)"
 	  },
-	  "desc": {
-	    "position": "absolute",
-	    "color": "#FFFFFF",
-	    "marginLeft": 100,
-	    "marginTop": 100,
-	    "fontSize": 40
+	  "text": {
+	    "fontSize": 50,
+	    "textAlign": "center",
+	    "color": "#41B883"
+	  },
+	  "loading": {
+	    "justifyContent": "center"
+	  },
+	  "indicator": {
+	    "color": "#888888",
+	    "fontSize": 42,
+	    "padding": 20,
+	    "textAlign": "center"
 	  }
 	}
 
@@ -143,7 +128,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	//
 	//
@@ -191,44 +176,53 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+
+	var modal = weex.requireModule('modal');
+	var LOAD_MORE_COUNT = 4;
 
 	exports.default = {
-	  props: {
-	    logoUrl: {
-	      default: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png'
-	    },
-	    target: {
-	      default: 'World'
-	    },
-	    coverUrl: {
-	      default: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
-	    }
-	  },
-	  methods: {
-	    update: function update(e) {
-	      this.target = 'Weex';
-	    }
-	  }
+		data: function data() {
+			return {
+				refreshing: false,
+				showLoading: 'hide',
+				lists: [1, 2, 3, 4, 5, 6, 7, 8]
+			};
+		},
+
+		methods: {
+			onloading: function onloading(event) {
+				var _this = this;
+
+				modal.toast({ message: 'onloading', duration: 1 });
+				this.showLoading = 'show';
+
+				setTimeout(function () {
+					var length = _this.lists.length;
+					for (var i = length; i < length + LOAD_MORE_COUNT; ++i) {
+						_this.lists.push(i + 1);
+					}
+					_this.showLoading = 'hide';
+				}, 800);
+			},
+			onrefresh: function onrefresh(event) {
+				var _this2 = this;
+
+				console.log('is refreshing');
+				modal.toast({ message: 'onrefresh', duration: 1 });
+				this.refreshing = true;
+
+				setTimeout(function () {
+					_this2.refreshing = false;
+				}, 800);
+			},
+			onpullingdown: function onpullingdown(event) {
+				console.log('is onpullingdown');
+				modal.toast({ message: 'pullingdown', duration: 1 });
+			},
+			onClick: function onClick(event) {
+				modal.toast({ message: 'click', duration: 1 });
+			}
+		}
 	};
 	module.exports = exports['default'];
 
@@ -237,42 +231,41 @@
 /***/ function(module, exports) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('scroller', [_c('div', {
-	    staticClass: ["wrapper"]
-	  }, [_c('div', {
-	    staticClass: ["panel"]
-	  }, [_c('image', {
-	    staticClass: ["logo"],
+	  return _c('scroller', {
+	    staticClass: ["scroller"]
+	  }, [_c('refresh', {
+	    staticClass: ["refresh"],
 	    attrs: {
-	      "src": _vm.logoUrl
+	      "display": _vm.refreshing ? 'show' : 'hide'
+	    },
+	    on: {
+	      "refresh": _vm.onrefresh,
+	      "pullingdown": _vm.onpullingdown
 	    }
-	  }), _c('text', {
-	    staticClass: ["text"]
-	  }, [_vm._v("Weex 是一套简单易用的跨平台开发方案，能以 Web 的开发体验构建高性能、可扩展的原生应用。Vue 是一个轻量并且功能强大的渐进式前端框架")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
-	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
+	  }, [_c('text', {
+	    staticClass: ["indicator"]
+	  }, [_vm._v("Refreshing...")])]), _vm._l((_vm.lists), function(num) {
+	    return _c('div', {
+	      staticClass: ["cell"]
+	    }, [_c('div', {
+	      staticClass: ["panel"]
+	    }, [_c('text', {
+	      staticClass: ["text"],
+	      on: {
+	        "click": _vm.onClick
+	      }
+	    }, [_vm._v(_vm._s(num))])])])
+	  }), _c('loading', {
+	    staticClass: ["loading"],
 	    attrs: {
-	      "resize": "cover",
-	      "src": _vm.coverUrl
+	      "display": _vm.showLoading
+	    },
+	    on: {
+	      "loading": _vm.onloading
 	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("cover")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
-	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
-	    attrs: {
-	      "resize": "contain",
-	      "src": _vm.coverUrl
-	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("contain")])])])])
+	  }, [_c('text', {
+	    staticClass: ["indicator"]
+	  }, [_vm._v("Loading...")])])], 2)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 

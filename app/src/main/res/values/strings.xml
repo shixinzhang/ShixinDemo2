@@ -20,4 +20,7 @@
     <string name="title_switch">开关</string>
     <string name="title_textarea">输入框</string>
     <string name="title_video">视频播放</string>
+    <string name="title_webview">webview</string>
+    <string name="title_list">列表</string>
+    <string name="title_load_more">下拉加载更多</string>
 </resources>

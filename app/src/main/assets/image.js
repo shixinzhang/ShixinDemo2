@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/image.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Downloads/待删除/image.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-6d6d17b6"
+	__vue_options__._scopeId = "data-v-75a4e422"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -94,23 +94,10 @@
 	module.exports = {
 	  "wrapper": {
 	    "alignItems": "center",
-	    "marginTop": 120,
-	    "width": 750
+	    "marginTop": 120
 	  },
-	  "panel": {
-	    "width": 600,
-	    "borderWidth": 3,
-	    "borderStyle": "solid",
-	    "borderColor": "#ff0000",
-	    "padding": 15,
-	    "marginBottom": 30,
-	    "alignItems": "center"
-	  },
-	  "text": {
-	    "fontSize": 36,
-	    "lines": 3,
-	    "color": "#666600",
-	    "marginTop": 15
+	  "title": {
+	    "fontSize": 48
 	  },
 	  "logo": {
 	    "width": 360,
@@ -119,20 +106,6 @@
 	    "width:active": 180,
 	    "height:active": 82,
 	    "backgroundColor:active": "#008000"
-	  },
-	  "image": {
-	    "width": 750,
-	    "height": 500,
-	    "borderWidth": 2,
-	    "borderStyle": "solid",
-	    "borderColor": "#ff0000"
-	  },
-	  "desc": {
-	    "position": "absolute",
-	    "color": "#FFFFFF",
-	    "marginLeft": 100,
-	    "marginTop": 100,
-	    "fontSize": 40
 	  }
 	}
 
@@ -169,48 +142,6 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	exports.default = {
 	  props: {
@@ -219,9 +150,6 @@
 	    },
 	    target: {
 	      default: 'World'
-	    },
-	    coverUrl: {
-	      default: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
 	    }
 	  },
 	  methods: {
@@ -237,42 +165,14 @@
 /***/ function(module, exports) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('scroller', [_c('div', {
+	  return _c('div', {
 	    staticClass: ["wrapper"]
-	  }, [_c('div', {
-	    staticClass: ["panel"]
 	  }, [_c('image', {
 	    staticClass: ["logo"],
 	    attrs: {
 	      "src": _vm.logoUrl
 	    }
-	  }), _c('text', {
-	    staticClass: ["text"]
-	  }, [_vm._v("Weex 是一套简单易用的跨平台开发方案，能以 Web 的开发体验构建高性能、可扩展的原生应用。Vue 是一个轻量并且功能强大的渐进式前端框架")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
-	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
-	    attrs: {
-	      "resize": "cover",
-	      "src": _vm.coverUrl
-	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("cover")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
-	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
-	    attrs: {
-	      "resize": "contain",
-	      "src": _vm.coverUrl
-	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("contain")])])])])
+	  })])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 

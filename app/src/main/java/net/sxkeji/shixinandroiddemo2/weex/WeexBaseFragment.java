@@ -66,7 +66,7 @@ public abstract class WeexBaseFragment extends BaseFragment implements IWXRender
         onWeexViewCreate(instance, view);
     }
 
-    abstract void onWeexViewCreate(WXSDKInstance instance, View view);
+    public abstract void onWeexViewCreate(WXSDKInstance instance, View view);
 
     @Override
     public void onRenderSuccess(WXSDKInstance instance, int width, int height) {

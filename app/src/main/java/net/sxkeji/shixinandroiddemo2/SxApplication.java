@@ -35,7 +35,7 @@ public class SxApplication extends MultiDexApplication {
 
         registerHybridHandler();
 
-        initRealm();
+//        initRealm();
 
         initWeex();
     }

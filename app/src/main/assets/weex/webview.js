@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/image.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/web.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-6d6d17b6"
+	__vue_options__._scopeId = "data-v-adf693c4"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -92,47 +92,37 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-	  "wrapper": {
-	    "alignItems": "center",
-	    "marginTop": 120,
-	    "width": 750
+	  "group": {
+	    "flexDirection": "row",
+	    "justifyContent": "space-between",
+	    "marginTop": 20,
+	    "marginLeft": 30,
+	    "marginRight": 30
 	  },
-	  "panel": {
-	    "width": 600,
-	    "borderWidth": 3,
-	    "borderStyle": "solid",
-	    "borderColor": "#ff0000",
-	    "padding": 15,
-	    "marginBottom": 30,
-	    "alignItems": "center"
-	  },
-	  "text": {
+	  "input": {
+	    "width": 700,
 	    "fontSize": 36,
-	    "lines": 3,
-	    "color": "#666600",
-	    "marginTop": 15
-	  },
-	  "logo": {
-	    "width": 360,
-	    "height": 82,
-	    "backgroundColor": "#FF0000",
-	    "width:active": 180,
-	    "height:active": 82,
-	    "backgroundColor:active": "#008000"
-	  },
-	  "image": {
-	    "width": 750,
-	    "height": 500,
+	    "padding": 15,
 	    "borderWidth": 2,
 	    "borderStyle": "solid",
-	    "borderColor": "#ff0000"
+	    "borderColor": "#BBBBBB"
 	  },
-	  "desc": {
-	    "position": "absolute",
-	    "color": "#FFFFFF",
-	    "marginLeft": 100,
-	    "marginTop": 100,
-	    "fontSize": 40
+	  "button": {
+	    "width": 225,
+	    "textAlign": "center",
+	    "backgroundColor": "#D3D3D3",
+	    "padding": 15,
+	    "marginBottom": 30,
+	    "fontSize": 30
+	  },
+	  "webview": {
+	    "width": 700,
+	    "height": 820,
+	    "borderWidth": 2,
+	    "borderStyle": "solid",
+	    "borderColor": "#41B883",
+	    "marginLeft": 30,
+	    "marginRight": 30
 	  }
 	}
 
@@ -143,7 +133,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	//
 	//
@@ -196,39 +186,47 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+
+	var webview = weex.requireModule('webview');
+	var modal = weex.requireModule('modal');
 
 	exports.default = {
-	  props: {
-	    logoUrl: {
-	      default: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png'
-	    },
-	    target: {
-	      default: 'World'
-	    },
-	    coverUrl: {
-	      default: 'https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg'
-	    }
-	  },
-	  methods: {
-	    update: function update(e) {
-	      this.target = 'Weex';
-	    }
-	  }
+		data: function data() {
+			return {
+				url: 'http://m.yaomaiche.com'
+			};
+		},
+
+		methods: {
+			loadURL: function loadURL(event) {
+				var _this = this;
+
+				this.url = this.$refs.input.value;
+				modal.toast({ message: 'load url:' + this.url });
+				setTimeout(function () {
+					console.log('webview go back');
+					modal.toast({ message: 'webview will go back' });
+					webview.goBack(_this.$refs.webview);
+				}, 10000);
+			},
+			reload: function reload(event) {
+				console.log('webview will reload');
+				modal.toast({ message: 'reload' });
+				webview.reload(this.$refs.webview);
+			},
+			start: function start(event) {
+				console.log('pagestart', event);
+				modal.toast({ message: 'pagestart' });
+			},
+			finish: function finish(event) {
+				console.log('pagefinish', event);
+				modal.toast({ message: 'pagefinish' });
+			},
+			error: function error(event) {
+				console.log('error', event);
+				modal.toast({ message: 'error' });
+			}
+		}
 	};
 	module.exports = exports['default'];
 
@@ -237,42 +235,42 @@
 /***/ function(module, exports) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('scroller', [_c('div', {
+	  return _c('div', {
 	    staticClass: ["wrapper"]
 	  }, [_c('div', {
-	    staticClass: ["panel"]
-	  }, [_c('image', {
-	    staticClass: ["logo"],
+	    staticClass: ["group"]
+	  }, [_c('input', {
+	    ref: "input",
+	    staticClass: ["input"],
 	    attrs: {
-	      "src": _vm.logoUrl
+	      "type": "url",
+	      "autofocus": "false",
+	      "value": "https://m.yaomaiche.com"
 	    }
-	  }), _c('text', {
-	    staticClass: ["text"]
-	  }, [_vm._v("Weex 是一套简单易用的跨平台开发方案，能以 Web 的开发体验构建高性能、可扩展的原生应用。Vue 是一个轻量并且功能强大的渐进式前端框架")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
+	  })]), _c('div', {
+	    staticClass: ["group"]
+	  }, [_c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.loadURL
 	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
+	  }, [_vm._v("loadURL")]), _c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.reload
+	    }
+	  }, [_vm._v("reload")])]), _c('web', {
+	    ref: "webview",
+	    staticClass: ["webview"],
 	    attrs: {
-	      "resize": "cover",
-	      "src": _vm.coverUrl
+	      "src": _vm.url
+	    },
+	    on: {
+	      "pagestart": _vm.start,
+	      "pagefinish": _vm.finish,
+	      "error": _vm.error
 	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("cover")])]), _c('div', {
-	    staticStyle: {
-	      marginTop: "100px"
-	    }
-	  }, [_c('image', {
-	    staticClass: ["image"],
-	    attrs: {
-	      "resize": "contain",
-	      "src": _vm.coverUrl
-	    }
-	  }), _c('text', {
-	    staticClass: ["desc"]
-	  }, [_vm._v("contain")])])])])
+	  })], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 

@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.weex;
+package net.sxkeji.shixinandroiddemo2.weex.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +12,10 @@ import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
 
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.weex.WeexBaseFragment;
 
 /**
- * <br/> Description:
+ * <br/> Description: 开关
  * <p>
  * <br/> Created by shixinzhang on 17/3/24.
  * <p>
@@ -23,7 +24,7 @@ import net.sxkeji.shixinandroiddemo2.R;
  * <a  href="https://about.me/shixinzhang">About me</a>
  */
 
-public class WeexImageFragment extends WeexBaseFragment {
+public class WeexSwitchFragment extends WeexBaseFragment {
 
     private FrameLayout mFrameLayout;
 
@@ -35,7 +36,7 @@ public class WeexImageFragment extends WeexBaseFragment {
         mFrameLayout = (FrameLayout) view.findViewById(R.id.fragment_container);
         mWXSDKInstance = new WXSDKInstance(getActivity());
         mWXSDKInstance.registerRenderListener(this);
-        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("weex/image.js", getContext()), null, null, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("weex/switch.js", getContext()), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Nullable
@@ -47,7 +48,7 @@ public class WeexImageFragment extends WeexBaseFragment {
     }
 
     @Override
-    void onWeexViewCreate(WXSDKInstance instance, View view) {
+    public void onWeexViewCreate(WXSDKInstance instance, View view) {
         mFrameLayout.addView(view);
     }
 
