@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Downloads/待删除/slider.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/picker.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-7b126afd"
+	__vue_options__._scopeId = "data-v-63ce3cb4"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -92,23 +92,35 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-	  "slider": {
-	    "marginTop": 25,
-	    "marginLeft": 25,
-	    "width": 700,
-	    "height": 700,
+	  "wrapper": {
+	    "flexDirection": "column",
+	    "justifyContent": "center"
+	  },
+	  "group": {
+	    "flexDirection": "row",
+	    "justifyContent": "center",
+	    "marginBottom": 40,
+	    "alignItems": "center"
+	  },
+	  "label": {
+	    "fontSize": 40,
+	    "color": "#888888"
+	  },
+	  "title": {
+	    "fontSize": 80,
+	    "color": "#41B883"
+	  },
+	  "button": {
+	    "fontSize": 36,
+	    "width": 280,
+	    "color": "#41B883",
+	    "textAlign": "center",
+	    "paddingTop": 25,
+	    "paddingBottom": 25,
 	    "borderWidth": 2,
 	    "borderStyle": "solid",
-	    "borderColor": "#418883"
-	  },
-	  "frame": {
-	    "width": 700,
-	    "height": 700,
-	    "position": "relative"
-	  },
-	  "image": {
-	    "width": 700,
-	    "height": 700
+	    "borderColor": "rgb(162,217,192)",
+	    "backgroundColor": "rgba(162,217,192,0.2)"
 	  }
 	}
 
@@ -119,7 +131,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	//
 	//
@@ -133,34 +145,28 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
+	var picker = weex.requireModule('picker');
 	exports.default = {
-		data: function data() {
-			return {
-				imageList: [{ src: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg' }, { src: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg' }, { src: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg' }]
-			};
-		}
+	  data: function data() {
+	    return {
+	      value: ''
+	    };
+	  },
+
+	  methods: {
+	    pickTime: function pickTime() {
+	      var _this = this;
+
+	      picker.pickTime({
+	        value: this.value
+	      }, function (event) {
+	        if (event.result === 'success') {
+	          _this.value = event.data;
+	        }
+	      });
+	    }
+	  }
 	};
 	module.exports = exports['default'];
 
@@ -169,23 +175,22 @@
 /***/ function(module, exports) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_c('slider', {
-	    staticClass: ["slider"],
-	    attrs: {
-	      "interval": "3000",
-	      "autoPlay": "true"
+	  return _c('div', {
+	    staticClass: ["wrapper"]
+	  }, [_c('div', {
+	    staticClass: ["group"]
+	  }, [_c('text', {
+	    staticClass: ["label"]
+	  }, [_vm._v("Time: ")]), _c('text', {
+	    staticClass: ["title"]
+	  }, [_vm._v(_vm._s(_vm.value))])]), _c('div', {
+	    staticClass: ["group"]
+	  }, [_c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.pickTime
 	    }
-	  }, _vm._l((_vm.imageList), function(img) {
-	    return _c('div', {
-	      staticClass: ["frame"]
-	    }, [_c('image', {
-	      staticClass: ["image"],
-	      attrs: {
-	        "resize": "cover",
-	        "src": img.src
-	      }
-	    })])
-	  }))])
+	  }, [_vm._v("Pick Time")])])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 
