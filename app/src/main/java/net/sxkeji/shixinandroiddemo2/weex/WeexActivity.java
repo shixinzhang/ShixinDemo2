@@ -10,14 +10,20 @@ import android.support.v7.widget.Toolbar;
 
 import net.sxkeji.shixinandroiddemo2.BaseActivity;
 import net.sxkeji.shixinandroiddemo2.R;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexAnimationFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexBoxFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexImageFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexListFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexModalFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexPickerFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexRefreshLoadMoreFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexScrollerFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexSliderFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexStreamFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexSwitchFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexTextareaFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexVideoFragment;
+import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexWebSocketFragment;
 import net.sxkeji.shixinandroiddemo2.weex.fragment.WeexWebViewFragment;
 
 import butterknife.BindView;
@@ -59,7 +65,7 @@ public class WeexActivity extends BaseActivity {
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
-                return 10;
+                return 15;
             }
 
             @Override
@@ -84,6 +90,18 @@ public class WeexActivity extends BaseActivity {
                         return new WeexListFragment();
                     case 8:
                         return new WeexRefreshLoadMoreFragment();
+                    case 9:
+                        return new WeexScrollerFragment();
+                    case 10:
+                        return new WeexAnimationFragment();
+                    case 11:
+                        return new WeexPickerFragment();
+                    case 12:
+                        return new WeexWebSocketFragment();
+                    case 13:
+                        return new WeexModalFragment();
+                    case 14:
+                        return new WeexStreamFragment();
                 }
             }
 
@@ -109,6 +127,18 @@ public class WeexActivity extends BaseActivity {
                         return getString(R.string.title_list);
                     case 8:
                         return getString(R.string.title_load_more);
+                    case 9:
+                        return getString(R.string.title_scroller);
+                    case 10:
+                        return getString(R.string.title_animation);
+                    case 11:
+                        return getString(R.string.title_picker);
+                    case 12:
+                        return getString(R.string.title_websocket);
+                    case 13:
+                        return getString(R.string.title_modal);
+                    case 14:
+                        return getString(R.string.title_stream);
                 }
             }
         });

@@ -1,4 +1,4 @@
-package net.sxkeji.shixinandroiddemo2.weex;
+package net.sxkeji.shixinandroiddemo2.weex.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -21,6 +21,7 @@ import com.taobao.weex.dom.WXImageQuality;
 
 public class ImageAdapter implements IWXImgLoaderAdapter {
     private final String TAG = "WeexImageLoader";
+    private final String YMC_URL_PRE = "http://produce.oss-cn-hangzhou.aliyuncs.com/ops";
 
     //    private static class SingleHolder {
 //        private static final ImageAdapter INSTANCE = new ImageAdapter();
@@ -41,6 +42,7 @@ public class ImageAdapter implements IWXImgLoaderAdapter {
             return;
         }
         Log.d(TAG, url);
+        url = YMC_URL_PRE + url;
         Picasso.with(mContext)
                 .load(url)
                 .into(view);

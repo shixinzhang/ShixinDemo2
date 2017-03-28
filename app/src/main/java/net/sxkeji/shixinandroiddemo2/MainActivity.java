@@ -23,6 +23,7 @@ import net.sxkeji.shixinandroiddemo2.adapter.rvbaseadapter.BaseQuickAdapter;
 import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
 import net.sxkeji.shixinandroiddemo2.hybrid.SxWebViewActivity;
 import net.sxkeji.shixinandroiddemo2.weex.WeexActivity;
+import net.sxkeji.shixinandroiddemo2.weex.WeexYmcActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity {
         mActivityNameList.add(new ActivityBean(getString(R.string.hybrid), SxWebViewActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.async_task), AsyncTaskActivity.class));
         mActivityNameList.add(new ActivityBean(getString(R.string.weex1), WeexActivity.class));
+        mActivityNameList.add(new ActivityBean(getString(R.string.weex_ymc), WeexYmcActivity.class));
     }
 
     @Override

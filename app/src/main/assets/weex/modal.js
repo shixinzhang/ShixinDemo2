@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Downloads/待删除/image.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/modal.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-75a4e422"
+	__vue_options__._scopeId = "data-v-7ef5cc77"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -93,19 +93,22 @@
 
 	module.exports = {
 	  "wrapper": {
-	    "alignItems": "center",
-	    "marginTop": 120
+	    "flexDirection": "column",
+	    "justifyContent": "center"
 	  },
-	  "title": {
-	    "fontSize": 48
-	  },
-	  "logo": {
-	    "width": 360,
-	    "height": 82,
-	    "backgroundColor": "#FF0000",
-	    "width:active": 180,
-	    "height:active": 82,
-	    "backgroundColor:active": "#008000"
+	  "button": {
+	    "fontSize": 60,
+	    "width": 450,
+	    "textAlign": "center",
+	    "marginTop": 30,
+	    "marginLeft": 150,
+	    "paddingTop": 20,
+	    "paddingBottom": 20,
+	    "borderWidth": 2,
+	    "borderStyle": "solid",
+	    "color": "#666666",
+	    "borderColor": "#DDDDDD",
+	    "backgroundColor": "#F5F5F5"
 	  }
 	}
 
@@ -127,34 +130,44 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
+
+	var modal = weex.requireModule('modal');
 
 	exports.default = {
-	  props: {
-	    logoUrl: {
-	      default: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png'
-	    },
-	    target: {
-	      default: 'World'
-	    }
-	  },
 	  methods: {
-	    update: function update(e) {
-	      this.target = 'Weex';
+	    showToast: function showToast(event) {
+	      console.log('will show toast');
+	      modal.toast({
+	        message: 'This is a toast',
+	        duration: 0.3
+	      });
+	    },
+	    showAlert: function showAlert(event) {
+	      console.log('will show alert');
+	      modal.alert({
+	        message: 'This is a alert',
+	        duration: 0.3
+	      }, function (value) {
+	        console.log('alert callback', value);
+	      });
+	    },
+	    showConfirm: function showConfirm(event) {
+	      console.log('will show confirm');
+	      modal.confirm({
+	        message: 'Do you confirm ?',
+	        duration: 0.3
+	      }, function (value) {
+	        console.log('confirm callback', value);
+	      });
+	    },
+	    showPrompt: function showPrompt(event) {
+	      console.log('will show prompt');
+	      modal.prompt({
+	        message: 'This is a prompt',
+	        duration: 0.3
+	      }, function (value) {
+	        console.log('prompt callback', value);
+	      });
 	    }
 	  }
 	};
@@ -167,12 +180,27 @@
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: ["wrapper"]
-	  }, [_c('image', {
-	    staticClass: ["logo"],
-	    attrs: {
-	      "src": _vm.logoUrl
+	  }, [_c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.showToast
 	    }
-	  })])
+	  }, [_vm._v("Toast")]), _c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.showAlert
+	    }
+	  }, [_vm._v("Alert")]), _c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.showConfirm
+	    }
+	  }, [_vm._v("Confirm")]), _c('text', {
+	    staticClass: ["button"],
+	    on: {
+	      "click": _vm.showPrompt
+	    }
+	  }, [_vm._v("Prompt")])])
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 
