@@ -105,7 +105,7 @@ dependencies {
     compile 'com.github.ismaeltoe:flowlayout:1.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.alibaba:fastjson:1.1.46.android'
-    compile 'com.taobao.android:weex_sdk:0.10.0@aar'
+//    compile 'com.taobao.android:weex_sdk:0.10.0@aar'
     compile 'com.amap.api:location:3.3.0'
     //    compile 'com.dodola:rocoo:1.1'
     //    compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -113,4 +113,5 @@ dependencies {
     compile 'com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile project(path: ':WeexSDK')
 }

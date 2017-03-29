@@ -98,10 +98,7 @@
 	  },
 	  "slider": {
 	    "minWidth": 750,
-	    "height": 400,
-	    "borderWidth": 2,
-	    "borderStyle": "solid",
-	    "borderColor": "#418883"
+	    "height": 400
 	  },
 	  "frame": {
 	    "minWidth": 750,
@@ -130,7 +127,7 @@
 	  },
 	  "title": {
 	    "fontSize": 35,
-	    "color": "#888888"
+	    "color": "#444444"
 	  },
 	  "count": {
 	    "fontSize": 15,
@@ -147,6 +144,36 @@
 	    "top": 600,
 	    "backgroundColor": "#3c3c3c",
 	    "width": 500
+	  },
+	  "secondActivityImage": {
+	    "minWidth": 350,
+	    "height": 200,
+	    "flex": 1,
+	    "position": "relative"
+	  },
+	  "flashBuyPanel": {
+	    "minWidth": 750,
+	    "height": 450,
+	    "flexDirection": "column",
+	    "paddingTop": 40,
+	    "paddingBottom": 40,
+	    "justifyContent": "center",
+	    "backgroundColor": "#FFFFFF",
+	    "alignItems": "center"
+	  },
+	  "subtitle": {
+	    "fontSize": 25,
+	    "color": "#888888"
+	  },
+	  "flashBuyImage": {
+	    "minWidth": 750,
+	    "height": 300,
+	    "paddingLeft": 20,
+	    "paddingRight": 20,
+	    "flex": 1
+	  },
+	  "list": {
+	    "height": 1000
 	  }
 	}
 
@@ -236,6 +263,60 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var stream = weex.requireModule('stream');
 
@@ -245,7 +326,9 @@
 				indexData: 'unknown',
 				defaultCityId: '7d04e3a1-ee87-431c-9aa7-ac245014c51a',
 				// imageURLPre: 'http://produce.oss-cn-hangzhou.aliyuncs.com/ops',
-				bannerList: []
+				bannerList: [],
+				secondActivityList: [],
+				flashBuyList: []
 			};
 		},
 
@@ -263,11 +346,17 @@
 			var _this = this;
 
 			this.getIndexData(this.defaultCityId, function (res) {
-				_this.indexData = res.ok ? res.data.data.advertiseList : '(analysis data error)';
+				_this.indexData = res.ok ? res.data.data : '(analysis data error)';
 				if (res.ok) {
 					_this.indexData = res.data.data;
 					_this.bannerList = _this.indexData.bannerView.bannerList;
 					console.log(_this.bannerList);
+
+					_this.secondActivityList = _this.indexData.colorAdvertiseList;
+					console.log("second :" + _this.secondActivityList.length);
+
+					_this.flashBuyList = _this.indexData.panicBuyingList;
+					console.log("flashBuyList :" + _this.flashBuyList.length);
 				}
 			});
 		}
@@ -305,6 +394,73 @@
 	  }), _c('indicator', {
 	    staticClass: ["indicator"]
 	  })], 2), _c('div', {
+	    staticClass: ["wrapper"]
+	  }, [_c('image', {
+	    staticClass: ["secondActivityImage"],
+	    attrs: {
+	      "resize": "cover",
+	      "src": _vm.secondActivityList[0].picUrl
+	    }
+	  }), _c('div', {
+	    staticStyle: {
+	      flexDirection: "row",
+	      justifyContent: "center"
+	    }
+	  }, [_c('image', {
+	    staticClass: ["secondActivityImage"],
+	    attrs: {
+	      "resize": "contain",
+	      "src": _vm.secondActivityList[1].picUrl
+	    }
+	  }), _c('div', {
+	    staticStyle: {
+	      backgroundColor: "#888888",
+	      height: "200px",
+	      width: "1px",
+	      marginTop: "10px",
+	      marginBottom: "10px"
+	    }
+	  }), _c('image', {
+	    staticClass: ["secondActivityImage"],
+	    attrs: {
+	      "resize": "contain",
+	      "src": _vm.secondActivityList[2].picUrl
+	    }
+	  })])]), _c('div', {
+	    staticStyle: {
+	      height: "30px",
+	      backgroundColor: "#eeeeee"
+	    }
+	  }), _c('list', {
+	    staticClass: ["list"]
+	  }, _vm._l((_vm.flashBuyList), function(flashBuy) {
+	    return _c('cell', {
+	      staticClass: ["cell"],
+	      appendAsTree: true,
+	      attrs: {
+	        "append": "tree"
+	      }
+	    }, [_c('div', {
+	      staticClass: ["flashBuyPanel"]
+	    }, [_c('text', {
+	      staticClass: ["title"]
+	    }, [_vm._v(_vm._s(flashBuy.name))]), _c('text', {
+	      staticClass: ["subtitle"]
+	    }, [_vm._v(_vm._s(flashBuy.activityList[0].name))]), _c('image', {
+	      staticClass: ["flashBuyImage"],
+	      attrs: {
+	        "resize": "cover",
+	        "src": flashBuy.panicBuyingImageUrl
+	      }
+	    })]), _c('div', {
+	      staticStyle: {
+	        height: "1px",
+	        backgroundColor: "#eeeeee",
+	        marginLeft: "20px",
+	        marginRight: "20px"
+	      }
+	    })])
+	  })), _c('div', {
 	    staticClass: ["group"]
 	  }, [_c('text', {
 	    staticClass: ["title"]
