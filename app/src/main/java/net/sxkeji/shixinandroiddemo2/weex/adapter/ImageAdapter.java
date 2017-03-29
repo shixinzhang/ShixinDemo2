@@ -42,7 +42,9 @@ public class ImageAdapter implements IWXImgLoaderAdapter {
             return;
         }
         Log.d(TAG, url);
-        url = YMC_URL_PRE + url;
+        if (!url.startsWith("http")) {
+            url = YMC_URL_PRE + url;
+        }
         Picasso.with(mContext)
                 .load(url)
                 .into(view);
