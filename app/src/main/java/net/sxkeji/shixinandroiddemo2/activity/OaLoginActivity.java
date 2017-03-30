@@ -2,6 +2,7 @@ package net.sxkeji.shixinandroiddemo2.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,8 @@ public class OaLoginActivity extends BaseActivity {
     ImageView mIvEz;
     @BindView(R.id.ll_cover)
     LinearLayout mLlCover;
+    @BindView(R.id.btn_input)
+    Button mBtnInput;
 
     private String mSessionKey;
     private String mMsg;
@@ -64,7 +67,8 @@ public class OaLoginActivity extends BaseActivity {
     private final String MY_PWD = "Yuntu@123";
 //    private final String MY_ACCOUNT = "larryzhang";
 //    private final String MY_PWD = "zszh0822";
-
+//    private final String MY_ACCOUNT = "youngwang";    //貌似是错的
+//    private final String MY_PWD = "sh5201314";
 
     private String mBaseUrl = "http://oa.yaomaiche.com:89";
 
@@ -108,12 +112,20 @@ public class OaLoginActivity extends BaseActivity {
     }
 
     void showLog(String msg) {
-        Log.d(TAG, msg);
+        Log.d(TAG, msg + "");
     }
 
     @OnClick(R.id.btn_check_in)
     public void checkIn() {
         checkInOrOut(true);
+    }
+
+    @OnClick(R.id.btn_input)
+    public void inputAccountAndPwd(){
+//        new AlertDialog.Builder(this)
+//                .setTitle("请输入账号密码")
+//                .setView()
+//                .show();
     }
 
     private void checkInOrOut(boolean isCheckIn) {

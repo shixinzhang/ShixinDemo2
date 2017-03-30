@@ -6,9 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
+import net.sxkeji.shixinandroiddemo2.annotation.AutoRegister;
 import net.sxkeji.shixinandroiddemo2.annotation.ContentView;
+import net.sxkeji.shixinandroiddemo2.bean.ActivityBean;
+
+import java.lang.annotation.Annotation;
+
+import top.shixinzhang.sxframework.utils.LogUtil;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -88,8 +96,9 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 处理注解
      */
     private void annotationProcess() {
+        Class c = this.getClass();
         //遍历所有子类
-        for (Class c = this.getClass(); c != Context.class; c = c.getSuperclass()) {
+        for (; c != Context.class; c = c.getSuperclass()) {
             //找到使用 ContentView 注解的类
             ContentView annotation = (ContentView) c.getAnnotation(ContentView.class);
             if (annotation != null) {
@@ -101,8 +110,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
                 return;
             }
+
+        }
+
+        AutoRegister register = (AutoRegister) c.getAnnotation(AutoRegister.class);
+        if (register != null) {
+            ActivityBean activityBean = new ActivityBean(register.label(), c);
+            MainActivity.registerActivityList(activityBean);
+            LogUtil.i(TAG, activityBean.toString() + " 注册到首页");
         }
     }
+
 
     protected void showErrorLog(String msg) {
         showErrorLog(TAG, msg);
@@ -121,6 +139,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         Log.i(tag, msg);
     }
 
+    protected void toast(int resId) {
+        toast(getString(resId));
+    }
+
+    protected void toast(String msg) {
+        toast(msg, Toast.LENGTH_SHORT);
+    }
+
+    private void toast(String msg, int duration) {
+        if (!TextUtils.isEmpty(msg)) {
+            Toast.makeText(this, msg, duration).show();
+        }
+    }
 
     @Override
     protected void onStart() {

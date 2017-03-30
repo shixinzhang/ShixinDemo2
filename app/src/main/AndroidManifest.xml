@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="net.sxkeji.shixinandroiddemo2">
 
+    <uses-sdk
+        android:maxSdkVersion="16"
+        android:targetSdkVersion="25"/>
+
     <!--用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!--用于访问GPS定位-->
@@ -89,21 +93,61 @@
             android:name=".activity.AsyncTaskActivity"
             android:label="@string/async_task"/>
 
-        <activity android:name=".weex.WeexActivity"
+        <activity
+            android:name=".weex.WeexActivity"
             android:label="@string/weex1"
             android:theme="@style/AppThemeNoActionBar"/>
 
-        <activity android:name=".weex.WeexYmcActivity"
-                  android:label="@string/weex_ymc"
-                  android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name=".weex.WeexYmcActivity"
+            android:label="@string/weex_ymc"
+            android:theme="@style/AppThemeNoActionBar"/>
 
-        <service android:name="com.amap.api.location.APSService"></service>
+        <activity
+            android:name=".activity.ServiceTestActivity"
+            android:label="@string/repeat_service"/>
+
+        <activity
+            android:name=".activity.ANRTestActivity"
+            android:label="@string/anr_test"/>
+
+        <activity android:name=".activity.DownloadTestActivity"/>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="012a484e2b4f84412fbea6736ec3658f">//开发者申请的key
-
+            android:value="012a484e2b4f84412fbea6736ec3658f">
+            <!--开发者申请的key-->
         </meta-data>
+
+        <service android:name="com.amap.api.location.APSService"/>
+
+        <service
+            android:name=".service.SxService"
+            android:label="@string/repeat_service"/>
+
+        <service
+            android:name=".service.DaemonService"
+            android:label="@string/service_daemon"/>
+
+        <service
+            android:name=".service.AutoClickService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/click_config"/>
+        </service>
+
+        <receiver
+            android:name=".receiver.RepeatReceiver">
+            <intent-filter>
+                <action android:name="top.shixinzhang.action.receiver.repeat"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

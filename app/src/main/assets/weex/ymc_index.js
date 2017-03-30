@@ -68,10 +68,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/weexdemo/ymc_index.vue"
+	__vue_options__.__file = "/Users/zhangshixin/Documents/weex/ymcweex/src/ymc_index.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-4828ceac"
+	__vue_options__._scopeId = "data-v-29fdb5d3"
 	__vue_options__.style = __vue_options__.style || {}
 	__vue_styles__.forEach(function (module) {
 	  for (var name in module) {
@@ -173,7 +173,45 @@
 	    "flex": 1
 	  },
 	  "list": {
-	    "height": 1000
+	    "height": 2000
+	  },
+	  "flashBuyIcon": {
+	    "minWidth": 130,
+	    "height": 90,
+	    "backgroundColor": "#ee4411",
+	    "paddingLeft": 5,
+	    "paddingRight": 5
+	  },
+	  "flashBuyState": {
+	    "minWidth": 500,
+	    "height": 90,
+	    "backgroundColor": "#3c3c3c",
+	    "paddingLeft": 5,
+	    "paddingRight": 5
+	  },
+	  "flashBuyIconTitle": {
+	    "width": 80,
+	    "fontSize": 30,
+	    "color": "#ffffff",
+	    "position": "absolute",
+	    "textAlign": "center",
+	    "flex": 1
+	  },
+	  "flashBuyStateTitle": {
+	    "width": 300,
+	    "fontSize": 30,
+	    "color": "#bbbbbb",
+	    "textAlign": "center",
+	    "flex": 1
+	  },
+	  "flashBuyCountDownTime": {
+	    "width": 40,
+	    "height": 40,
+	    "fontSize": 25,
+	    "color": "#ffffff",
+	    "textAlign": "center",
+	    "marginRight": 8,
+	    "backgroundColor": "#000000"
 	  }
 	}
 
@@ -317,6 +355,64 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var stream = weex.requireModule('stream');
 
@@ -325,7 +421,6 @@
 			return {
 				indexData: 'unknown',
 				defaultCityId: '7d04e3a1-ee87-431c-9aa7-ac245014c51a',
-				// imageURLPre: 'http://produce.oss-cn-hangzhou.aliyuncs.com/ops',
 				bannerList: [],
 				secondActivityList: [],
 				flashBuyList: []
@@ -340,7 +435,11 @@
 					url: 'http://ymcapi.yaomaiche.com/ymc/index/?cityId=' + cityId
 				}, callback);
 			},
-			bannerClick: function bannerClick(event) {}
+			bannerClick: function bannerClick(event) {},
+			getImageFullURL: function getImageFullURL(partURL) {
+				console.log('full url: ' + imageURLPre + partURL);
+				return imageURLPre + partURL;
+			}
 		},
 		created: function created() {
 			var _this = this;
@@ -452,7 +551,7 @@
 	        "resize": "cover",
 	        "src": flashBuy.panicBuyingImageUrl
 	      }
-	    })]), _c('div', {
+	    })]), _vm._m(0, true), _c('div', {
 	      staticStyle: {
 	        height: "1px",
 	        backgroundColor: "#eeeeee",
@@ -467,7 +566,51 @@
 	  }, [_vm._v("YMC index:")]), _c('text', {
 	    staticClass: ["count"]
 	  }, [_vm._v(_vm._s(_vm.indexData))])])])])
-	},staticRenderFns: []}
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticStyle: {
+	      flexDirection: "row",
+	      justifyContent: "center"
+	    }
+	  }, [_c('div', {
+	    staticStyle: {
+	      justifyContent: "center",
+	      alignItems: "center"
+	    }
+	  }, [_c('image', {
+	    staticClass: ["flashBuyIcon"],
+	    attrs: {
+	      "src": "image/home_icon_tag_blue.png"
+	    }
+	  }), _c('text', {
+	    staticClass: ["flashBuyIconTitle"]
+	  }, [_vm._v("闪购")])]), _c('div', {
+	    staticStyle: {
+	      justifyContent: "center",
+	      alignItems: "center"
+	    }
+	  }, [_c('image', {
+	    staticClass: ["flashBuyState"],
+	    attrs: {
+	      "src": "image/home_bg_time_gray.9.png"
+	    }
+	  }), _c('div', {
+	    staticStyle: {
+	      justifyContent: "center",
+	      flexDirection: "row",
+	      alignItems: "center",
+	      position: "absolute"
+	    }
+	  }, [_c('text', {
+	    staticClass: ["flashBuyStateTitle"]
+	  }, [_vm._v("距报名结束")]), _c('text', {
+	    staticClass: ["flashBuyCountDownTime"]
+	  }, [_vm._v("21")]), _c('text', {
+	    staticClass: ["flashBuyCountDownTime"]
+	  }, [_vm._v("21")]), _c('text', {
+	    staticClass: ["flashBuyCountDownTime"]
+	  }, [_vm._v("21")])])])])
+	}]}
 	module.exports.render._withStripped = true
 
 /***/ }

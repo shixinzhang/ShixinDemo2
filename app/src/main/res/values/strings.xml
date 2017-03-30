@@ -15,6 +15,11 @@
     <string name="async_task">AsyncTask原理分析</string>
     <string name="weex1">Weex 基本组件的使用</string>
     <string name="weex_ymc">Weex 实现 YMC 首页</string>
+    <string name="anr_test">ANR 检测</string>
+    <string name="download_test">下载 检测</string>
+    <string name="repeat_service">定时服务测试</string>
+    <string name="service_daemon">守护服务</string>
+
     <string name="title_slider">轮播图</string>
     <string name="title_image">图片</string>
     <string name="title_simple">简单布局</string>
@@ -30,4 +35,8 @@
     <string name="title_websocket">websocket</string>
     <string name="title_modal">提示</string>
     <string name="title_stream">网络</string>
+    <string name="click_auto">自动点击</string>
+    <string name="local_service_connected">服务已连接</string>
+    <string name="local_service_started">定时服务已启动</string>
+    <string name="local_service_label">服务正在重新启动</string>
 </resources>

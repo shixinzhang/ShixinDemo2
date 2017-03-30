@@ -28,4 +28,12 @@ public class ActivityBean  {
     public void setClaz(Class<?> aClass) {
         mClz = aClass;
     }
+
+    @Override
+    public String toString() {
+        return "ActivityBean{" +
+                "mName='" + mName + '\'' +
+                ", mClz=" + mClz +
+                '}';
+    }
 }

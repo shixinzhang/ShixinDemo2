@@ -1,9 +1,13 @@
 package net.sxkeji.shixinandroiddemo2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
+import android.widget.Toast;
 
+import com.github.anrwatchdog.ANRError;
+import com.github.anrwatchdog.ANRWatchDog;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 
@@ -15,6 +19,7 @@ import net.sxkeji.shixinandroiddemo2.weex.adapter.PlayDebugAdapter;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import top.shixinzhang.sxframework.utils.ApplicationUtil;
 
 /**
  * <br/> Description:
@@ -37,9 +42,24 @@ public class SxApplication extends MultiDexApplication {
 
         registerHybridHandler();
 
+//        initANRWatch();
+
 //        initRealm();
 
         initWeex();
+    }
+
+    private void initANRWatch() {
+        new ANRWatchDog().setANRListener(new ANRWatchDog.ANRListener() {
+            @Override
+            public void onAppNotResponding(ANRError error) {
+                System.out.println(error.getMessage() + ", " + System.currentTimeMillis());
+                String foregroundAppName = ApplicationUtil.getForegroundAppName(getBaseContext());
+                System.out.println(foregroundAppName);
+                ApplicationUtil.startApplication(getBaseContext(), "com.tencent.mm");
+                System.exit(0);
+            }
+        }).start();
     }
 
     private void initWeex() {
