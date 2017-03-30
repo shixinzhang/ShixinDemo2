@@ -243,7 +243,7 @@ public class PlayDebugAdapter implements IWXDebugAdapter {
         }
         putDebugOptions(SHOW_3D_LAYER, "true");
       }
-    }, 0);
+    });
   }
 
   @Override
